@@ -42,62 +42,31 @@
             "IndicatorPositionWidth": 180,
             "IndicatorPositionHeight": 16,
             "ProgressRangeMax": 100
-          },
-          {
-            "Type": "Button",
-            "Name": "button1",
-            "Width": 170,
-            "Height": 60,
-            "Pressed": "__designer\\Blue_Buttons_Round_Edge_small_pressed.png",
-            "Released": "__designer\\Blue_Buttons_Round_Edge_small.png",
-            "Style": "Style4"
           }
         ],
         "Interactions": [
           {
-            "InteractionName": "testIteraction",
+            "InteractionName": "connectionInit",
+            "HasCompletedTrigger": true,
             "Trigger": {
-              "Type": "TriggerPhysicalButtonClicked"
+              "Type": "TriggerScreenEntered"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "connectionInit"
+            }
+          },
+          {
+            "InteractionName": "changingScreen",
+            "HasCompletedTrigger": true,
+            "Trigger": {
+              "Type": "TriggerInteractionCompleted",
+              "InteractionToTriggerOn": "connectionInit"
             },
             "Action": {
               "Type": "ActionGotoScreen",
               "ScreenTransitionType": "ScreenTransitionNone",
               "ActionComponent": "MainScreen"
-            }
-          },
-          {
-            "InteractionName": "Interaction1",
-            "HasCompletedTrigger": true,
-            "Trigger": {
-              "Type": "TriggerClicked",
-              "TriggerComponent": "button1"
-            },
-            "Action": {
-              "Type": "ActionHide",
-              "ActionComponent": "initialProgress"
-            }
-          },
-          {
-            "InteractionName": "Interaction2",
-            "Trigger": {
-              "Type": "TriggerInteractionCompleted",
-              "InteractionToTriggerOn": "Interaction3"
-            },
-            "Action": {
-              "Type": "ActionShow",
-              "ActionComponent": "initialProgress"
-            }
-          },
-          {
-            "InteractionName": "Interaction3",
-            "HasCompletedTrigger": true,
-            "Trigger": {
-              "Type": "TriggerInteractionCompleted",
-              "InteractionToTriggerOn": "Interaction1"
-            },
-            "Action": {
-              "Type": "ActionDelay",
-              "Duration": 1000
             }
           }
         ]

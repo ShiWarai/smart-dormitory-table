@@ -26,6 +26,9 @@ public:
     virtual void deactivate();
 
     virtual ~WelcomeScreenPresenter() {};
+    
+    void setLoadingProgress(unsigned short value);
+    void requestConnectionInit();
 
 private:
     WelcomeScreenPresenter();

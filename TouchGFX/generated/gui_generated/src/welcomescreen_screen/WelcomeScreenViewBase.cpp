@@ -6,9 +6,7 @@
 #include <BitmapDatabase.hpp>
 #include <texts/TextKeysAndLanguages.hpp>
 
-WelcomeScreenViewBase::WelcomeScreenViewBase() :
-    interaction3Counter(0),
-    buttonCallback(this, &WelcomeScreenViewBase::buttonCallbackHandler)
+WelcomeScreenViewBase::WelcomeScreenViewBase()
 {
 
     __background.setPosition(0, 0, 480, 272);
@@ -31,15 +29,10 @@ WelcomeScreenViewBase::WelcomeScreenViewBase() :
     initialProgress.setColor(touchgfx::Color::getColorFromRGB(0, 151, 255));
     initialProgress.setValue(0);
 
-    button1.setXY(0, 0);
-    button1.setBitmaps(touchgfx::Bitmap(BITMAP_BLUE_BUTTONS_ROUND_EDGE_SMALL_ID), touchgfx::Bitmap(BITMAP_BLUE_BUTTONS_ROUND_EDGE_SMALL_PRESSED_ID));
-    button1.setAction(buttonCallback);
-
     add(__background);
     add(welcomeBackground);
     add(welcomeText);
     add(initialProgress);
-    add(button1);
 }
 
 void WelcomeScreenViewBase::setupScreen()
@@ -47,48 +40,16 @@ void WelcomeScreenViewBase::setupScreen()
 
 }
 
-//Handles delays
-void WelcomeScreenViewBase::handleTickEvent()
+//Called when the screen transition ends
+void WelcomeScreenViewBase::afterTransition()
 {
-    if(interaction3Counter > 0)
-    {
-        interaction3Counter--;
-        if(interaction3Counter == 0)
-        {
-            //Interaction2
-            //When Interaction3 completed show initialProgress
-            //Show initialProgress
-            initialProgress.setVisible(true);
-            initialProgress.invalidate();
-        }
-    }
-}
+    //connectionInit
+    //When screen transition ends call virtual function
+    //Call connectionInit
+    connectionInit();
 
-//Handles when a key is pressed
-void WelcomeScreenViewBase::handleKeyEvent(uint8_t key)
-{
-    if(0 == key)
-    {
-        //testIteraction
-        //When hardware button 0 clicked change screen to MainScreen
-        //Go to MainScreen with no screen transition
-        application().gotoMainScreenScreenNoTransition();
-    }
-}
-
-void WelcomeScreenViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
-{
-    if (&src == &button1)
-    {
-        //Interaction1
-        //When button1 clicked hide initialProgress
-        //Hide initialProgress
-        initialProgress.setVisible(false);
-        initialProgress.invalidate();
-
-        //Interaction3
-        //When Interaction1 completed delay
-        //Delay for 1000 ms (60 Ticks)
-        interaction3Counter = INTERACTION3_DURATION;
-    }
+    //changingScreen
+    //When connectionInit completed change screen to MainScreen
+    //Go to MainScreen with no screen transition
+    application().gotoMainScreenScreenNoTransition();
 }

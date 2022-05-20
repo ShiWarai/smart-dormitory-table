@@ -11,7 +11,6 @@
 #include <touchgfx/widgets/ScalableImage.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
 #include <touchgfx/containers/progress_indicators/BoxProgress.hpp>
-#include <touchgfx/widgets/Button.hpp>
 
 class WelcomeScreenViewBase : public touchgfx::View<WelcomeScreenPresenter>
 {
@@ -19,8 +18,15 @@ public:
     WelcomeScreenViewBase();
     virtual ~WelcomeScreenViewBase() {}
     virtual void setupScreen();
-    virtual void handleTickEvent();
-    virtual void handleKeyEvent(uint8_t key);
+    virtual void afterTransition();
+
+    /*
+     * Virtual Action Handlers
+     */
+    virtual void connectionInit()
+    {
+        // Override and implement this function in WelcomeScreen
+    }
 
 protected:
     FrontendApplication& application() {
@@ -34,25 +40,8 @@ protected:
     touchgfx::ScalableImage welcomeBackground;
     touchgfx::TextArea welcomeText;
     touchgfx::BoxProgress initialProgress;
-    touchgfx::Button button1;
 
 private:
-
-    /*
-     * Delay Variable Declarations
-     */
-    static const uint16_t INTERACTION3_DURATION = 60;
-    uint16_t interaction3Counter;
-
-    /*
-     * Callback Declarations
-     */
-    touchgfx::Callback<WelcomeScreenViewBase, const touchgfx::AbstractButton&> buttonCallback;
-
-    /*
-     * Callback Handler Declarations
-     */
-    void buttonCallbackHandler(const touchgfx::AbstractButton& src);
 
 };
 

@@ -14,6 +14,8 @@ public:
     {
         model = m;
     }
+
+    virtual void setLoadingProgress(unsigned short value) {}
 protected:
     Model* model;
 };

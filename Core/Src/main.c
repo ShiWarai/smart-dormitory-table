@@ -29,7 +29,7 @@
 #include <stdio.h>
 #include "rfid.h"
 #include "softuart.h"
-#include "esp8266.h"
+//#include "esp8266.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -93,7 +93,7 @@ const osThreadAttr_t defaultTask_attributes = {
 osThreadId_t TouchGFXTaskHandle;
 const osThreadAttr_t TouchGFXTask_attributes = {
   .name = "TouchGFXTask",
-  .stack_size = 4096 * 4,
+  .stack_size = 14096 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for videoTask */
@@ -107,7 +107,7 @@ const osThreadAttr_t videoTask_attributes = {
 osThreadId_t networkThreadHandle;
 const osThreadAttr_t networkThread_attributes = {
   .name = "networkThread",
-  .stack_size = 10240 * 4,
+  .stack_size = 512 * 4,
   .priority = (osPriority_t) osPriorityNormal1,
 };
 /* USER CODE BEGIN PV */
@@ -900,38 +900,38 @@ void StartDefaultTask(void *argument)
 void networkFunc(void *argument)
 {
   /* USER CODE BEGIN networkFunc */
-	  printf("Connecting to WiFi...\r\n");
-
-	  esp_init(&huart7);
-	  char ssid[] = "IoT_Case";
-	  char password[] = "qweqweqwe";
-
-	  NET_STATS config = {"192.168.2.250", "192.168.2.1", "255.255.255.0"};
-
-	  esp_set_wifi_mode(STATION_MODE);
-	  esp_connect_to_wifi(ssid, password);
-	  printf("Connected to %s\r\n", ssid);
-
-	  if(esp_set_ip(config) == OK_RESPONSE)
-	  {
-		NET_STATS stats;
-
-		if(esp_get_station_netstats(&stats) == OK_RESPONSE)
-			printf("IP: %s\r\n", stats.ip);
-		else
-			printf("Cannot set the IP %s\r\n", config.ip);
-	  }
-
-	  // "GET / HTTP/1.1\r\nHost: 192.168.0.102:80\r\n\r\n";
-	  char request[1024];
-	  sprintf(request, "GET /projects/led_controller/led HTTP/1.1\r\nHost: ridramecraft.ru:80\r\n\r\n");
-	  char response[8128];
-	  printf("JSON:\r\n%s\r\n", esp_get_http_json(request, response, 8128));
-
-	  char json[] = "{\"color\": \"#ffffff\"}";
-	  sprintf(request, "PUT /projects/led_controller/led HTTP/1.1\r\nHost: ridramecraft.ru:80\r\nContent-Type: application/json\r\nContent-Length: %u\r\n\r\n%s\r\n", strlen(json), json);
-	  esp_send_request(request, response, 8128);
-	  printf("Response:\r\n%s\r\n", response);
+//	  printf("Connecting to WiFi...\r\n");
+//
+//	  esp_init(&huart7);
+//	  char ssid[] = "IoT_Case";
+//	  char password[] = "qweqweqwe";
+//
+//	  NET_STATS config = {"192.168.2.250", "192.168.2.1", "255.255.255.0"};
+//
+//	  esp_set_wifi_mode(STATION_MODE);
+//	  esp_connect_to_wifi(ssid, password);
+//	  printf("Connected to %s\r\n", ssid);
+//
+//	  if(esp_set_ip(config) == OK_RESPONSE)
+//	  {
+//		NET_STATS stats;
+//
+//		if(esp_get_station_netstats(&stats) == OK_RESPONSE)
+//			printf("IP: %s\r\n", stats.ip);
+//		else
+//			printf("Cannot set the IP %s\r\n", config.ip);
+//	  }
+//
+//	  // "GET / HTTP/1.1\r\nHost: 192.168.0.102:80\r\n\r\n";
+//	  char request[1024];
+//	  sprintf(request, "GET /projects/led_controller/led HTTP/1.1\r\nHost: ridramecraft.ru:80\r\n\r\n");
+//	  char response[8128];
+//	  printf("JSON:\r\n%s\r\n", esp_get_http_json(request, response, 8128));
+//
+//	  char json[] = "{\"color\": \"#ffffff\"}";
+//	  sprintf(request, "PUT /projects/led_controller/led HTTP/1.1\r\nHost: ridramecraft.ru:80\r\nContent-Type: application/json\r\nContent-Length: %u\r\n\r\n%s\r\n", strlen(json), json);
+//	  esp_send_request(request, response, 8128);
+//	  printf("Response:\r\n%s\r\n", response);
 
 
 	  vTaskPrioritySet(networkThreadHandle, (uxTaskPriorityGet(NULL) - 1));

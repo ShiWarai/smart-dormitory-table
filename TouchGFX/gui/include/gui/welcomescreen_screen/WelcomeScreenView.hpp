@@ -11,6 +11,11 @@ public:
     virtual ~WelcomeScreenView() {}
     virtual void setupScreen();
     virtual void tearDownScreen();
+    
+    void updateProgressValue(unsigned short value);
+
+    void connectionInit();
+
 protected:
 };
 
