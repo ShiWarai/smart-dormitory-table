@@ -72,3 +72,12 @@ dkms.conf
 
 # Libraries
 /lib
+
+# None code directories
+/Drivers
+/EWARM
+/LIBJPEG
+/MDK-ARM
+/Middlewares
+/gcc
+backup_STM32F746G_DISCO.ioc
