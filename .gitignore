@@ -81,3 +81,6 @@ dkms.conf
 /Middlewares
 /gcc
 backup_STM32F746G_DISCO.ioc
+
+# Visual Studio
+.vs/
