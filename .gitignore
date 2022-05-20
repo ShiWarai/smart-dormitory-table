@@ -50,3 +50,25 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Eclipse
+.metadata
+.settings
+[Rr]elease
+[Dd]ebug
+.launch
+
+# Eclipse CDT project files
+.cproject
+.project
+.settings/
+
+# Vagrant directory
+.vagrant/
+
+# Include makefiles
+!Makefile
+*~
+
+# Libraries
+/lib
