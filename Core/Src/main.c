@@ -26,10 +26,12 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stm32746g_discovery_qspi.h>
+#include <queue.h>
+#include <semphr.h>
 #include <stdio.h>
 #include "rfid.h"
 #include "softuart.h"
-//#include "esp8266.h"
+#include "esp8266.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -93,8 +95,8 @@ const osThreadAttr_t defaultTask_attributes = {
 osThreadId_t TouchGFXTaskHandle;
 const osThreadAttr_t TouchGFXTask_attributes = {
   .name = "TouchGFXTask",
-  .stack_size = 14096 * 4,
-  .priority = (osPriority_t) osPriorityNormal,
+  .stack_size = 4096 * 4,
+  .priority = (osPriority_t) osPriorityNormal1,
 };
 /* Definitions for videoTask */
 osThreadId_t videoTaskHandle;
@@ -107,8 +109,8 @@ const osThreadAttr_t videoTask_attributes = {
 osThreadId_t networkThreadHandle;
 const osThreadAttr_t networkThread_attributes = {
   .name = "networkThread",
-  .stack_size = 512 * 4,
-  .priority = (osPriority_t) osPriorityNormal1,
+  .stack_size = 10240 * 4,
+  .priority = (osPriority_t) osPriorityNormal,
 };
 /* USER CODE BEGIN PV */
 static FMC_SDRAM_CommandTypeDef Command;
@@ -140,6 +142,8 @@ int confirm_tag(long tag);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 volatile long last_rfid = 0;
+QueueHandle_t wifiTaskMessages;
+xSemaphoreHandle rfidSemaphore;
 /* USER CODE END 0 */
 
 /**
@@ -197,7 +201,10 @@ int main(void)
   SoftUartInit(0, Soft_TX_GPIO_Port, Soft_TX_Pin, Soft_RX_GPIO_Port, Soft_RX_Pin);
   SoftUartEnableRx(0);
 
-  printf("\r\nInit complete!\r\n");
+  wifiTaskMessages = xQueueCreate(1, 1);
+  rfidSemaphore = xSemaphoreCreateBinary();
+
+  printf("\r\n\r\n\r\n\r\n\r\nInit complete!\r\n");
   /* USER CODE END 2 */
 
   /* Init scheduler */
@@ -841,31 +848,16 @@ PUTCHAR_PROTOTYPE
 }
 
 
-int confirm_tag(long tag){
-	if(tag == 9226142)
-		return 1;
-	else
-		return 0;
-}
-
-
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
 	uint8_t *rfid_buffer[BUFFER_SIZE];
 	SoftUartState_E state = SoftUartReadRxBuffer(0, rfid_buffer, BUFFER_SIZE);
 	if(state == SoftUart_OK)
 	{
-		long tag = extract_tag(rfid_buffer);
+		last_rfid = extract_tag(rfid_buffer);
 
-		printf("Tag: %ld\r\n", tag);
-		if(confirm_tag(tag) == 1)
-		{
-			printf("Success!\r\n");
-			last_rfid = tag;
-		}
-		else{
-			printf("Failure!\r\n");
-		}
+		printf("Tag: %ld\r\n", last_rfid);
+		xSemaphoreGive(rfidSemaphore);
 	}
 }
 
@@ -900,48 +892,57 @@ void StartDefaultTask(void *argument)
 void networkFunc(void *argument)
 {
   /* USER CODE BEGIN networkFunc */
-//	  printf("Connecting to WiFi...\r\n");
-//
-//	  esp_init(&huart7);
-//	  char ssid[] = "IoT_Case";
-//	  char password[] = "qweqweqwe";
-//
-//	  NET_STATS config = {"192.168.2.250", "192.168.2.1", "255.255.255.0"};
-//
-//	  esp_set_wifi_mode(STATION_MODE);
-//	  esp_connect_to_wifi(ssid, password);
-//	  printf("Connected to %s\r\n", ssid);
-//
-//	  if(esp_set_ip(config) == OK_RESPONSE)
-//	  {
-//		NET_STATS stats;
-//
-//		if(esp_get_station_netstats(&stats) == OK_RESPONSE)
-//			printf("IP: %s\r\n", stats.ip);
-//		else
-//			printf("Cannot set the IP %s\r\n", config.ip);
-//	  }
-//
-//	  // "GET / HTTP/1.1\r\nHost: 192.168.0.102:80\r\n\r\n";
-//	  char request[1024];
-//	  sprintf(request, "GET /projects/led_controller/led HTTP/1.1\r\nHost: ridramecraft.ru:80\r\n\r\n");
-//	  char response[8128];
-//	  printf("JSON:\r\n%s\r\n", esp_get_http_json(request, response, 8128));
-//
-//	  char json[] = "{\"color\": \"#ffffff\"}";
-//	  sprintf(request, "PUT /projects/led_controller/led HTTP/1.1\r\nHost: ridramecraft.ru:80\r\nContent-Type: application/json\r\nContent-Length: %u\r\n\r\n%s\r\n", strlen(json), json);
-//	  esp_send_request(request, response, 8128);
-//	  printf("Response:\r\n%s\r\n", response);
+	uint8_t progress = 0;
+	char request[1024];
+	char response[8128];
 
 
-	  vTaskPrioritySet(networkThreadHandle, (uxTaskPriorityGet(NULL) - 1));
+	printf("\r\nConnecting to WiFi...\r\n");
 
-	  /* Infinite loop */
-	  for(;;)
-	  {
-		//xSemaphoreTake(httpRequestGivenHandle, portMAX_DELAY);
-		  osDelay(1);
-	  }
+	esp_init(&huart7);
+	char ssid[] = "IoT_Case";
+	char password[] = "qweqweqwe";
+
+	NET_STATS config = {"192.168.2.250", "192.168.2.1", "255.255.255.0"};
+
+	esp_set_wifi_mode(STATION_MODE);
+	progress = 10;
+	xQueueSend(wifiTaskMessages, &progress, 0);
+	esp_connect_to_wifi(ssid, password);
+
+	progress = 20;
+	xQueueSend(wifiTaskMessages, &progress, 0);
+	printf("Connected to %s\r\n", ssid);
+
+	if(esp_set_ip(config) == OK_RESPONSE)
+	{
+	NET_STATS stats;
+
+	if(esp_get_station_netstats(&stats) == OK_RESPONSE)
+		printf("IP: %s\r\n", stats.ip);
+	else
+		printf("Cannot set the IP %s\r\n", config.ip);
+	}
+
+	progress = 50;
+	xQueueSend(wifiTaskMessages, &progress, 0);
+
+	// "GET / HTTP/1.1\r\nHost: 192.168.0.102:80\r\n\r\n";
+	sprintf(request, "GET /projects/led_controller/led HTTP/1.1\r\nHost: ridramecraft.ru:80\r\n\r\n");
+	printf("JSON:\r\n%s\r\n", esp_get_http_json(request, response, 8128));
+
+	progress = 100;
+	xQueueSend(wifiTaskMessages, &progress, 0);
+
+	printf("Connected to WiFi!\r\n\r\n");
+	vTaskPrioritySet(NULL, (osPriority_t) osPriorityNone);
+
+	/* Infinite loop */
+	for(;;)
+	{
+	//xSemaphoreTake(httpRequestGivenHandle, portMAX_DELAY);
+	  osDelay(1);
+	}
   /* USER CODE END networkFunc */
 }
 

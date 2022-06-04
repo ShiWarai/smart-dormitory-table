@@ -4,7 +4,6 @@
 #include <gui_generated/mainscreen_screen/MainScreenViewBase.hpp>
 #include <touchgfx/Color.hpp>
 #include <BitmapDatabase.hpp>
-#include <texts/TextKeysAndLanguages.hpp>
 
 MainScreenViewBase::MainScreenViewBase()
 {
@@ -12,18 +11,21 @@ MainScreenViewBase::MainScreenViewBase()
     __background.setPosition(0, 0, 480, 272);
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
 
-    mainBackground.setBitmap(touchgfx::Bitmap(BITMAP_DARK_BACKGROUNDS_MAIN_BG_800X480PX_ID));
-    mainBackground.setPosition(0, 0, 480, 272);
-    mainBackground.setScalingAlgorithm(touchgfx::ScalableImage::NEAREST_NEIGHBOR);
+    mainBackground.setXY(0, 0);
+    mainBackground.setBitmap(touchgfx::Bitmap(BITMAP_BLUE_BACKGROUNDS_MAIN_BG_480X272PX_ID));
 
-    mainText.setXY(81, 112);
-    mainText.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
-    mainText.setLinespacing(0);
-    mainText.setTypedText(touchgfx::TypedText(T___SINGLEUSE_I2QG));
+    analogClock1.setXY(124, 15);
+    analogClock1.setBackground(BITMAP_BLUE_CLOCKS_BACKGROUNDS_CLOCK_MODERN_BACKGROUND_ID, 116, 116);
+    analogClock1.setupSecondHand(BITMAP_BLUE_CLOCKS_HANDS_CLOCK_STANDARD_SECOND_HAND_ID, 3, 66);
+    analogClock1.setupMinuteHand(BITMAP_BLUE_CLOCKS_HANDS_CLOCK_STANDARD_MINUTE_HAND_ID, 7, 67);
+    analogClock1.setMinuteHandSecondCorrection(false);
+    analogClock1.setupHourHand(BITMAP_BLUE_CLOCKS_HANDS_CLOCK_STANDARD_HOUR_HAND_ID, 7, 52);
+    analogClock1.setHourHandMinuteCorrection(false);
+    analogClock1.initializeTime24Hour(10, 10, 0);
 
     add(__background);
     add(mainBackground);
-    add(mainText);
+    add(analogClock1);
 }
 
 void MainScreenViewBase::setupScreen()

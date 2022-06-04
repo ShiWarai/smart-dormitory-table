@@ -17,12 +17,7 @@ void WelcomeScreenPresenter::deactivate()
 
 }
 
-void WelcomeScreenPresenter::setLoadingProgress(unsigned short value)
+void WelcomeScreenPresenter::setLoadingProgress(uint8_t value)
 {
-    view.updateProgressValue(value % 100);
-}
-
-void WelcomeScreenPresenter::requestConnectionInit()
-{
-    model->connectionInit();
+    view.updateProgressValue(value % 101);
 }

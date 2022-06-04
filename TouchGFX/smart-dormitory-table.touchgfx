@@ -15,13 +15,11 @@
           {
             "Type": "TextArea",
             "Name": "welcomeText",
-            "X": 52,
-            "Y": 87,
-            "Width": 377,
-            "Height": 49,
+            "Y": 90,
+            "Width": 480,
+            "Height": 58,
             "TextId": "__SingleUse_C02T",
-            "TextRotation": "0",
-            "AutoSize": true
+            "TextRotation": "0"
           },
           {
             "Type": "BoxProgress",
@@ -42,31 +40,124 @@
             "IndicatorPositionWidth": 180,
             "IndicatorPositionHeight": 16,
             "ProgressRangeMax": 100
+          },
+          {
+            "Type": "TextArea",
+            "Name": "wifiDoneTitle",
+            "Y": 175,
+            "Width": 480,
+            "Height": 31,
+            "Visible": false,
+            "TextId": "__SingleUse_SHLX",
+            "TextRotation": "0"
+          },
+          {
+            "Type": "TextArea",
+            "Name": "textArea1",
+            "X": 7,
+            "Y": 254,
+            "Width": 60,
+            "Height": 12,
+            "TextId": "__SingleUse_Y3NY",
+            "TextRotation": "0",
+            "AutoSize": true
           }
         ],
         "Interactions": [
           {
-            "InteractionName": "connectionInit",
-            "HasCompletedTrigger": true,
+            "InteractionName": "changeScreen",
             "Trigger": {
-              "Type": "TriggerScreenEntered"
-            },
-            "Action": {
-              "Type": "ActionCustom",
-              "FunctionName": "connectionInit"
-            }
-          },
-          {
-            "InteractionName": "changingScreen",
-            "HasCompletedTrigger": true,
-            "Trigger": {
-              "Type": "TriggerInteractionCompleted",
-              "InteractionToTriggerOn": "connectionInit"
+              "Type": "TriggerNone"
             },
             "Action": {
               "Type": "ActionGotoScreen",
               "ScreenTransitionType": "ScreenTransitionNone",
+              "ActionComponent": "WaitingScreen"
+            }
+          }
+        ]
+      },
+      {
+        "Name": "WaitingScreen",
+        "Components": [
+          {
+            "Type": "ScalableImage",
+            "Name": "waitingBackground",
+            "Width": 480,
+            "Height": 272,
+            "LockPosition": true,
+            "Filename": "__designer\\Blue_Backgrounds_Main_bg_texture_480x272px.png",
+            "ScalingAlgorithm": "Nearest-neighbor"
+          },
+          {
+            "Type": "TextArea",
+            "Name": "waitingText",
+            "Y": 66,
+            "Width": 480,
+            "Height": 32,
+            "TextId": "__SingleUse_I2QG",
+            "TextRotation": "0"
+          },
+          {
+            "Type": "ScalableImage",
+            "Name": "plugSwipeImage",
+            "X": 156,
+            "Y": 145,
+            "Width": 169,
+            "Height": 67,
+            "Filename": "images.png",
+            "ScalingAlgorithm": "Nearest-neighbor"
+          },
+          {
+            "Type": "TextArea",
+            "Name": "studentIdText",
+            "Y": 98,
+            "Width": 480,
+            "Height": 29,
+            "TextId": "__SingleUse_U8JL",
+            "TextRotation": "0",
+            "Wildcard1": {
+              "TextId": "studentId",
+              "UseBuffer": true,
+              "BufferSize": 10
+            }
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "waitingRFID",
+            "HasCompletedTrigger": true,
+            "Trigger": {
+              "Type": "TriggerScreenTransitionBegins"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "waitRFID"
+            }
+          },
+          {
+            "InteractionName": "changeScreen",
+            "Trigger": {
+              "Type": "TriggerInteractionCompleted",
+              "InteractionToTriggerOn": "waiting"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionSlide",
+              "ScreenTransitionDirection": "West",
               "ActionComponent": "MainScreen"
+            }
+          },
+          {
+            "InteractionName": "waiting",
+            "HasCompletedTrigger": true,
+            "Trigger": {
+              "Type": "TriggerInteractionCompleted",
+              "InteractionToTriggerOn": "waitingRFID"
+            },
+            "Action": {
+              "Type": "ActionDelay",
+              "Duration": 3000
             }
           }
         ]
@@ -75,23 +166,48 @@
         "Name": "MainScreen",
         "Components": [
           {
-            "Type": "ScalableImage",
+            "Type": "Image",
             "Name": "mainBackground",
             "Width": 480,
             "Height": 272,
-            "Filename": "__designer\\Dark_Backgrounds_Main_bg_800x480px.png",
-            "ScalingAlgorithm": "Nearest-neighbor"
+            "LockPosition": true,
+            "RelativeFilename": "__designer\\Blue_Backgrounds_Main_bg_480x272px.png",
+            "Style": "Image2"
           },
           {
-            "Type": "TextArea",
-            "Name": "mainText",
-            "X": 81,
-            "Y": 112,
-            "Width": 319,
-            "Height": 49,
-            "TextId": "__SingleUse_I2QG",
-            "TextRotation": "0",
-            "AutoSize": true
+            "Type": "AnalogClock",
+            "Name": "analogClock1",
+            "X": 124,
+            "Y": 15,
+            "Width": 233,
+            "Height": 243,
+            "FileNameBackground": "__designer\\Blue_Clocks_Backgrounds_clock_modern_background.png",
+            "RotationCenterX": 116,
+            "RotationCenterY": 116,
+            "Easing": "Back",
+            "EasingOption": "Out",
+            "ClockHands": [
+              {
+                "Type": "HourClockHand",
+                "FileNameHandImage": "__designer\\Blue_Clocks_Hands_clock_standard_hour_hand.png",
+                "RotationCenterX": 7,
+                "RotationCenterY": 52
+              },
+              {
+                "Type": "MinuteClockHand",
+                "FileNameHandImage": "__designer\\Blue_Clocks_Hands_clock_standard_minute_hand.png",
+                "RotationCenterX": 7,
+                "RotationCenterY": 67
+              },
+              {
+                "Type": "SecondClockHand",
+                "FileNameHandImage": "__designer\\Blue_Clocks_Hands_clock_standard_second_hand.png",
+                "RotationCenterX": 3,
+                "RotationCenterY": 66
+              }
+            ],
+            "InitialHour": 10,
+            "InitialMinute": 10
           }
         ],
         "Interactions": []

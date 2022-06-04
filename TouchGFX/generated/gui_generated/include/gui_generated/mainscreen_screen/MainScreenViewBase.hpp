@@ -8,8 +8,8 @@
 #include <mvp/View.hpp>
 #include <gui/mainscreen_screen/MainScreenPresenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
-#include <touchgfx/widgets/ScalableImage.hpp>
-#include <touchgfx/widgets/TextArea.hpp>
+#include <touchgfx/widgets/Image.hpp>
+#include <touchgfx/containers/clock/AnalogClock.hpp>
 
 class MainScreenViewBase : public touchgfx::View<MainScreenPresenter>
 {
@@ -27,8 +27,8 @@ protected:
      * Member Declarations
      */
     touchgfx::Box __background;
-    touchgfx::ScalableImage mainBackground;
-    touchgfx::TextArea mainText;
+    touchgfx::Image mainBackground;
+    touchgfx::AnalogClock analogClock1;
 
 private:
 

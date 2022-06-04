@@ -2,11 +2,9 @@
 #define MODEL_HPP
 
 #include <stdio.h>
-
-extern "C"
-{
-#include "esp8266.h"
-}
+#include <FreeRTOS.h>
+#include <queue.h>
+#include <task.h>
 
 class ModelListener;
 
@@ -22,7 +20,6 @@ public:
     }
 
     void tick();
-    void connectionInit();
 protected:
     ModelListener* modelListener;
 };

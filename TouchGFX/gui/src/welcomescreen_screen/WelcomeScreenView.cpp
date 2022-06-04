@@ -19,8 +19,29 @@ void WelcomeScreenView::updateProgressValue(unsigned short value)
 {
     initialProgress.setValue(value);
     initialProgress.invalidate();
+
+    if (value >= 100)
+    {
+        wifiDoneTitle.setVisible(true);
+        wifiDoneTitle.invalidate();
+
+        initialProgress.setVisible(false);
+        initialProgress.invalidate();
+
+        waitingCounter = WAITING_DURATION;
+    }
 }
 
-void WelcomeScreenView::connectionInit() {
-    presenter->requestConnectionInit();
+//Handles delays
+void WelcomeScreenView::handleTickEvent()
+{
+    if (waitingCounter > 0)
+    {
+        waitingCounter--;
+        if (waitingCounter == 0)
+        {
+            //changeScreen
+            application().gotoWaitingScreenScreenNoTransition();
+        }
+    }
 }
