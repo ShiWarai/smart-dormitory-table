@@ -96,7 +96,7 @@ osThreadId_t TouchGFXTaskHandle;
 const osThreadAttr_t TouchGFXTask_attributes = {
   .name = "TouchGFXTask",
   .stack_size = 4096 * 4,
-  .priority = (osPriority_t) osPriorityNormal1,
+  .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for videoTask */
 osThreadId_t videoTaskHandle;
@@ -141,9 +141,11 @@ int confirm_tag(long tag);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+uint8_t rfid_buffer[BUFFER_SIZE];
+
 volatile long last_rfid = 0;
 QueueHandle_t wifiTaskMessages;
-xSemaphoreHandle rfidSemaphore;
+QueueHandle_t rfidMessages;
 /* USER CODE END 0 */
 
 /**
@@ -202,7 +204,7 @@ int main(void)
   SoftUartEnableRx(0);
 
   wifiTaskMessages = xQueueCreate(1, 1);
-  rfidSemaphore = xSemaphoreCreateBinary();
+  rfidMessages = xQueueCreate(1, 8);
 
   printf("\r\n\r\n\r\n\r\n\r\nInit complete!\r\n");
   /* USER CODE END 2 */
@@ -850,14 +852,14 @@ PUTCHAR_PROTOTYPE
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
-	uint8_t *rfid_buffer[BUFFER_SIZE];
 	SoftUartState_E state = SoftUartReadRxBuffer(0, rfid_buffer, BUFFER_SIZE);
 	if(state == SoftUart_OK)
 	{
 		last_rfid = extract_tag(rfid_buffer);
 
 		printf("Tag: %ld\r\n", last_rfid);
-		xSemaphoreGive(rfidSemaphore);
+
+		xQueueSendFromISR(rfidMessages, &last_rfid, 0);
 	}
 }
 

@@ -12,16 +12,20 @@ class Model
 {
 public:
     Model();
-
+    void tick();
 
     void bind(ModelListener* listener)
     {
         modelListener = listener;
     }
 
-    void tick();
+    long getStudentId();
 protected:
     ModelListener* modelListener;
+private:
+    bool confirm_tag(long tag);
+
+    long studentId;
 };
 
 #endif // MODEL_HPP

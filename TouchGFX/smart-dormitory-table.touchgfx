@@ -125,39 +125,15 @@
         ],
         "Interactions": [
           {
-            "InteractionName": "waitingRFID",
-            "HasCompletedTrigger": true,
-            "Trigger": {
-              "Type": "TriggerScreenTransitionBegins"
-            },
-            "Action": {
-              "Type": "ActionCustom",
-              "FunctionName": "waitRFID"
-            }
-          },
-          {
             "InteractionName": "changeScreen",
             "Trigger": {
-              "Type": "TriggerInteractionCompleted",
-              "InteractionToTriggerOn": "waiting"
+              "Type": "TriggerNone"
             },
             "Action": {
               "Type": "ActionGotoScreen",
               "ScreenTransitionType": "ScreenTransitionSlide",
-              "ScreenTransitionDirection": "West",
+              "ScreenTransitionDirection": "East",
               "ActionComponent": "MainScreen"
-            }
-          },
-          {
-            "InteractionName": "waiting",
-            "HasCompletedTrigger": true,
-            "Trigger": {
-              "Type": "TriggerInteractionCompleted",
-              "InteractionToTriggerOn": "waitingRFID"
-            },
-            "Action": {
-              "Type": "ActionDelay",
-              "Duration": 3000
             }
           }
         ]
@@ -175,45 +151,109 @@
             "Style": "Image2"
           },
           {
-            "Type": "AnalogClock",
-            "Name": "analogClock1",
-            "X": 124,
-            "Y": 15,
-            "Width": 233,
-            "Height": 243,
-            "FileNameBackground": "__designer\\Blue_Clocks_Backgrounds_clock_modern_background.png",
-            "RotationCenterX": 116,
-            "RotationCenterY": 116,
-            "Easing": "Back",
-            "EasingOption": "Out",
-            "ClockHands": [
-              {
-                "Type": "HourClockHand",
-                "FileNameHandImage": "__designer\\Blue_Clocks_Hands_clock_standard_hour_hand.png",
-                "RotationCenterX": 7,
-                "RotationCenterY": 52
-              },
-              {
-                "Type": "MinuteClockHand",
-                "FileNameHandImage": "__designer\\Blue_Clocks_Hands_clock_standard_minute_hand.png",
-                "RotationCenterX": 7,
-                "RotationCenterY": 67
-              },
-              {
-                "Type": "SecondClockHand",
-                "FileNameHandImage": "__designer\\Blue_Clocks_Hands_clock_standard_second_hand.png",
-                "RotationCenterX": 3,
-                "RotationCenterY": 66
-              }
-            ],
-            "InitialHour": 10,
-            "InitialMinute": 10
+            "Type": "CustomContainerInstance",
+            "Name": "profileView",
+            "Width": 480,
+            "Height": 272,
+            "CustomContainerDefinitionName": "ProfileView"
           }
         ],
-        "Interactions": []
+        "Interactions": [
+          {
+            "InteractionName": "update",
+            "Trigger": {
+              "Type": "TriggerInteractionCompleted",
+              "InteractionToTriggerOn": "Interaction1"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "updateStudentId"
+            }
+          },
+          {
+            "InteractionName": "Interaction1",
+            "HasCompletedTrigger": true,
+            "Trigger": {
+              "Type": "TriggerScreenTransitionBegins"
+            },
+            "Action": {
+              "Type": "ActionDelay",
+              "Duration": 1000
+            }
+          }
+        ]
       }
     ],
-    "CustomContainerDefinitions": [],
+    "CustomContainerDefinitions": [
+      {
+        "Name": "ProfileView",
+        "Width": 480,
+        "Height": 272,
+        "Components": [
+          {
+            "Type": "Button",
+            "Name": "exitButton",
+            "X": 310,
+            "Y": 212,
+            "Width": 170,
+            "Height": 60,
+            "Pressed": "__designer\\Blue_Buttons_Round_small_pressed.png",
+            "Released": "__designer\\Blue_Buttons_Round_small.png",
+            "Style": "Style8"
+          },
+          {
+            "Type": "TextArea",
+            "Name": "exitTitle",
+            "X": 310,
+            "Y": 227,
+            "Width": 170,
+            "Height": 30,
+            "TextId": "__SingleUse_6U0X",
+            "TextRotation": "0"
+          },
+          {
+            "Type": "TextArea",
+            "Name": "titleText",
+            "Width": 480,
+            "Height": 30,
+            "TextId": "__SingleUse_DQ0S",
+            "TextRotation": "0",
+            "Wildcard1": {
+              "TextId": "studentId",
+              "UseBuffer": true,
+              "BufferSize": 10
+            }
+          },
+          {
+            "Type": "ScrollableContainer",
+            "Name": "profileData",
+            "Y": 30,
+            "Width": 480,
+            "Height": 182,
+            "HorizontalScrollEnabled": true,
+            "VerticalScrollEnabled": true,
+            "ScrollbarsVisibleOnPressed": true,
+            "ScrollbarsAlpha": 255,
+            "Components": []
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "exit",
+            "HasCompletedTrigger": true,
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "exitButton"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionNone",
+              "ActionComponent": "WaitingScreen"
+            }
+          }
+        ]
+      }
+    ],
     "Name": "smart-dormitory-table",
     "Resolution": {
       "Width": 480,

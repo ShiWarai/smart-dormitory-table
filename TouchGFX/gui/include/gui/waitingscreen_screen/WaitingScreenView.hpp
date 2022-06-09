@@ -4,8 +4,6 @@
 #include <gui_generated/waitingscreen_screen/WaitingScreenViewBase.hpp>
 #include <gui/waitingscreen_screen/WaitingScreenPresenter.hpp>
 
-#include <semphr.h>
-
 class WaitingScreenView : public WaitingScreenViewBase
 {
 public:
@@ -13,10 +11,13 @@ public:
     virtual ~WaitingScreenView() {}
     virtual void setupScreen();
     virtual void tearDownScreen();
+    virtual void handleTickEvent();
 
-    void waitRFID();
+    void setStudentId(long studentId);
 private:
     bool confirm_tag(long tag);
+    static const uint16_t WAITING_DURATION = 180;
+    uint16_t waitingCounter = 0;
 };
 
 #endif // WAITINGSCREENVIEW_HPP

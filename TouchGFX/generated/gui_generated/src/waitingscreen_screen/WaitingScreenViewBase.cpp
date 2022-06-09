@@ -6,8 +6,7 @@
 #include <BitmapDatabase.hpp>
 #include <texts/TextKeysAndLanguages.hpp>
 
-WaitingScreenViewBase::WaitingScreenViewBase() :
-    waitingCounter(0)
+WaitingScreenViewBase::WaitingScreenViewBase()
 {
 
     __background.setPosition(0, 0, 480, 272);
@@ -43,30 +42,4 @@ WaitingScreenViewBase::WaitingScreenViewBase() :
 void WaitingScreenViewBase::setupScreen()
 {
 
-    //waitingRFID
-    //When screen transition begins call virtual function
-    //Call waitRFID
-    waitRFID();
-
-    //waiting
-    //When waitingRFID completed delay
-    //Delay for 3000 ms (180 Ticks)
-    waitingCounter = WAITING_DURATION;
-
-}
-
-//Handles delays
-void WaitingScreenViewBase::handleTickEvent()
-{
-    if(waitingCounter > 0)
-    {
-        waitingCounter--;
-        if(waitingCounter == 0)
-        {
-            //changeScreen
-            //When waiting completed change screen to MainScreen
-            //Go to MainScreen with screen transition towards West
-            application().gotoMainScreenScreenSlideTransitionWest();
-        }
-    }
 }

@@ -9,7 +9,7 @@
 #include <gui/mainscreen_screen/MainScreenPresenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/widgets/Image.hpp>
-#include <touchgfx/containers/clock/AnalogClock.hpp>
+#include <gui/containers/ProfileView.hpp>
 
 class MainScreenViewBase : public touchgfx::View<MainScreenPresenter>
 {
@@ -17,6 +17,15 @@ public:
     MainScreenViewBase();
     virtual ~MainScreenViewBase() {}
     virtual void setupScreen();
+    virtual void handleTickEvent();
+
+    /*
+     * Virtual Action Handlers
+     */
+    virtual void updateStudentId()
+    {
+        // Override and implement this function in MainScreen
+    }
 
 protected:
     FrontendApplication& application() {
@@ -28,9 +37,15 @@ protected:
      */
     touchgfx::Box __background;
     touchgfx::Image mainBackground;
-    touchgfx::AnalogClock analogClock1;
+    ProfileView profileView;
 
 private:
+
+    /*
+     * Delay Variable Declarations
+     */
+    static const uint16_t INTERACTION1_DURATION = 60;
+    uint16_t interaction1Counter;
 
 };
 

@@ -5,7 +5,8 @@
 #include <touchgfx/Color.hpp>
 #include <BitmapDatabase.hpp>
 
-MainScreenViewBase::MainScreenViewBase()
+MainScreenViewBase::MainScreenViewBase() :
+    interaction1Counter(0)
 {
 
     __background.setPosition(0, 0, 480, 272);
@@ -14,21 +15,35 @@ MainScreenViewBase::MainScreenViewBase()
     mainBackground.setXY(0, 0);
     mainBackground.setBitmap(touchgfx::Bitmap(BITMAP_BLUE_BACKGROUNDS_MAIN_BG_480X272PX_ID));
 
-    analogClock1.setXY(124, 15);
-    analogClock1.setBackground(BITMAP_BLUE_CLOCKS_BACKGROUNDS_CLOCK_MODERN_BACKGROUND_ID, 116, 116);
-    analogClock1.setupSecondHand(BITMAP_BLUE_CLOCKS_HANDS_CLOCK_STANDARD_SECOND_HAND_ID, 3, 66);
-    analogClock1.setupMinuteHand(BITMAP_BLUE_CLOCKS_HANDS_CLOCK_STANDARD_MINUTE_HAND_ID, 7, 67);
-    analogClock1.setMinuteHandSecondCorrection(false);
-    analogClock1.setupHourHand(BITMAP_BLUE_CLOCKS_HANDS_CLOCK_STANDARD_HOUR_HAND_ID, 7, 52);
-    analogClock1.setHourHandMinuteCorrection(false);
-    analogClock1.initializeTime24Hour(10, 10, 0);
+    profileView.setXY(0, 0);
 
     add(__background);
     add(mainBackground);
-    add(analogClock1);
+    add(profileView);
 }
 
 void MainScreenViewBase::setupScreen()
 {
+    profileView.initialize();
+    //Interaction1
+    //When screen transition begins delay
+    //Delay for 1000 ms (60 Ticks)
+    interaction1Counter = INTERACTION1_DURATION;
 
+}
+
+//Handles delays
+void MainScreenViewBase::handleTickEvent()
+{
+    if(interaction1Counter > 0)
+    {
+        interaction1Counter--;
+        if(interaction1Counter == 0)
+        {
+            //update
+            //When Interaction1 completed call virtual function
+            //Call updateStudentId
+            updateStudentId();
+        }
+    }
 }

@@ -19,7 +19,7 @@ public:
 
 private:
     static const uint16_t WAITING_DURATION = 180;
-    uint16_t waitingCounter;
+    uint16_t waitingCounter = 0;
 };
 
 #endif // WELCOMESCREENVIEW_HPP

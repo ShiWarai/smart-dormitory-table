@@ -18,15 +18,6 @@ public:
     WaitingScreenViewBase();
     virtual ~WaitingScreenViewBase() {}
     virtual void setupScreen();
-    virtual void handleTickEvent();
-
-    /*
-     * Virtual Action Handlers
-     */
-    virtual void waitRFID()
-    {
-        // Override and implement this function in WaitingScreen
-    }
 
 protected:
     FrontendApplication& application() {
@@ -49,12 +40,6 @@ protected:
     touchgfx::Unicode::UnicodeChar studentIdTextBuffer[STUDENTIDTEXT_SIZE];
 
 private:
-
-    /*
-     * Delay Variable Declarations
-     */
-    static const uint16_t WAITING_DURATION = 180;
-    uint16_t waitingCounter;
 
 };
 

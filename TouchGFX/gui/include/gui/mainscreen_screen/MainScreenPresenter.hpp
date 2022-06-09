@@ -27,6 +27,7 @@ public:
 
     virtual ~MainScreenPresenter() {};
 
+    long getCurrentStudentId();
 private:
     MainScreenPresenter();
 

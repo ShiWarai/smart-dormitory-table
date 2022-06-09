@@ -61,13 +61,13 @@ void FrontendApplicationBase::gotoWaitingScreenScreenNoTransitionImpl()
 
 // MainScreen
 
-void FrontendApplicationBase::gotoMainScreenScreenSlideTransitionWest()
+void FrontendApplicationBase::gotoMainScreenScreenSlideTransitionEast()
 {
-    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplication::gotoMainScreenScreenSlideTransitionWestImpl);
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplication::gotoMainScreenScreenSlideTransitionEastImpl);
     pendingScreenTransitionCallback = &transitionCallback;
 }
 
-void FrontendApplicationBase::gotoMainScreenScreenSlideTransitionWestImpl()
+void FrontendApplicationBase::gotoMainScreenScreenSlideTransitionEastImpl()
 {
-    touchgfx::makeTransition<MainScreenView, MainScreenPresenter, touchgfx::SlideTransition<WEST>, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+    touchgfx::makeTransition<MainScreenView, MainScreenPresenter, touchgfx::SlideTransition<EAST>, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
 }

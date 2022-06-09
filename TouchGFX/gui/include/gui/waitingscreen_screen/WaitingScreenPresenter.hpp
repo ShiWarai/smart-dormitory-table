@@ -27,6 +27,8 @@ public:
 
     virtual ~WaitingScreenPresenter() {};
 
+    void setStudentId(long studentId);
+
 private:
     WaitingScreenPresenter();
 
