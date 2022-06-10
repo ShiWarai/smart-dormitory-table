@@ -16,3 +16,7 @@ void MainScreenPresenter::deactivate()
 {
 
 }
+
+long MainScreenPresenter::getCurrentStudentId() {
+    return model->getStudentId();
+}

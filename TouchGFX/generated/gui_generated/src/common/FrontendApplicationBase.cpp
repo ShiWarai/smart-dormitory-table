@@ -11,6 +11,8 @@
 #include <platform/driver/lcd/LCD16bpp.hpp>
 #include <gui/welcomescreen_screen/WelcomeScreenView.hpp>
 #include <gui/welcomescreen_screen/WelcomeScreenPresenter.hpp>
+#include <gui/waitingscreen_screen/WaitingScreenView.hpp>
+#include <gui/waitingscreen_screen/WaitingScreenPresenter.hpp>
 #include <gui/mainscreen_screen/MainScreenView.hpp>
 #include <gui/mainscreen_screen/MainScreenPresenter.hpp>
 
@@ -44,15 +46,28 @@ void FrontendApplicationBase::gotoWelcomeScreenScreenNoTransitionImpl()
     touchgfx::makeTransition<WelcomeScreenView, WelcomeScreenPresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
 }
 
-// MainScreen
+// WaitingScreen
 
-void FrontendApplicationBase::gotoMainScreenScreenNoTransition()
+void FrontendApplicationBase::gotoWaitingScreenScreenNoTransition()
 {
-    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplication::gotoMainScreenScreenNoTransitionImpl);
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplication::gotoWaitingScreenScreenNoTransitionImpl);
     pendingScreenTransitionCallback = &transitionCallback;
 }
 
-void FrontendApplicationBase::gotoMainScreenScreenNoTransitionImpl()
+void FrontendApplicationBase::gotoWaitingScreenScreenNoTransitionImpl()
 {
-    touchgfx::makeTransition<MainScreenView, MainScreenPresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+    touchgfx::makeTransition<WaitingScreenView, WaitingScreenPresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+}
+
+// MainScreen
+
+void FrontendApplicationBase::gotoMainScreenScreenSlideTransitionEast()
+{
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplication::gotoMainScreenScreenSlideTransitionEastImpl);
+    pendingScreenTransitionCallback = &transitionCallback;
+}
+
+void FrontendApplicationBase::gotoMainScreenScreenSlideTransitionEastImpl()
+{
+    touchgfx::makeTransition<MainScreenView, MainScreenPresenter, touchgfx::SlideTransition<EAST>, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
 }

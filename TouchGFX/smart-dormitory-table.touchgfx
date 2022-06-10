@@ -15,13 +15,11 @@
           {
             "Type": "TextArea",
             "Name": "welcomeText",
-            "X": 52,
-            "Y": 87,
-            "Width": 377,
-            "Height": 49,
+            "Y": 90,
+            "Width": 480,
+            "Height": 58,
             "TextId": "__SingleUse_C02T",
-            "TextRotation": "0",
-            "AutoSize": true
+            "TextRotation": "0"
           },
           {
             "Type": "BoxProgress",
@@ -42,30 +40,99 @@
             "IndicatorPositionWidth": 180,
             "IndicatorPositionHeight": 16,
             "ProgressRangeMax": 100
+          },
+          {
+            "Type": "TextArea",
+            "Name": "wifiDoneTitle",
+            "Y": 175,
+            "Width": 480,
+            "Height": 31,
+            "Visible": false,
+            "TextId": "__SingleUse_SHLX",
+            "TextRotation": "0"
+          },
+          {
+            "Type": "TextArea",
+            "Name": "textArea1",
+            "X": 7,
+            "Y": 254,
+            "Width": 60,
+            "Height": 12,
+            "TextId": "__SingleUse_Y3NY",
+            "TextRotation": "0",
+            "AutoSize": true
           }
         ],
         "Interactions": [
           {
-            "InteractionName": "connectionInit",
-            "HasCompletedTrigger": true,
+            "InteractionName": "changeScreen",
             "Trigger": {
-              "Type": "TriggerScreenEntered"
-            },
-            "Action": {
-              "Type": "ActionCustom",
-              "FunctionName": "connectionInit"
-            }
-          },
-          {
-            "InteractionName": "changingScreen",
-            "HasCompletedTrigger": true,
-            "Trigger": {
-              "Type": "TriggerInteractionCompleted",
-              "InteractionToTriggerOn": "connectionInit"
+              "Type": "TriggerNone"
             },
             "Action": {
               "Type": "ActionGotoScreen",
               "ScreenTransitionType": "ScreenTransitionNone",
+              "ActionComponent": "WaitingScreen"
+            }
+          }
+        ]
+      },
+      {
+        "Name": "WaitingScreen",
+        "Components": [
+          {
+            "Type": "ScalableImage",
+            "Name": "waitingBackground",
+            "Width": 480,
+            "Height": 272,
+            "LockPosition": true,
+            "Filename": "__designer\\Blue_Backgrounds_Main_bg_texture_480x272px.png",
+            "ScalingAlgorithm": "Nearest-neighbor"
+          },
+          {
+            "Type": "TextArea",
+            "Name": "waitingText",
+            "Y": 66,
+            "Width": 480,
+            "Height": 32,
+            "TextId": "__SingleUse_I2QG",
+            "TextRotation": "0"
+          },
+          {
+            "Type": "ScalableImage",
+            "Name": "plugSwipeImage",
+            "X": 156,
+            "Y": 145,
+            "Width": 169,
+            "Height": 67,
+            "Filename": "images.png",
+            "ScalingAlgorithm": "Nearest-neighbor"
+          },
+          {
+            "Type": "TextArea",
+            "Name": "studentIdText",
+            "Y": 98,
+            "Width": 480,
+            "Height": 29,
+            "TextId": "__SingleUse_U8JL",
+            "TextRotation": "0",
+            "Wildcard1": {
+              "TextId": "studentId",
+              "UseBuffer": true,
+              "BufferSize": 10
+            }
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "changeScreen",
+            "Trigger": {
+              "Type": "TriggerNone"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionSlide",
+              "ScreenTransitionDirection": "East",
               "ActionComponent": "MainScreen"
             }
           }
@@ -75,29 +142,118 @@
         "Name": "MainScreen",
         "Components": [
           {
-            "Type": "ScalableImage",
+            "Type": "Image",
             "Name": "mainBackground",
             "Width": 480,
             "Height": 272,
-            "Filename": "__designer\\Dark_Backgrounds_Main_bg_800x480px.png",
-            "ScalingAlgorithm": "Nearest-neighbor"
+            "LockPosition": true,
+            "RelativeFilename": "__designer\\Blue_Backgrounds_Main_bg_480x272px.png",
+            "Style": "Image2"
+          },
+          {
+            "Type": "CustomContainerInstance",
+            "Name": "profileView",
+            "Width": 480,
+            "Height": 272,
+            "CustomContainerDefinitionName": "ProfileView"
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "update",
+            "Trigger": {
+              "Type": "TriggerInteractionCompleted",
+              "InteractionToTriggerOn": "Interaction1"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "updateStudentId"
+            }
+          },
+          {
+            "InteractionName": "Interaction1",
+            "HasCompletedTrigger": true,
+            "Trigger": {
+              "Type": "TriggerScreenTransitionBegins"
+            },
+            "Action": {
+              "Type": "ActionDelay",
+              "Duration": 1000
+            }
+          }
+        ]
+      }
+    ],
+    "CustomContainerDefinitions": [
+      {
+        "Name": "ProfileView",
+        "Width": 480,
+        "Height": 272,
+        "Components": [
+          {
+            "Type": "Button",
+            "Name": "exitButton",
+            "X": 310,
+            "Y": 212,
+            "Width": 170,
+            "Height": 60,
+            "Pressed": "__designer\\Blue_Buttons_Round_small_pressed.png",
+            "Released": "__designer\\Blue_Buttons_Round_small.png",
+            "Style": "Style8"
           },
           {
             "Type": "TextArea",
-            "Name": "mainText",
-            "X": 81,
-            "Y": 112,
-            "Width": 319,
-            "Height": 49,
-            "TextId": "__SingleUse_I2QG",
+            "Name": "exitTitle",
+            "X": 310,
+            "Y": 227,
+            "Width": 170,
+            "Height": 30,
+            "TextId": "__SingleUse_6U0X",
+            "TextRotation": "0"
+          },
+          {
+            "Type": "TextArea",
+            "Name": "titleText",
+            "Width": 480,
+            "Height": 30,
+            "TextId": "__SingleUse_DQ0S",
             "TextRotation": "0",
-            "AutoSize": true
+            "Wildcard1": {
+              "TextId": "studentId",
+              "UseBuffer": true,
+              "BufferSize": 10
+            }
+          },
+          {
+            "Type": "ScrollableContainer",
+            "Name": "profileData",
+            "Y": 30,
+            "Width": 480,
+            "Height": 182,
+            "HorizontalScrollEnabled": true,
+            "VerticalScrollEnabled": true,
+            "ScrollbarsVisibleOnPressed": true,
+            "ScrollbarsAlpha": 255,
+            "Components": []
           }
         ],
-        "Interactions": []
+        "Interactions": [
+          {
+            "InteractionName": "exit",
+            "HasCompletedTrigger": true,
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "exitButton"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionNone",
+              "ActionComponent": "WaitingScreen"
+            }
+          }
+        ]
       }
     ],
-    "CustomContainerDefinitions": [],
     "Name": "smart-dormitory-table",
     "Resolution": {
       "Width": 480,

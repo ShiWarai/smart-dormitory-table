@@ -19,14 +19,19 @@
     <ClCompile Include="$(ApplicationRoot)\generated\simulator\src\mainBase.cpp"/>
     <ClCompile Include="..\..\gui\src\common\FrontendApplication.cpp"/>
     <ClCompile Include="..\..\generated\gui_generated\src\common\FrontendApplicationBase.cpp"/>
-    <ClCompile Include="..\..\gui\src\mainscreen_screen\MainScreenPresenter.cpp"/>
-    <ClCompile Include="..\..\gui\src\mainscreen_screen\MainScreenView.cpp"/>
-    <ClCompile Include="..\..\generated\gui_generated\src\mainscreen_screen\MainScreenViewBase.cpp"/>
     <ClCompile Include="..\..\gui\src\model\Model.cpp"/>
     <ClCompile Include="..\..\generated\simulator\src\video\SoftwareMJPEGDecoder.cpp"/>
     <ClCompile Include="..\..\gui\src\welcomescreen_screen\WelcomeScreenPresenter.cpp"/>
     <ClCompile Include="..\..\gui\src\welcomescreen_screen\WelcomeScreenView.cpp"/>
     <ClCompile Include="..\..\generated\gui_generated\src\welcomescreen_screen\WelcomeScreenViewBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\waitingscreen_screen\WaitingScreenPresenter.cpp"/>
+    <ClCompile Include="..\..\gui\src\waitingscreen_screen\WaitingScreenView.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\waitingscreen_screen\WaitingScreenViewBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\mainscreen_screen\MainScreenPresenter.cpp"/>
+    <ClCompile Include="..\..\gui\src\mainscreen_screen\MainScreenView.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\mainscreen_screen\MainScreenViewBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\containers\ProfileView.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\ProfileViewBase.cpp"/>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(ApplicationRoot)\assets\texts\texts.xml"/>
@@ -172,9 +177,6 @@
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\common\FrontendApplicationBase.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\common\FrontendHeap.hpp"/>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\common\FrontendHeapBase.hpp"/>
-    <ClInclude Include="..\..\gui\include\gui\mainscreen_screen\MainScreenPresenter.hpp"/>
-    <ClInclude Include="..\..\gui\include\gui\mainscreen_screen\MainScreenView.hpp"/>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\mainscreen_screen\MainScreenViewBase.hpp"/>
     <ClInclude Include="..\..\generated\simulator\include\simulator\video\MJPEGDecoder.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\model\Model.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\model\ModelListener.hpp"/>
@@ -183,6 +185,14 @@
     <ClInclude Include="..\..\gui\include\gui\welcomescreen_screen\WelcomeScreenPresenter.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\welcomescreen_screen\WelcomeScreenView.hpp"/>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\welcomescreen_screen\WelcomeScreenViewBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\waitingscreen_screen\WaitingScreenPresenter.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\waitingscreen_screen\WaitingScreenView.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\waitingscreen_screen\WaitingScreenViewBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\mainscreen_screen\MainScreenPresenter.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\mainscreen_screen\MainScreenView.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\mainscreen_screen\MainScreenViewBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\containers\ProfileView.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\ProfileViewBase.hpp"/>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(ApplicationRoot)\generated\simulator\touchgfx.rc"/>
@@ -191,19 +201,21 @@
     <ProjectGuid>{3C47683C-0505-487F-A1FD-75B8490BF72C}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Application</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props"/>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props"/>
   <ImportGroup Label="ExtensionSettings">

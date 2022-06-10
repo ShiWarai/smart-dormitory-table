@@ -16,7 +16,7 @@ WelcomeScreenViewBase::WelcomeScreenViewBase()
     welcomeBackground.setPosition(0, 0, 480, 272);
     welcomeBackground.setScalingAlgorithm(touchgfx::ScalableImage::NEAREST_NEIGHBOR);
 
-    welcomeText.setXY(52, 87);
+    welcomeText.setPosition(0, 90, 480, 58);
     welcomeText.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     welcomeText.setLinespacing(0);
     welcomeText.setTypedText(touchgfx::TypedText(T___SINGLEUSE_C02T));
@@ -29,27 +29,26 @@ WelcomeScreenViewBase::WelcomeScreenViewBase()
     initialProgress.setColor(touchgfx::Color::getColorFromRGB(0, 151, 255));
     initialProgress.setValue(0);
 
+    wifiDoneTitle.setPosition(0, 175, 480, 31);
+    wifiDoneTitle.setVisible(false);
+    wifiDoneTitle.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    wifiDoneTitle.setLinespacing(0);
+    wifiDoneTitle.setTypedText(touchgfx::TypedText(T___SINGLEUSE_SHLX));
+
+    textArea1.setXY(7, 254);
+    textArea1.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    textArea1.setLinespacing(0);
+    textArea1.setTypedText(touchgfx::TypedText(T___SINGLEUSE_Y3NY));
+
     add(__background);
     add(welcomeBackground);
     add(welcomeText);
     add(initialProgress);
+    add(wifiDoneTitle);
+    add(textArea1);
 }
 
 void WelcomeScreenViewBase::setupScreen()
 {
 
-}
-
-//Called when the screen transition ends
-void WelcomeScreenViewBase::afterTransition()
-{
-    //connectionInit
-    //When screen transition ends call virtual function
-    //Call connectionInit
-    connectionInit();
-
-    //changingScreen
-    //When connectionInit completed change screen to MainScreen
-    //Go to MainScreen with no screen transition
-    application().gotoMainScreenScreenNoTransition();
 }

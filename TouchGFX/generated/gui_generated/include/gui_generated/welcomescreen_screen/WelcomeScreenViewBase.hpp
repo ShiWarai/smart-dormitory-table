@@ -18,15 +18,6 @@ public:
     WelcomeScreenViewBase();
     virtual ~WelcomeScreenViewBase() {}
     virtual void setupScreen();
-    virtual void afterTransition();
-
-    /*
-     * Virtual Action Handlers
-     */
-    virtual void connectionInit()
-    {
-        // Override and implement this function in WelcomeScreen
-    }
 
 protected:
     FrontendApplication& application() {
@@ -40,6 +31,8 @@ protected:
     touchgfx::ScalableImage welcomeBackground;
     touchgfx::TextArea welcomeText;
     touchgfx::BoxProgress initialProgress;
+    touchgfx::TextArea wifiDoneTitle;
+    touchgfx::TextArea textArea1;
 
 private:
 

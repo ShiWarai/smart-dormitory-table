@@ -2,7 +2,7 @@
 
 MainScreenView::MainScreenView()
 {
-
+    profileView.setPtr(this, presenter);
 }
 
 void MainScreenView::setupScreen()
@@ -13,4 +13,11 @@ void MainScreenView::setupScreen()
 void MainScreenView::tearDownScreen()
 {
     MainScreenViewBase::tearDownScreen();
+}
+
+void MainScreenView::updateStudentId() {
+    printf("Test!\r\n");
+    printf("%ld\r\n", presenter->getCurrentStudentId());
+    profileView.setStudentId(presenter->getCurrentStudentId());
+    //profileView.invalidate();
 }

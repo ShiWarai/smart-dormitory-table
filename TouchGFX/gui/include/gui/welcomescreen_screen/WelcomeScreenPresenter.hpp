@@ -27,8 +27,7 @@ public:
 
     virtual ~WelcomeScreenPresenter() {};
     
-    void setLoadingProgress(unsigned short value);
-    void requestConnectionInit();
+    void setLoadingProgress(uint8_t value);
 
 private:
     WelcomeScreenPresenter();

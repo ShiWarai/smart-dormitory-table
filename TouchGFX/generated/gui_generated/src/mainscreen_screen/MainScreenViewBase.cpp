@@ -4,29 +4,46 @@
 #include <gui_generated/mainscreen_screen/MainScreenViewBase.hpp>
 #include <touchgfx/Color.hpp>
 #include <BitmapDatabase.hpp>
-#include <texts/TextKeysAndLanguages.hpp>
 
-MainScreenViewBase::MainScreenViewBase()
+MainScreenViewBase::MainScreenViewBase() :
+    interaction1Counter(0)
 {
 
     __background.setPosition(0, 0, 480, 272);
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
 
-    mainBackground.setBitmap(touchgfx::Bitmap(BITMAP_DARK_BACKGROUNDS_MAIN_BG_800X480PX_ID));
-    mainBackground.setPosition(0, 0, 480, 272);
-    mainBackground.setScalingAlgorithm(touchgfx::ScalableImage::NEAREST_NEIGHBOR);
+    mainBackground.setXY(0, 0);
+    mainBackground.setBitmap(touchgfx::Bitmap(BITMAP_BLUE_BACKGROUNDS_MAIN_BG_480X272PX_ID));
 
-    mainText.setXY(81, 112);
-    mainText.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
-    mainText.setLinespacing(0);
-    mainText.setTypedText(touchgfx::TypedText(T___SINGLEUSE_I2QG));
+    profileView.setXY(0, 0);
 
     add(__background);
     add(mainBackground);
-    add(mainText);
+    add(profileView);
 }
 
 void MainScreenViewBase::setupScreen()
 {
+    profileView.initialize();
+    //Interaction1
+    //When screen transition begins delay
+    //Delay for 1000 ms (60 Ticks)
+    interaction1Counter = INTERACTION1_DURATION;
 
+}
+
+//Handles delays
+void MainScreenViewBase::handleTickEvent()
+{
+    if(interaction1Counter > 0)
+    {
+        interaction1Counter--;
+        if(interaction1Counter == 0)
+        {
+            //update
+            //When Interaction1 completed call virtual function
+            //Call updateStudentId
+            updateStudentId();
+        }
+    }
 }

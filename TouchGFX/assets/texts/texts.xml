@@ -6,18 +6,37 @@
   <Texts>
     <TextGroup Id="Group1" />
     <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_6U0X" Alignment="Center" TypographyId="studentID">
+        <Translation Language="GB">Exit</Translation>
+      </Text>
+      <Text Id="__SingleUse_DQ0S" Alignment="Left" TypographyId="studentID">
+        <Translation Language="GB">ID: &lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_U8JL" Alignment="Center" TypographyId="studentID">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="studentId" Alignment="Left" TypographyId="Small">
+        <Translation Language="GB">0</Translation>
+      </Text>
+      <Text Id="__SingleUse_Y3NY" Alignment="Left" TypographyId="Small">
+        <Translation Language="GB">by ShiWarai</Translation>
+      </Text>
+      <Text Id="__SingleUse_SHLX" Alignment="Center" TypographyId="Default">
+        <Translation Language="GB">WiFi is connected!</Translation>
+      </Text>
       <Text Id="__SingleUse_C02T" Alignment="Center" TypographyId="Typography_00">
         <Translation Language="GB">Smart Dormitory</Translation>
       </Text>
-      <Text Id="__SingleUse_I2QG" Alignment="Left" TypographyId="Large">
-        <Translation Language="GB">WiFi connected!</Translation>
+      <Text Id="__SingleUse_I2QG" Alignment="Center" TypographyId="Default">
+        <Translation Language="GB">Приложите студенческий:</Translation>
       </Text>
     </TextGroup>
   </Texts>
   <Typographies>
-    <Typography Id="Default" Font="verdana.ttf" Size="20" Bpp="4" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="Default" Font="verdana.ttf" Size="25" Bpp="4" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Large" Font="verdana.ttf" Size="40" Bpp="4" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Small" Font="verdana.ttf" Size="10" Bpp="4" Direction="LTR" FallbackCharacter="?" />
-    <Typography Id="Typography_00" Font="verdanab.ttf" Size="40" Bpp="4" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="Typography_00" Font="trebucbi.ttf" Size="48" Bpp="4" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="studentID" Font="verdana.ttf" Size="24" Bpp="4" Direction="LTR" FallbackCharacter="?" WildcardCharacterRanges="0-9" />
   </Typographies>
 </TextDatabase>

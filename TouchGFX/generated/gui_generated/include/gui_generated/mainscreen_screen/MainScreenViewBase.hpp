@@ -8,8 +8,8 @@
 #include <mvp/View.hpp>
 #include <gui/mainscreen_screen/MainScreenPresenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
-#include <touchgfx/widgets/ScalableImage.hpp>
-#include <touchgfx/widgets/TextArea.hpp>
+#include <touchgfx/widgets/Image.hpp>
+#include <gui/containers/ProfileView.hpp>
 
 class MainScreenViewBase : public touchgfx::View<MainScreenPresenter>
 {
@@ -17,6 +17,15 @@ public:
     MainScreenViewBase();
     virtual ~MainScreenViewBase() {}
     virtual void setupScreen();
+    virtual void handleTickEvent();
+
+    /*
+     * Virtual Action Handlers
+     */
+    virtual void updateStudentId()
+    {
+        // Override and implement this function in MainScreen
+    }
 
 protected:
     FrontendApplication& application() {
@@ -27,10 +36,16 @@ protected:
      * Member Declarations
      */
     touchgfx::Box __background;
-    touchgfx::ScalableImage mainBackground;
-    touchgfx::TextArea mainText;
+    touchgfx::Image mainBackground;
+    ProfileView profileView;
 
 private:
+
+    /*
+     * Delay Variable Declarations
+     */
+    static const uint16_t INTERACTION1_DURATION = 60;
+    uint16_t interaction1Counter;
 
 };
 
