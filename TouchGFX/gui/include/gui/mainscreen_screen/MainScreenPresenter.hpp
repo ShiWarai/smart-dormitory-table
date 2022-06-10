@@ -3,6 +3,7 @@
 
 #include <gui/model/ModelListener.hpp>
 #include <mvp/Presenter.hpp>
+#include "../../../simulator/msvs/Resident.h"
 
 using namespace touchgfx;
 
@@ -28,6 +29,7 @@ public:
     virtual ~MainScreenPresenter() {};
 
     long getCurrentStudentId();
+    Resident getResident(long studentId);
 private:
     MainScreenPresenter();
 

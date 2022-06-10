@@ -41,3 +41,9 @@ void Model::tick()
 long Model::getStudentId() {
 	return this->studentId;
 }
+
+Resident Model::getResident(std::string studentId) {
+	printf("I\'m going to create resident!\r\n");
+	
+	return Resident { "Журавлев Павел Романович", "20И0689" };
+}

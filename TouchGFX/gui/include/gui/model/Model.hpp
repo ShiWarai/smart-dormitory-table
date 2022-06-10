@@ -6,6 +6,9 @@
 #include <queue.h>
 #include <task.h>
 
+#include "../../../simulator/msvs/Resident.h"
+#include <string>
+
 class ModelListener;
 
 class Model
@@ -20,6 +23,7 @@ public:
     }
 
     long getStudentId();
+    Resident getResident(std::string studentId);
 protected:
     ModelListener* modelListener;
 private:

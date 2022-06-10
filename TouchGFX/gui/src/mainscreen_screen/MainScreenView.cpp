@@ -16,8 +16,10 @@ void MainScreenView::tearDownScreen()
 }
 
 void MainScreenView::updateStudentId() {
-    printf("Test!\r\n");
-    printf("%ld\r\n", presenter->getCurrentStudentId());
     profileView.setStudentId(presenter->getCurrentStudentId());
-    //profileView.invalidate();
+}
+
+void MainScreenView::updateResident()
+{
+    profileView.setResident(presenter->getResident(presenter->getCurrentStudentId()));
 }

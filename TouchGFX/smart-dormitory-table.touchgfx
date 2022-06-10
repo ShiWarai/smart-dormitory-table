@@ -160,10 +160,10 @@
         ],
         "Interactions": [
           {
-            "InteractionName": "update",
+            "InteractionName": "UpdateStudentId",
+            "HasCompletedTrigger": true,
             "Trigger": {
-              "Type": "TriggerInteractionCompleted",
-              "InteractionToTriggerOn": "Interaction1"
+              "Type": "TriggerScreenTransitionBegins"
             },
             "Action": {
               "Type": "ActionCustom",
@@ -171,14 +171,14 @@
             }
           },
           {
-            "InteractionName": "Interaction1",
-            "HasCompletedTrigger": true,
+            "InteractionName": "UpdateResident",
             "Trigger": {
-              "Type": "TriggerScreenTransitionBegins"
+              "Type": "TriggerInteractionCompleted",
+              "InteractionToTriggerOn": "UpdateStudentId"
             },
             "Action": {
-              "Type": "ActionDelay",
-              "Duration": 1000
+              "Type": "ActionCustom",
+              "FunctionName": "updateResident"
             }
           }
         ]

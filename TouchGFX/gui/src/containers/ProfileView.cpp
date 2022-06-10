@@ -23,3 +23,7 @@ void ProfileView::setStudentId(long studentId) {
     titleText.invalidate();
 }
 
+void ProfileView::setResident(Resident resident) {
+    printf("FIO: %s\r\n", resident.FIO);
+    printf("Student ID: %s\r\n", resident.studentId);
+}

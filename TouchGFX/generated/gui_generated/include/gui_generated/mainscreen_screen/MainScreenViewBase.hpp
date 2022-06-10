@@ -17,12 +17,16 @@ public:
     MainScreenViewBase();
     virtual ~MainScreenViewBase() {}
     virtual void setupScreen();
-    virtual void handleTickEvent();
 
     /*
      * Virtual Action Handlers
      */
     virtual void updateStudentId()
+    {
+        // Override and implement this function in MainScreen
+    }
+
+    virtual void updateResident()
     {
         // Override and implement this function in MainScreen
     }
@@ -40,12 +44,6 @@ protected:
     ProfileView profileView;
 
 private:
-
-    /*
-     * Delay Variable Declarations
-     */
-    static const uint16_t INTERACTION1_DURATION = 60;
-    uint16_t interaction1Counter;
 
 };
 

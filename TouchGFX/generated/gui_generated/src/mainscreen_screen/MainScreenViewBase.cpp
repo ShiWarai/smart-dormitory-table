@@ -5,8 +5,7 @@
 #include <touchgfx/Color.hpp>
 #include <BitmapDatabase.hpp>
 
-MainScreenViewBase::MainScreenViewBase() :
-    interaction1Counter(0)
+MainScreenViewBase::MainScreenViewBase()
 {
 
     __background.setPosition(0, 0, 480, 272);
@@ -25,25 +24,14 @@ MainScreenViewBase::MainScreenViewBase() :
 void MainScreenViewBase::setupScreen()
 {
     profileView.initialize();
-    //Interaction1
-    //When screen transition begins delay
-    //Delay for 1000 ms (60 Ticks)
-    interaction1Counter = INTERACTION1_DURATION;
+    //UpdateStudentId
+    //When screen transition begins call virtual function
+    //Call updateStudentId
+    updateStudentId();
 
-}
+    //UpdateResident
+    //When UpdateStudentId completed call virtual function
+    //Call updateResident
+    updateResident();
 
-//Handles delays
-void MainScreenViewBase::handleTickEvent()
-{
-    if(interaction1Counter > 0)
-    {
-        interaction1Counter--;
-        if(interaction1Counter == 0)
-        {
-            //update
-            //When Interaction1 completed call virtual function
-            //Call updateStudentId
-            updateStudentId();
-        }
-    }
 }

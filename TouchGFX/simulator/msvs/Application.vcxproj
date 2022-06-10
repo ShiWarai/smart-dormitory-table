@@ -193,6 +193,7 @@
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\mainscreen_screen\MainScreenViewBase.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\containers\ProfileView.hpp"/>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\ProfileViewBase.hpp"/>
+    <ClInclude Include="Resident.h"/>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(ApplicationRoot)\generated\simulator\touchgfx.rc"/>
