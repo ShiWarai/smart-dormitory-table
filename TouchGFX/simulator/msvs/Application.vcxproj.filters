@@ -220,6 +220,12 @@
     <Filter Include="Source Files\generated\gui_generated\containers">
       <UniqueIdentifier>16CB01FE-8605-7658-B7C5-536E9F911D5C</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\json">
+      <UniqueIdentifier>{a1dff691-01b5-42a3-9217-6e7de112da7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\http">
+      <UniqueIdentifier>{0e639860-b098-4ba6-a565-b5f719ced223}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(TouchGFXReleasePath)\framework\source\platform\driver\touch\SDL2TouchController.cpp">
@@ -760,8 +766,26 @@
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\ProfileViewBase.hpp">
       <Filter>Header Files\generated\gui_generated\containers</Filter>
     </ClInclude>
-    <ClInclude Include="Resident.h">
+    <ClInclude Include="..\..\..\Core\Inc\Resident.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Core\Inc\http\httprequestparser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Core\Inc\http\httpresponseparser.h">
+      <Filter>Header Files\http</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Core\Inc\http\request.h">
+      <Filter>Header Files\http</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Core\Inc\http\response.h">
+      <Filter>Header Files\http</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Core\Inc\http\urlparser.h">
+      <Filter>Header Files\http</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Core\Inc\json\json.hpp">
+      <Filter>Header Files\json</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -144,8 +144,13 @@ int confirm_tag(long tag);
 uint8_t rfid_buffer[BUFFER_SIZE];
 
 volatile long last_rfid = 0;
-QueueHandle_t wifiTaskMessages;
+QueueHandle_t wifiInitMessages;
 QueueHandle_t rfidMessages;
+QueueHandle_t wifiRequestMessages;
+QueueHandle_t wifiResponseMessages;
+
+char request[1024];
+char response[8128];
 /* USER CODE END 0 */
 
 /**
@@ -203,8 +208,10 @@ int main(void)
   SoftUartInit(0, Soft_TX_GPIO_Port, Soft_TX_Pin, Soft_RX_GPIO_Port, Soft_RX_Pin);
   SoftUartEnableRx(0);
 
-  wifiTaskMessages = xQueueCreate(1, 1);
-  rfidMessages = xQueueCreate(1, 8);
+  wifiInitMessages = xQueueCreate(1, sizeof(uint8_t));
+  rfidMessages = xQueueCreate(1, sizeof(long));
+  wifiRequestMessages = xQueueCreate(1, sizeof(char) * 1024);
+  wifiResponseMessages = xQueueCreate(1, sizeof(char) * 8128);
 
   printf("\r\n\r\n\r\n\r\n\r\nInit complete!\r\n");
   /* USER CODE END 2 */
@@ -895,9 +902,6 @@ void networkFunc(void *argument)
 {
   /* USER CODE BEGIN networkFunc */
 	uint8_t progress = 0;
-	char request[1024];
-	char response[8128];
-
 
 	printf("\r\nConnecting to WiFi...\r\n");
 
@@ -909,11 +913,11 @@ void networkFunc(void *argument)
 
 	esp_set_wifi_mode(STATION_MODE);
 	progress = 10;
-	xQueueSend(wifiTaskMessages, &progress, 0);
+	xQueueSend(wifiInitMessages, &progress, 0);
 	esp_connect_to_wifi(ssid, password);
 
 	progress = 20;
-	xQueueSend(wifiTaskMessages, &progress, 0);
+	xQueueSend(wifiInitMessages, &progress, 0);
 	printf("Connected to %s\r\n", ssid);
 
 	if(esp_set_ip(config) == OK_RESPONSE)
@@ -927,14 +931,14 @@ void networkFunc(void *argument)
 	}
 
 	progress = 50;
-	xQueueSend(wifiTaskMessages, &progress, 0);
+	xQueueSend(wifiInitMessages, &progress, 0);
 
 	// "GET / HTTP/1.1\r\nHost: 192.168.0.102:80\r\n\r\n";
 	sprintf(request, "GET /projects/led_controller/led HTTP/1.1\r\nHost: ridramecraft.ru:80\r\n\r\n");
 	printf("JSON:\r\n%s\r\n", esp_get_http_json(request, response, 8128));
 
 	progress = 100;
-	xQueueSend(wifiTaskMessages, &progress, 0);
+	xQueueSend(wifiInitMessages, &progress, 0);
 
 	printf("Connected to WiFi!\r\n\r\n");
 	vTaskPrioritySet(NULL, (osPriority_t) osPriorityNone);
@@ -942,8 +946,14 @@ void networkFunc(void *argument)
 	/* Infinite loop */
 	for(;;)
 	{
-	//xSemaphoreTake(httpRequestGivenHandle, portMAX_DELAY);
-	  osDelay(1);
+		if(xQueueReceive(wifiRequestMessages, request, 0) == pdTRUE)
+		{
+			esp_send_request(request, response, 8128);
+
+			xQueueSend(wifiResponseMessages, response, 0);
+		}
+
+		osDelay(1);
 	}
   /* USER CODE END networkFunc */
 }

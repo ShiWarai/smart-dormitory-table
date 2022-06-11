@@ -16,7 +16,8 @@ public:
     }
 
     virtual void setLoadingProgress(uint8_t value) {}
-    virtual void setStudentId(long studentId) {}
+    virtual void setStudentId(long currentStudentId) {}
+    virtual void setResident(Resident resident) {};
 protected:
     Model* model;
 };

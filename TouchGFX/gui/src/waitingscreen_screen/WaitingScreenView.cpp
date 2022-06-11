@@ -15,9 +15,9 @@ void WaitingScreenView::tearDownScreen()
     WaitingScreenViewBase::tearDownScreen();
 }
 
-void WaitingScreenView::setStudentId(long studentId) 
+void WaitingScreenView::setStudentId(long currentStudentId) 
 {
-	Unicode::itoa(studentId, studentIdTextBuffer, STUDENTIDTEXT_SIZE, 10);
+	Unicode::itoa(currentStudentId, studentIdTextBuffer, STUDENTIDTEXT_SIZE, 10);
 	studentIdText.invalidate();
 
     waitingCounter = WAITING_DURATION;

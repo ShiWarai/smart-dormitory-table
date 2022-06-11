@@ -21,7 +21,12 @@ long MainScreenPresenter::getCurrentStudentId() {
     return model->getStudentId();
 }
 
-Resident MainScreenPresenter::getResident(long studentId)
+void MainScreenPresenter::requestResident(long currentStudentId)
 {
-    return model->getResident(std::to_string(studentId));
+    model->requestResident(std::to_string(currentStudentId));
+}
+
+void MainScreenPresenter::setResident(Resident resident)
+{
+    view.setResident(resident);
 }

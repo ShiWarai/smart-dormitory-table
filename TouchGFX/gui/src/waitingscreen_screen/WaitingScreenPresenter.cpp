@@ -17,7 +17,7 @@ void WaitingScreenPresenter::deactivate()
 
 }
 
-void WaitingScreenPresenter::setStudentId(long studentId)
+void WaitingScreenPresenter::setStudentId(long currentStudentId)
 {
-    view.setStudentId(studentId);
+    view.setStudentId(currentStudentId);
 }

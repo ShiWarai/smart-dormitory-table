@@ -21,5 +21,11 @@ void MainScreenView::updateStudentId() {
 
 void MainScreenView::updateResident()
 {
-    profileView.setResident(presenter->getResident(presenter->getCurrentStudentId()));
+	presenter->requestResident(presenter->getCurrentStudentId());
+}
+
+void MainScreenView::setResident(Resident resident)
+{
+    // Change mode
+    profileView.setResident(resident);
 }

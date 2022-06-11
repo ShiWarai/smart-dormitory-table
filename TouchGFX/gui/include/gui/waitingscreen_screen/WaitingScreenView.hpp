@@ -13,7 +13,7 @@ public:
     virtual void tearDownScreen();
     virtual void handleTickEvent();
 
-    void setStudentId(long studentId);
+    void setStudentId(long currentStudentId);
 private:
     bool confirm_tag(long tag);
     static const uint16_t WAITING_DURATION = 180;
