@@ -22,7 +22,13 @@ touchgfx::Font* ApplicationFontProvider::getFont(touchgfx::FontId typography)
         // trebucbi_48_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[3]);
     case Typography::STUDENTID:
-        // verdana_24_4bpp
+        // verdana_25_4bpp
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[0]);
+    case Typography::RUSSIAN:
+        // verdana_20_4bpp
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[4]);
+    case Typography::FIO:
+        // verdana_20_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[4]);
     default:
         return 0;

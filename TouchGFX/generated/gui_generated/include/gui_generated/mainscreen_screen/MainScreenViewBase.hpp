@@ -45,6 +45,11 @@ protected:
 
 private:
 
+    /*
+     * Canvas Buffer Size
+     */
+    static const uint16_t CANVAS_BUFFER_SIZE = 7200;
+    uint8_t canvasBuffer[CANVAS_BUFFER_SIZE];
 };
 
 #endif // MAINSCREENVIEWBASE_HPP

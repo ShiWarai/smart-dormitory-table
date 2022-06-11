@@ -73,7 +73,7 @@ public:
      * @note All transition types used in the application MUST be added to this list!
      */
     typedef touchgfx::meta::TypeList< touchgfx::NoTransition,
-            touchgfx::meta::TypeList< SlideTransition<EAST>,
+            touchgfx::meta::TypeList< SlideTransition<WEST>,
             touchgfx::meta::Nil >
             > GeneratedTransitionTypes;
 

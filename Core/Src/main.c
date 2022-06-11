@@ -912,25 +912,28 @@ void networkFunc(void *argument)
 	NET_STATS config = {"192.168.2.250", "192.168.2.1", "255.255.255.0"};
 
 	esp_set_wifi_mode(STATION_MODE);
-	progress = 10;
-	xQueueSend(wifiInitMessages, &progress, 0);
-	esp_connect_to_wifi(ssid, password);
-
 	progress = 20;
+	xQueueSend(wifiInitMessages, &progress, 0);
+
+	esp_connect_to_wifi(ssid, password);
+	progress = 50;
 	xQueueSend(wifiInitMessages, &progress, 0);
 	printf("Connected to %s\r\n", ssid);
 
 	if(esp_set_ip(config) == OK_RESPONSE)
 	{
-	NET_STATS stats;
+		NET_STATS stats;
 
-	if(esp_get_station_netstats(&stats) == OK_RESPONSE)
-		printf("IP: %s\r\n", stats.ip);
-	else
-		printf("Cannot set the IP %s\r\n", config.ip);
+		if(esp_get_station_netstats(&stats) == OK_RESPONSE)
+			printf("IP: %s\r\n", stats.ip);
+		else
+			printf("Cannot set the IP %s\r\n", config.ip);
+
+		progress = 60;
+		xQueueSend(wifiInitMessages, &progress, 0);
 	}
 
-	progress = 50;
+	progress = 70;
 	xQueueSend(wifiInitMessages, &progress, 0);
 
 	// "GET / HTTP/1.1\r\nHost: 192.168.0.102:80\r\n\r\n";

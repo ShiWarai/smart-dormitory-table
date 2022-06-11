@@ -39,7 +39,9 @@ void Model::tick()
 	{
 		printf("RESPONSE:\r\n%s\r\n", response_str);
 
+		HttpResponseParser parser;
 		Response response;
+
 		HttpResponseParser::ParseResult res = parser.parse(response, response_str, response_str + strlen(response_str));
 
 		if (res == HttpResponseParser::ParsingCompleted)
@@ -84,8 +86,8 @@ Resident Model::residentFromJson(std::string resident_str)
 	Resident resident;
 
 	resident.FIO = (std::string) resident_json["surname"]
-				+ (std::string) resident_json["name"]
-				+ (std::string) resident_json.value("patronymic", "");
+				+ " " + (std::string) resident_json["name"]
+				+ " " + (std::string) resident_json.value("patronymic", "");
 
 	resident.studentId = resident_json["studentId"];
 

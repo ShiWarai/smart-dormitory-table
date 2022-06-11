@@ -6,10 +6,13 @@
 
 #include <gui/common/FrontendApplication.hpp>
 #include <touchgfx/containers/Container.hpp>
-#include <touchgfx/widgets/Button.hpp>
-#include <touchgfx/widgets/TextArea.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 #include <touchgfx/containers/ScrollableContainer.hpp>
+#include <touchgfx/containers/Container.hpp>
+#include <touchgfx/widgets/TextArea.hpp>
+#include <touchgfx/widgets/canvas/Line.hpp>
+#include <touchgfx/widgets/canvas/PainterRGB565.hpp>
+#include <touchgfx/widgets/ButtonWithIcon.hpp>
 
 class ProfileViewBase : public touchgfx::Container
 {
@@ -26,16 +29,22 @@ protected:
     /*
      * Member Declarations
      */
-    touchgfx::Button exitButton;
-    touchgfx::TextArea exitTitle;
     touchgfx::TextAreaWithOneWildcard titleText;
     touchgfx::ScrollableContainer profileData;
+    touchgfx::Container fio;
+    touchgfx::TextArea fioTitle;
+    touchgfx::TextAreaWithOneWildcard fioText;
+    touchgfx::Line separator;
+    touchgfx::PainterRGB565 separatorPainter;
+    touchgfx::ButtonWithIcon exitButton;
 
     /*
      * Wildcard Buffers
      */
     static const uint16_t TITLETEXT_SIZE = 10;
     touchgfx::Unicode::UnicodeChar titleTextBuffer[TITLETEXT_SIZE];
+    static const uint16_t FIOTEXT_SIZE = 128;
+    touchgfx::Unicode::UnicodeChar fioTextBuffer[FIOTEXT_SIZE];
 
 private:
 

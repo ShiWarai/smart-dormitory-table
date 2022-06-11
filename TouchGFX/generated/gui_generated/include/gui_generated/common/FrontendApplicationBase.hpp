@@ -27,7 +27,7 @@ public:
     void gotoWaitingScreenScreenNoTransition();
 
     // MainScreen
-    void gotoMainScreenScreenSlideTransitionEast();
+    void gotoMainScreenScreenSlideTransitionWest();
 
 protected:
     touchgfx::Callback<FrontendApplicationBase> transitionCallback;
@@ -41,7 +41,7 @@ protected:
     void gotoWaitingScreenScreenNoTransitionImpl();
 
     // MainScreen
-    void gotoMainScreenScreenSlideTransitionEastImpl();
+    void gotoMainScreenScreenSlideTransitionWestImpl();
 };
 
 #endif // FRONTENDAPPLICATIONBASE_HPP

@@ -32,7 +32,7 @@ void WaitingScreenView::handleTickEvent()
         if (waitingCounter == 0)
         {
             //changeScreen
-            application().gotoMainScreenScreenSlideTransitionEast();
+            application().gotoMainScreenScreenSlideTransitionWest();
         }
     }
 }

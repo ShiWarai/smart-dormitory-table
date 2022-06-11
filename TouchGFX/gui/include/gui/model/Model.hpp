@@ -43,7 +43,6 @@ private:
     bool confirm_tag(long tag);
     Resident residentFromJson(std::string resident_str);
 
-    HttpResponseParser parser;
     char request_str[1028];
     char response_str[8128];
 

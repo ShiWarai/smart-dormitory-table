@@ -132,7 +132,7 @@
             "Action": {
               "Type": "ActionGotoScreen",
               "ScreenTransitionType": "ScreenTransitionSlide",
-              "ScreenTransitionDirection": "East",
+              "ScreenTransitionDirection": "West",
               "ActionComponent": "MainScreen"
             }
           }
@@ -140,6 +140,7 @@
       },
       {
         "Name": "MainScreen",
+        "CanvasBufferSize": 7200,
         "Components": [
           {
             "Type": "Image",
@@ -191,31 +192,12 @@
         "Height": 272,
         "Components": [
           {
-            "Type": "Button",
-            "Name": "exitButton",
-            "X": 310,
-            "Y": 212,
-            "Width": 170,
-            "Height": 60,
-            "Pressed": "__designer\\Blue_Buttons_Round_small_pressed.png",
-            "Released": "__designer\\Blue_Buttons_Round_small.png",
-            "Style": "Style8"
-          },
-          {
-            "Type": "TextArea",
-            "Name": "exitTitle",
-            "X": 310,
-            "Y": 227,
-            "Width": 170,
-            "Height": 30,
-            "TextId": "__SingleUse_6U0X",
-            "TextRotation": "0"
-          },
-          {
             "Type": "TextArea",
             "Name": "titleText",
-            "Width": 480,
-            "Height": 30,
+            "X": 3,
+            "Y": 1,
+            "Width": 472,
+            "Height": 29,
             "TextId": "__SingleUse_DQ0S",
             "TextRotation": "0",
             "Wildcard1": {
@@ -227,14 +209,77 @@
           {
             "Type": "ScrollableContainer",
             "Name": "profileData",
-            "Y": 30,
+            "Y": 60,
             "Width": 480,
-            "Height": 182,
+            "Height": 212,
             "HorizontalScrollEnabled": true,
             "VerticalScrollEnabled": true,
             "ScrollbarsVisibleOnPressed": true,
             "ScrollbarsAlpha": 255,
-            "Components": []
+            "Components": [
+              {
+                "Type": "Container",
+                "Name": "fio",
+                "Y": 10,
+                "Width": 480,
+                "Height": 33,
+                "Components": [
+                  {
+                    "Type": "TextArea",
+                    "Name": "fioTitle",
+                    "X": 3,
+                    "Y": 4,
+                    "Width": 56,
+                    "Height": 24,
+                    "TextId": "__SingleUse_SM47",
+                    "TextRotation": "0",
+                    "AutoSize": true
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "fioText",
+                    "X": 65,
+                    "Y": 4,
+                    "Width": 410,
+                    "Height": 24,
+                    "TextId": "__SingleUse_FJCS",
+                    "TextRotation": "0",
+                    "Wildcard1": {
+                      "TextId": "fio",
+                      "UseBuffer": true,
+                      "BufferSize": 128
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "Type": "Line",
+            "Name": "separator",
+            "Y": 60,
+            "Width": 480,
+            "Height": 10,
+            "EndX": 480,
+            "LineWidth": 10,
+            "LineEndingStyle": "Butt"
+          },
+          {
+            "Type": "ButtonWithIcon",
+            "Name": "exitButton",
+            "X": 420,
+            "Width": 60,
+            "Height": 60,
+            "Pressed": "__designer\\Blue_Buttons_Round_icon_button_pressed.png",
+            "Released": "__designer\\Blue_Buttons_Round_icon_button.png",
+            "IconPressed": "__designer\\Blue_Icons_Back_arrow_32.png",
+            "IconReleased": "__designer\\Blue_Icons_Back_arrow_32.png",
+            "IconX": 22,
+            "IconY": 15,
+            "IconHeight": 30,
+            "IconWidth": 17,
+            "ButtonStyle": "Style5",
+            "IconStyle": "Icon5"
           }
         ],
         "Interactions": [

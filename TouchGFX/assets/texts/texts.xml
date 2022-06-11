@@ -6,8 +6,14 @@
   <Texts>
     <TextGroup Id="Group1" />
     <TextGroup Id="Unsorted">
-      <Text Id="__SingleUse_6U0X" Alignment="Center" TypographyId="studentID">
-        <Translation Language="GB">Выход</Translation>
+      <Text Id="fio" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB" />
+      </Text>
+      <Text Id="__SingleUse_FJCS" Alignment="Left" TypographyId="FIO">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_SM47" Alignment="Left" TypographyId="Russian">
+        <Translation Language="GB">ФИО:</Translation>
       </Text>
       <Text Id="__SingleUse_DQ0S" Alignment="Left" TypographyId="studentID">
         <Translation Language="GB">ID: &lt;value&gt;</Translation>
@@ -37,6 +43,8 @@
     <Typography Id="Large" Font="verdana.ttf" Size="40" Bpp="4" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Small" Font="verdana.ttf" Size="10" Bpp="4" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Typography_00" Font="trebucbi.ttf" Size="48" Bpp="4" Direction="LTR" FallbackCharacter="?" />
-    <Typography Id="studentID" Font="verdana.ttf" Size="24" Bpp="4" Direction="LTR" FallbackCharacter="?" WildcardCharacterRanges="0-9" />
+    <Typography Id="studentID" Font="verdana.ttf" Size="25" Bpp="4" Direction="LTR" FallbackCharacter="?" WildcardCharacterRanges="0-9" />
+    <Typography Id="Russian" Font="verdana.ttf" Size="20" Bpp="4" Direction="LTR" FallbackCharacter="?" WildcardCharacterRanges="А-я" />
+    <Typography Id="FIO" Font="verdana.ttf" Size="20" Bpp="4" Direction="LTR" FallbackCharacter="?" WildcardCharacterRanges="А-я,0x20" />
   </Typographies>
 </TextDatabase>
