@@ -1,6 +1,7 @@
 #include <gui/waitingscreen_screen/WaitingScreenView.hpp>
+#include "../../../../../Core/Inc/InputsCollection.h"
 
-extern uint8_t selectedInput;
+InputsController inputController;
 
 WaitingScreenView::WaitingScreenView()
 {
@@ -34,9 +35,9 @@ void WaitingScreenView::handleTickEvent()
         if (waitingCounter == 0)
         {
             //changeScreen
-            application().gotoScreenKeyboardScreenNoTransition();
-            selectedInput = 0;
-
+            inputController.selectedInput = INPUTS::PIN_CODE;
+            printf("CHANGE: %u\r\n", inputController.selectedInput);
+            keyboard.raise(&inputController);
             //application().gotoMainScreenScreenSlideTransitionWest();
         }
     }

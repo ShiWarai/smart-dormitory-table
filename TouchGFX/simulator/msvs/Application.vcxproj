@@ -19,6 +19,7 @@
     <ClCompile Include="$(ApplicationRoot)\generated\simulator\src\mainBase.cpp"/>
     <ClCompile Include="..\..\gui\src\common\FrontendApplication.cpp"/>
     <ClCompile Include="..\..\generated\gui_generated\src\common\FrontendApplicationBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\containers\ScreenKeyboard.cpp"/>
     <ClCompile Include="..\..\gui\src\model\Model.cpp"/>
     <ClCompile Include="..\..\generated\simulator\src\video\SoftwareMJPEGDecoder.cpp"/>
     <ClCompile Include="..\..\gui\src\welcomescreen_screen\WelcomeScreenPresenter.cpp"/>
@@ -33,9 +34,7 @@
     <ClCompile Include="..\..\gui\src\containers\ProfileView.cpp"/>
     <ClCompile Include="..\..\generated\gui_generated\src\containers\ProfileViewBase.cpp"/>
     <ClCompile Include="..\..\gui\src\common\CustomKeyboard.cpp"/>
-    <ClCompile Include="..\..\gui\src\screenkeyboard_screen\ScreenKeyboardPresenter.cpp"/>
-    <ClCompile Include="..\..\gui\src\screenkeyboard_screen\ScreenKeyboardView.cpp"/>
-    <ClCompile Include="..\..\generated\gui_generated\src\screenkeyboard_screen\ScreenKeyboardViewBase.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\ScreenKeyboardBase.cpp"/>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(ApplicationRoot)\assets\texts\texts.xml"/>
@@ -181,6 +180,7 @@
     <ClInclude Include="..\..\..\Core\Inc\http\request.h"/>
     <ClInclude Include="..\..\..\Core\Inc\http\response.h"/>
     <ClInclude Include="..\..\..\Core\Inc\http\urlparser.h"/>
+    <ClInclude Include="..\..\..\Core\Inc\InputsCollection.h"/>
     <ClInclude Include="..\..\..\Core\Inc\json\json.hpp"/>
     <ClInclude Include="..\..\..\Core\Inc\Resident.h"/>
     <ClInclude Include="..\..\generated\simulator\include\simulator\video\DirectFrameBufferVideoController.hpp"/>
@@ -207,9 +207,8 @@
     <ClInclude Include="..\..\gui\include\gui\common\CustomKeyboard.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\common\KeyboardKeyMapping.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\common\KeyboardLayout.hpp"/>
-    <ClInclude Include="..\..\gui\include\gui\screenkeyboard_screen\ScreenKeyboardPresenter.hpp"/>
-    <ClInclude Include="..\..\gui\include\gui\screenkeyboard_screen\ScreenKeyboardView.hpp"/>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screenkeyboard_screen\ScreenKeyboardViewBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\containers\ScreenKeyboard.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\ScreenKeyboardBase.hpp"/>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(ApplicationRoot)\generated\simulator\touchgfx.rc"/>

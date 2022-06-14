@@ -226,18 +226,6 @@
     <Filter Include="Header Files\http">
       <UniqueIdentifier>{0e639860-b098-4ba6-a565-b5f719ced223}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\gui\screenkeyboard_screen">
-      <UniqueIdentifier>823315AD-4097-F6EC-CEAC-2C7A7FEF7AAE</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\gui\screenkeyboard_screen">
-      <UniqueIdentifier>C6C48C76-A454-EB00-03E4-4394ECF6E852</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\generated\gui_generated\screenkeyboard_screen">
-      <UniqueIdentifier>18F83D99-1F7E-589A-753F-09C3A85CAE90</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\generated\gui_generated\screenkeyboard_screen">
-      <UniqueIdentifier>636EC20E-C865-EDCC-8A3E-092DDFDD5210</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(TouchGFXReleasePath)\framework\source\platform\driver\touch\SDL2TouchController.cpp">
@@ -306,14 +294,11 @@
     <ClCompile Include="..\..\gui\src\common\CustomKeyboard.cpp">
       <Filter>Source Files\gui\common</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\gui\src\screenkeyboard_screen\ScreenKeyboardPresenter.cpp">
-      <Filter>Source Files\gui\screenkeyboard_screen</Filter>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\ScreenKeyboardBase.cpp">
+      <Filter>Source Files\generated\gui_generated\containers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\gui\src\screenkeyboard_screen\ScreenKeyboardView.cpp">
-      <Filter>Source Files\gui\screenkeyboard_screen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\generated\gui_generated\src\screenkeyboard_screen\ScreenKeyboardViewBase.cpp">
-      <Filter>Source Files\generated\gui_generated\screenkeyboard_screen</Filter>
+    <ClCompile Include="..\..\gui\src\containers\ScreenKeyboard.cpp">
+      <Filter>Source Files\gui\containers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -820,14 +805,14 @@
     <ClInclude Include="..\..\gui\include\gui\common\KeyboardLayout.hpp">
       <Filter>Header Files\gui\common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\screenkeyboard_screen\ScreenKeyboardPresenter.hpp">
-      <Filter>Header Files\gui\screenkeyboard_screen</Filter>
+    <ClInclude Include="..\..\..\Core\Inc\InputsCollection.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\screenkeyboard_screen\ScreenKeyboardView.hpp">
-      <Filter>Header Files\gui\screenkeyboard_screen</Filter>
+    <ClInclude Include="..\..\gui\include\gui\containers\ScreenKeyboard.hpp">
+      <Filter>Header Files\gui\containers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screenkeyboard_screen\ScreenKeyboardViewBase.hpp">
-      <Filter>Header Files\generated\gui_generated\screenkeyboard_screen</Filter>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\ScreenKeyboardBase.hpp">
+      <Filter>Header Files\generated\gui_generated\containers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

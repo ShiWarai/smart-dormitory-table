@@ -10,7 +10,7 @@
       </Text>
     </TextGroup>
     <TextGroup Id="Keyboard">
-      <Text Id="EnteredText" Alignment="Left" TypographyId="Display">
+      <Text Id="EnteredText" Alignment="Center" TypographyId="Display">
         <Translation Language="GB">&lt;placeholder&gt;</Translation>
       </Text>
       <Text Id="NumMode" Alignment="Center" TypographyId="Mode">
@@ -22,11 +22,11 @@
     </TextGroup>
     <TextGroup Id="Group1" />
     <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_UPWT" Alignment="Center" TypographyId="Russian">
+        <Translation Language="GB">Введите &lt;placeholder&gt;:</Translation>
+      </Text>
       <Text Id="inputName" Alignment="Left" TypographyId="Mode">
         <Translation Language="GB" />
-      </Text>
-      <Text Id="__SingleUse_UIRN" Alignment="Center" TypographyId="Russian">
-        <Translation Language="GB">Введите &lt;placeholder&gt;:</Translation>
       </Text>
       <Text Id="pinCode" Alignment="Left" TypographyId="room">
         <Translation Language="GB" />

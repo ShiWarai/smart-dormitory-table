@@ -13,8 +13,8 @@ KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE = {
     21, // T_EnteredText
     185, // T_NumMode
     181, // T_AlphaMode
+    47, // T___SingleUse_UPWT
     22, // T_inputName
-    47, // T___SingleUse_UIRN
     22, // T_pinCode
     22, // T_role
     132, // T___SingleUse_39B4

@@ -11,6 +11,7 @@
 #include <touchgfx/widgets/ScalableImage.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
+#include <gui/containers/ScreenKeyboard.hpp>
 
 class WaitingScreenViewBase : public touchgfx::View<WaitingScreenPresenter>
 {
@@ -32,6 +33,7 @@ protected:
     touchgfx::TextArea waitingText;
     touchgfx::ScalableImage plugSwipeImage;
     touchgfx::TextAreaWithOneWildcard studentIdText;
+    ScreenKeyboard keyboard;
 
     /*
      * Wildcard Buffers

@@ -32,14 +32,18 @@ WaitingScreenViewBase::WaitingScreenViewBase()
     studentIdText.setWildcard(studentIdTextBuffer);
     studentIdText.setTypedText(touchgfx::TypedText(T___SINGLEUSE_U8JL));
 
+    keyboard.setXY(0, 0);
+    keyboard.setVisible(false);
+
     add(__background);
     add(waitingBackground);
     add(waitingText);
     add(plugSwipeImage);
     add(studentIdText);
+    add(keyboard);
 }
 
 void WaitingScreenViewBase::setupScreen()
 {
-
+    keyboard.initialize();
 }

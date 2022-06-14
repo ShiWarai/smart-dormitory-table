@@ -20,8 +20,6 @@
 #include <gui/waitingscreen_screen/WaitingScreenPresenter.hpp>
 #include <gui/mainscreen_screen/MainScreenView.hpp>
 #include <gui/mainscreen_screen/MainScreenPresenter.hpp>
-#include <gui/screenkeyboard_screen/ScreenKeyboardView.hpp>
-#include <gui/screenkeyboard_screen/ScreenKeyboardPresenter.hpp>
 
 
 /**
@@ -47,8 +45,7 @@ public:
     typedef touchgfx::meta::TypeList< WelcomeScreenView,
             touchgfx::meta::TypeList< WaitingScreenView,
             touchgfx::meta::TypeList< MainScreenView,
-            touchgfx::meta::TypeList< ScreenKeyboardView,
-            touchgfx::meta::Nil > > >
+            touchgfx::meta::Nil > >
             > GeneratedViewTypes;
 
     /**
@@ -63,8 +60,7 @@ public:
     typedef touchgfx::meta::TypeList< WelcomeScreenPresenter,
             touchgfx::meta::TypeList< WaitingScreenPresenter,
             touchgfx::meta::TypeList< MainScreenPresenter,
-            touchgfx::meta::TypeList< ScreenKeyboardPresenter,
-            touchgfx::meta::Nil > > >
+            touchgfx::meta::Nil > >
             > GeneratedPresenterTypes;
 
     /**
