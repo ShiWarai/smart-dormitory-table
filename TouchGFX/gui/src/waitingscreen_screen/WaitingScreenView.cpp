@@ -1,5 +1,7 @@
 #include <gui/waitingscreen_screen/WaitingScreenView.hpp>
 
+extern uint8_t selectedInput;
+
 WaitingScreenView::WaitingScreenView()
 {
 
@@ -32,7 +34,10 @@ void WaitingScreenView::handleTickEvent()
         if (waitingCounter == 0)
         {
             //changeScreen
-            application().gotoMainScreenScreenSlideTransitionWest();
+            application().gotoScreenKeyboardScreenNoTransition();
+            selectedInput = 0;
+
+            //application().gotoMainScreenScreenSlideTransitionWest();
         }
     }
 }

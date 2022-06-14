@@ -29,6 +29,9 @@ public:
     // MainScreen
     void gotoMainScreenScreenSlideTransitionWest();
 
+    // ScreenKeyboard
+    void gotoScreenKeyboardScreenNoTransition();
+
 protected:
     touchgfx::Callback<FrontendApplicationBase> transitionCallback;
     FrontendHeap& frontendHeap;
@@ -42,6 +45,9 @@ protected:
 
     // MainScreen
     void gotoMainScreenScreenSlideTransitionWestImpl();
+
+    // ScreenKeyboard
+    void gotoScreenKeyboardScreenNoTransitionImpl();
 };
 
 #endif // FRONTENDAPPLICATIONBASE_HPP

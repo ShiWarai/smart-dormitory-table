@@ -4,8 +4,30 @@
     <Language Id="GB" />
   </Languages>
   <Texts>
+    <TextGroup Id="Input">
+      <Text Id="pinCodeInput" Alignment="Left" TypographyId="Russian">
+        <Translation Language="GB">пин-код</Translation>
+      </Text>
+    </TextGroup>
+    <TextGroup Id="Keyboard">
+      <Text Id="EnteredText" Alignment="Left" TypographyId="Display">
+        <Translation Language="GB">&lt;placeholder&gt;</Translation>
+      </Text>
+      <Text Id="NumMode" Alignment="Center" TypographyId="Mode">
+        <Translation Language="GB">ABC</Translation>
+      </Text>
+      <Text Id="AlphaMode" Alignment="Center" TypographyId="Mode">
+        <Translation Language="GB">123</Translation>
+      </Text>
+    </TextGroup>
     <TextGroup Id="Group1" />
     <TextGroup Id="Unsorted">
+      <Text Id="inputName" Alignment="Left" TypographyId="Mode">
+        <Translation Language="GB" />
+      </Text>
+      <Text Id="__SingleUse_UIRN" Alignment="Center" TypographyId="Russian">
+        <Translation Language="GB">Введите &lt;placeholder&gt;:</Translation>
+      </Text>
       <Text Id="pinCode" Alignment="Left" TypographyId="room">
         <Translation Language="GB" />
       </Text>
@@ -88,12 +110,15 @@
     <Typography Id="Large" Font="verdana.ttf" Size="40" Bpp="4" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Small" Font="verdana.ttf" Size="10" Bpp="4" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Typography_00" Font="trebucbi.ttf" Size="48" Bpp="4" Direction="LTR" FallbackCharacter="?" />
-    <Typography Id="Russian" Font="verdana.ttf" Size="20" Bpp="4" Direction="LTR" FallbackCharacter="?" WildcardCharacterRanges="А-я" />
-    <Typography Id="English" Font="verdana.ttf" Size="20" Bpp="4" Direction="LTR" FallbackCharacter="?" WildcardCharacterRanges="A-z" />
+    <Typography Id="Russian" Font="verdana.ttf" Size="20" Bpp="4" Direction="LTR" FallbackCharacter="?" WildcardCharacters="- " WildcardCharacterRanges="А-я" />
+    <Typography Id="English" Font="verdana.ttf" Size="20" Bpp="4" Direction="LTR" FallbackCharacter="?" WildcardCharacterRanges="A-z,0x20" />
     <Typography Id="number" Font="verdana.ttf" Size="25" Bpp="4" Direction="LTR" FallbackCharacter="?" WildcardCharacterRanges="0-9" />
     <Typography Id="FIO" Font="verdana.ttf" Size="20" Bpp="4" Direction="LTR" FallbackCharacter="?" WildcardCharacterRanges="А-я,0x20" />
     <Typography Id="date" Font="verdana.ttf" Size="20" Bpp="4" Direction="LTR" FallbackCharacter="?" WildcardCharacterRanges="0-9,0x2e,0x2d" />
     <Typography Id="room" Font="verdana.ttf" Size="20" Bpp="4" Direction="LTR" FallbackCharacter="?" WildcardCharacterRanges="0-9" />
     <Typography Id="pinCode" Font="verdana.ttf" Size="20" Bpp="4" Direction="LTR" FallbackCharacter="?" WildcardCharacterRanges="0-9,0x2A" />
+    <Typography Id="Display" Font="arial.ttf" Size="28" Bpp="4" Direction="LTR" FallbackCharacter="?" WildcardCharacters="!”&quot;#*%&amp;()'$+-@_, .:;?/~±×÷•º`´{}©£€^®¥_=[]¡¢|\¿&gt;&lt;" WildcardCharacterRanges="a-z,A-Z,0-9" />
+    <Typography Id="Keyboard" Font="arial.ttf" Size="20" Bpp="4" Direction="LTR" FallbackCharacter="?" WildcardCharacters="!”&quot;#*%&amp;()'$+-@_, .:;?/~±×÷•º`´{}©£€^®¥_=[]¡¢|\¿&gt;&lt;" WildcardCharacterRanges="a-z,A-Z,0-9" />
+    <Typography Id="Mode" Font="arial.ttf" Size="24" Bpp="4" Direction="LTR" FallbackCharacter="?" />
   </Typographies>
 </TextDatabase>

@@ -15,6 +15,8 @@
 #include <gui/waitingscreen_screen/WaitingScreenPresenter.hpp>
 #include <gui/mainscreen_screen/MainScreenView.hpp>
 #include <gui/mainscreen_screen/MainScreenPresenter.hpp>
+#include <gui/screenkeyboard_screen/ScreenKeyboardView.hpp>
+#include <gui/screenkeyboard_screen/ScreenKeyboardPresenter.hpp>
 
 using namespace touchgfx;
 
@@ -70,4 +72,17 @@ void FrontendApplicationBase::gotoMainScreenScreenSlideTransitionWest()
 void FrontendApplicationBase::gotoMainScreenScreenSlideTransitionWestImpl()
 {
     touchgfx::makeTransition<MainScreenView, MainScreenPresenter, touchgfx::SlideTransition<WEST>, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+}
+
+// ScreenKeyboard
+
+void FrontendApplicationBase::gotoScreenKeyboardScreenNoTransition()
+{
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplication::gotoScreenKeyboardScreenNoTransitionImpl);
+    pendingScreenTransitionCallback = &transitionCallback;
+}
+
+void FrontendApplicationBase::gotoScreenKeyboardScreenNoTransitionImpl()
+{
+    touchgfx::makeTransition<ScreenKeyboardView, ScreenKeyboardPresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
 }

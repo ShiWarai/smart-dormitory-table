@@ -32,7 +32,7 @@ protected:
     touchgfx::TextArea welcomeText;
     touchgfx::BoxProgress initialProgress;
     touchgfx::TextArea wifiDoneTitle;
-    touchgfx::TextArea textArea1;
+    touchgfx::TextArea createdBy;
 
 private:
 
