@@ -17,6 +17,7 @@ ProfileViewBase::ProfileViewBase() :
     deleteButton.setTextPosition(0, 8, 144, 45);
     deleteButton.setTextColors(touchgfx::Color::getColorFromRGB(10, 10, 10), touchgfx::Color::getColorFromRGB(10, 10, 10));
     deleteButton.setPosition(326, 218, 144, 45);
+    deleteButton.setVisible(false);
 
     confirmButton.setBoxWithBorderPosition(0, 0, 144, 45);
     confirmButton.setBorderSize(1);
@@ -26,45 +27,45 @@ ProfileViewBase::ProfileViewBase() :
     confirmButton.setTextColors(touchgfx::Color::getColorFromRGB(10, 10, 10), touchgfx::Color::getColorFromRGB(10, 10, 10));
     confirmButton.setPosition(10, 218, 144, 45);
 
-    profileData.setPosition(0, 32, 480, 186);
+    profileData.setPosition(0, 38, 480, 180);
     profileData.enableHorizontalScroll(false);
     profileData.setScrollbarsColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
 
-    role.setPosition(0, 109, 480, 33);
+    role.setPosition(0, 133, 480, 33);
 
     roleTitle.setXY(5, 4);
     roleTitle.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     roleTitle.setLinespacing(0);
-    roleTitle.setTypedText(touchgfx::TypedText(T___SINGLEUSE_DVCZ));
+    roleTitle.setTypedText(touchgfx::TypedText(T___SINGLEUSE_MBSV));
     role.add(roleTitle);
 
-    roleText.setPosition(105, 4, 375, 24);
+    roleText.setPosition(62, 4, 418, 24);
     roleText.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     roleText.setLinespacing(0);
-    Unicode::snprintf(roleTextBuffer, ROLETEXT_SIZE, "%s", touchgfx::TypedText(T_ROOM).getText());
+    Unicode::snprintf(roleTextBuffer, ROLETEXT_SIZE, "%s", touchgfx::TypedText(T_ROLE).getText());
     roleText.setWildcard(roleTextBuffer);
-    roleText.setTypedText(touchgfx::TypedText(T___SINGLEUSE_8TX6));
+    roleText.setTypedText(touchgfx::TypedText(T___SINGLEUSE_39B4));
     role.add(roleText);
     profileData.add(role);
 
-    room.setPosition(0, 142, 480, 33);
+    room.setPosition(0, 103, 480, 33);
 
     roomTitle.setXY(5, 4);
     roomTitle.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     roomTitle.setLinespacing(0);
-    roomTitle.setTypedText(touchgfx::TypedText(T___SINGLEUSE_RFG9));
+    roomTitle.setTypedText(touchgfx::TypedText(T___SINGLEUSE_DVCZ));
     room.add(roomTitle);
 
-    roomText.setPosition(62, 4, 418, 24);
+    roomText.setPosition(105, 4, 375, 24);
     roomText.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     roomText.setLinespacing(0);
-    Unicode::snprintf(roomTextBuffer, ROOMTEXT_SIZE, "%s", touchgfx::TypedText(T_ROLE).getText());
+    Unicode::snprintf(roomTextBuffer, ROOMTEXT_SIZE, "%s", touchgfx::TypedText(T_ROOM).getText());
     roomText.setWildcard(roomTextBuffer);
-    roomText.setTypedText(touchgfx::TypedText(T___SINGLEUSE_0ZEI));
+    roomText.setTypedText(touchgfx::TypedText(T___SINGLEUSE_8TX6));
     room.add(roomText);
     profileData.add(room);
 
-    pinCode.setPosition(0, 76, 480, 33);
+    pinCode.setPosition(0, 70, 480, 33);
 
     pinCodeTitle.setXY(5, 4);
     pinCodeTitle.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
@@ -81,7 +82,7 @@ ProfileViewBase::ProfileViewBase() :
     pinCode.add(pinCodeText);
     profileData.add(pinCode);
 
-    bithdate.setPosition(0, 43, 480, 33);
+    bithdate.setPosition(0, 37, 480, 33);
 
     birthdateTitle.setXY(5, 4);
     birthdateTitle.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
@@ -98,7 +99,7 @@ ProfileViewBase::ProfileViewBase() :
     bithdate.add(birthdateText);
     profileData.add(bithdate);
 
-    fio.setPosition(0, 10, 480, 33);
+    fio.setPosition(0, 4, 480, 33);
 
     fioTitle.setXY(5, 4);
     fioTitle.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
@@ -116,7 +117,7 @@ ProfileViewBase::ProfileViewBase() :
     profileData.add(fio);
     profileData.setScrollbarsPermanentlyVisible();
 
-    separator.setPosition(0, 32, 480, 10);
+    separator.setPosition(0, 34, 480, 8);
     separatorPainter.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     separator.setPainter(separatorPainter);
     separator.setStart(0, 0);
@@ -124,16 +125,16 @@ ProfileViewBase::ProfileViewBase() :
     separator.setLineWidth(10);
     separator.setLineEndingStyle(touchgfx::Line::BUTT_CAP_ENDING);
 
-    exitButton.setBoxWithBorderPosition(0, 0, 31, 31);
+    exitButton.setBoxWithBorderPosition(0, 0, 37, 34);
     exitButton.setBorderSize(0);
     exitButton.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(204, 31, 31), touchgfx::Color::getColorFromRGB(156, 40, 40), touchgfx::Color::getColorFromRGB(0, 51, 102), touchgfx::Color::getColorFromRGB(51, 102, 153));
     exitButton.setText(TypedText(T___SINGLEUSE_C4FD));
-    exitButton.setTextPosition(0, -3, 31, 31);
+    exitButton.setTextPosition(0, -3, 37, 34);
     exitButton.setTextColors(touchgfx::Color::getColorFromRGB(10, 10, 10), touchgfx::Color::getColorFromRGB(10, 10, 10));
-    exitButton.setPosition(449, 1, 31, 31);
+    exitButton.setPosition(443, 0, 37, 34);
     exitButton.setAction(flexButtonCallback);
 
-    titleText.setPosition(5, 1, 438, 31);
+    titleText.setPosition(5, 1, 438, 33);
     titleText.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     titleText.setLinespacing(0);
     Unicode::snprintf(titleTextBuffer, TITLETEXT_SIZE, "%s", touchgfx::TypedText(T_STUDENTID).getText());

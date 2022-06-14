@@ -903,6 +903,8 @@ void networkFunc(void *argument)
   /* USER CODE BEGIN networkFunc */
 	uint8_t progress = 0;
 
+	osDelay(1000);
+
 	printf("\r\nConnecting to WiFi...\r\n");
 
 	esp_init(&huart7);

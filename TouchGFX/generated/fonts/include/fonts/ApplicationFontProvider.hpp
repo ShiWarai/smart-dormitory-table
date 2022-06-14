@@ -17,10 +17,13 @@ struct Typography
     static const touchgfx::FontId LARGE = 1;
     static const touchgfx::FontId SMALL = 2;
     static const touchgfx::FontId TYPOGRAPHY_00 = 3;
-    static const touchgfx::FontId NUMBER = 4;
-    static const touchgfx::FontId RUSSIAN = 5;
-    static const touchgfx::FontId FIO = 6;
-    static const touchgfx::FontId DATE = 7;
+    static const touchgfx::FontId RUSSIAN = 4;
+    static const touchgfx::FontId ENGLISH = 5;
+    static const touchgfx::FontId NUMBER = 6;
+    static const touchgfx::FontId FIO = 7;
+    static const touchgfx::FontId DATE = 8;
+    static const touchgfx::FontId ROOM = 9;
+    static const touchgfx::FontId PINCODE = 10;
 };
 
 struct TypographyFontIndex
@@ -29,10 +32,13 @@ struct TypographyFontIndex
     static const touchgfx::FontId LARGE = 1;         // verdana_40_4bpp
     static const touchgfx::FontId SMALL = 2;         // verdana_10_4bpp
     static const touchgfx::FontId TYPOGRAPHY_00 = 3; // trebucbi_48_4bpp
-    static const touchgfx::FontId NUMBER = 0;        // verdana_25_4bpp
     static const touchgfx::FontId RUSSIAN = 4;       // verdana_20_4bpp
+    static const touchgfx::FontId ENGLISH = 4;       // verdana_20_4bpp
+    static const touchgfx::FontId NUMBER = 0;        // verdana_25_4bpp
     static const touchgfx::FontId FIO = 4;           // verdana_20_4bpp
     static const touchgfx::FontId DATE = 4;          // verdana_20_4bpp
+    static const touchgfx::FontId ROOM = 4;          // verdana_20_4bpp
+    static const touchgfx::FontId PINCODE = 4;       // verdana_20_4bpp
     static const uint16_t NUMBER_OF_FONTS = 5;
 };
 

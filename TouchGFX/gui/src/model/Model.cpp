@@ -37,7 +37,7 @@ void Model::tick()
 	}
 	if (xQueueReceive(wifiResponseMessages, response_str, 0) == pdTRUE)
 	{
-		printf("RESPONSE:\r\n%s\r\n", response_str);
+		//printf("RESPONSE:\r\n%s\r\n", response_str);
 
 		HttpResponseParser parser;
 		Response response;
@@ -58,7 +58,7 @@ void Model::requestResident(std::string currentStudentId) {
 	sprintf(request_str, "GET /resident/%s HTTP/1.1\r\nHost: ridramecraft.ru:8080\r\nAuthorization:Basic %s\r\n\r\n",
 			currentStudentId.c_str(), "MTIzNDU2NzoxMTEx");
 
-	printf("REQUEST:\r\n%s\r\n", request_str);
+	//printf("REQUEST:\r\n%s\r\n", request_str);
 
 	xQueueSend(wifiRequestMessages, request_str, 0);
 	currentRequestType = GET_RESIDENT;
@@ -85,11 +85,19 @@ Resident Model::residentFromJson(std::string resident_str)
 
 	Resident resident;
 
-	resident.FIO = (std::string) resident_json["surname"]
-				+ " " + (std::string) resident_json["name"]
-				+ " " + (std::string) resident_json.value("patronymic", "");
+	resident.FIO = (std::string)resident_json["surname"]
+					+ " " + (std::string)resident_json["name"]
+					+ " " + (std::string)resident_json.value("patronymic", "");
 
 	resident.studentId = resident_json["studentId"];
+
+	resident.birthdate = resident_json["birthdate"];
+
+	resident.pinCode = "****";
+
+	resident.room = resident_json.value("roomNumber", 0);
+
+	resident.role = resident_json["role"];
 
 	return resident;
 }

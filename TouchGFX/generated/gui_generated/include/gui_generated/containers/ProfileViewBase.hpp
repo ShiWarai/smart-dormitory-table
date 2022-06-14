@@ -55,15 +55,15 @@ protected:
     /*
      * Wildcard Buffers
      */
-    static const uint16_t ROLETEXT_SIZE = 4;
+    static const uint16_t ROLETEXT_SIZE = 129;
     touchgfx::Unicode::UnicodeChar roleTextBuffer[ROLETEXT_SIZE];
-    static const uint16_t ROOMTEXT_SIZE = 128;
+    static const uint16_t ROOMTEXT_SIZE = 5;
     touchgfx::Unicode::UnicodeChar roomTextBuffer[ROOMTEXT_SIZE];
-    static const uint16_t PINCODETEXT_SIZE = 4;
+    static const uint16_t PINCODETEXT_SIZE = 5;
     touchgfx::Unicode::UnicodeChar pinCodeTextBuffer[PINCODETEXT_SIZE];
-    static const uint16_t BIRTHDATETEXT_SIZE = 10;
+    static const uint16_t BIRTHDATETEXT_SIZE = 11;
     touchgfx::Unicode::UnicodeChar birthdateTextBuffer[BIRTHDATETEXT_SIZE];
-    static const uint16_t FIOTEXT_SIZE = 128;
+    static const uint16_t FIOTEXT_SIZE = 129;
     touchgfx::Unicode::UnicodeChar fioTextBuffer[FIOTEXT_SIZE];
     static const uint16_t TITLETEXT_SIZE = 10;
     touchgfx::Unicode::UnicodeChar titleTextBuffer[TITLETEXT_SIZE];
