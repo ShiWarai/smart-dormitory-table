@@ -92,7 +92,7 @@
           {
             "Type": "TextArea",
             "Name": "waitingText",
-            "Y": 66,
+            "Y": 73,
             "Width": 480,
             "Height": 32,
             "TextId": "__SingleUse_I2QG",
@@ -111,9 +111,9 @@
           {
             "Type": "TextArea",
             "Name": "studentIdText",
-            "Y": 98,
+            "Y": 105,
             "Width": 480,
-            "Height": 29,
+            "Height": 31,
             "TextId": "__SingleUse_U8JL",
             "TextRotation": "0",
             "Wildcard1": {
@@ -192,31 +192,265 @@
         "Height": 272,
         "Components": [
           {
-            "Type": "TextArea",
-            "Name": "titleText",
-            "X": 3,
-            "Y": 1,
-            "Width": 472,
-            "Height": 29,
-            "TextId": "__SingleUse_DQ0S",
-            "TextRotation": "0",
-            "Wildcard1": {
-              "TextId": "studentId",
-              "UseBuffer": true,
-              "BufferSize": 10
-            }
+            "Type": "FlexButton",
+            "Name": "deleteButton",
+            "X": 326,
+            "Y": 218,
+            "Width": 144,
+            "Height": 45,
+            "ButtonTrigger": {
+              "Type": "TouchButtonTrigger"
+            },
+            "ButtonStyles": [
+              {
+                "Type": "TextButtonStyle",
+                "Y": 8,
+                "TextId": "__SingleUse_GLOP",
+                "TextRotation": "0",
+                "ColorReleased": {
+                  "Red": 10,
+                  "Green": 10,
+                  "Blue": 10
+                },
+                "ColorPressed": {
+                  "Red": 10,
+                  "Green": 10,
+                  "Blue": 10
+                }
+              },
+              {
+                "Type": "BoxWithBorderButtonStyle",
+                "Width": 144,
+                "Height": 45,
+                "LockToFlexButtonSize": true,
+                "BorderSize": 1,
+                "ColorReleased": {
+                  "Red": 189,
+                  "Green": 21,
+                  "Blue": 21
+                },
+                "ColorPressed": {
+                  "Red": 120,
+                  "Green": 16,
+                  "Blue": 16
+                },
+                "ColorBorderReleased": {
+                  "Red": 255,
+                  "Green": 48,
+                  "Blue": 48
+                },
+                "ColorBorderPressed": {
+                  "Red": 217,
+                  "Green": 65,
+                  "Blue": 65
+                }
+              }
+            ]
+          },
+          {
+            "Type": "FlexButton",
+            "Name": "confirmButton",
+            "X": 10,
+            "Y": 218,
+            "Width": 144,
+            "Height": 45,
+            "ButtonTrigger": {
+              "Type": "TouchButtonTrigger"
+            },
+            "ButtonStyles": [
+              {
+                "Type": "TextButtonStyle",
+                "Y": 8,
+                "TextId": "__SingleUse_C22A",
+                "TextRotation": "0",
+                "ColorReleased": {
+                  "Red": 10,
+                  "Green": 10,
+                  "Blue": 10
+                },
+                "ColorPressed": {
+                  "Red": 10,
+                  "Green": 10,
+                  "Blue": 10
+                }
+              },
+              {
+                "Type": "BoxWithBorderButtonStyle",
+                "Width": 144,
+                "Height": 45,
+                "LockToFlexButtonSize": true,
+                "BorderSize": 1,
+                "ColorReleased": {
+                  "Green": 102,
+                  "Blue": 153
+                },
+                "ColorPressed": {
+                  "Green": 153,
+                  "Blue": 204
+                },
+                "ColorBorderReleased": {
+                  "Green": 51,
+                  "Blue": 102
+                },
+                "ColorBorderPressed": {
+                  "Red": 51,
+                  "Green": 102,
+                  "Blue": 153
+                }
+              }
+            ]
           },
           {
             "Type": "ScrollableContainer",
             "Name": "profileData",
-            "Y": 60,
+            "Y": 32,
             "Width": 480,
-            "Height": 212,
-            "HorizontalScrollEnabled": true,
+            "Height": 186,
             "VerticalScrollEnabled": true,
+            "ScrollbarsVisible": true,
             "ScrollbarsVisibleOnPressed": true,
             "ScrollbarsAlpha": 255,
             "Components": [
+              {
+                "Type": "Container",
+                "Name": "role",
+                "Y": 109,
+                "Width": 480,
+                "Height": 33,
+                "Components": [
+                  {
+                    "Type": "TextArea",
+                    "Name": "roleTitle",
+                    "X": 5,
+                    "Y": 4,
+                    "Width": 96,
+                    "Height": 24,
+                    "TextId": "__SingleUse_DVCZ",
+                    "TextRotation": "0",
+                    "AutoSize": true
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "roleText",
+                    "X": 105,
+                    "Y": 4,
+                    "Width": 375,
+                    "Height": 24,
+                    "TextId": "__SingleUse_8TX6",
+                    "TextRotation": "0",
+                    "Wildcard1": {
+                      "TextId": "room",
+                      "UseBuffer": true,
+                      "BufferSize": 4
+                    }
+                  }
+                ]
+              },
+              {
+                "Type": "Container",
+                "Name": "room",
+                "Y": 142,
+                "Width": 480,
+                "Height": 33,
+                "Components": [
+                  {
+                    "Type": "TextArea",
+                    "Name": "roomTitle",
+                    "X": 5,
+                    "Y": 4,
+                    "Width": 57,
+                    "Height": 24,
+                    "TextId": "__SingleUse_RFG9",
+                    "TextRotation": "0",
+                    "AutoSize": true
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "roomText",
+                    "X": 62,
+                    "Y": 4,
+                    "Width": 418,
+                    "Height": 24,
+                    "TextId": "__SingleUse_0ZEI",
+                    "TextRotation": "0",
+                    "Wildcard1": {
+                      "TextId": "role",
+                      "UseBuffer": true,
+                      "BufferSize": 128
+                    }
+                  }
+                ]
+              },
+              {
+                "Type": "Container",
+                "Name": "pinCode",
+                "Y": 76,
+                "Width": 480,
+                "Height": 33,
+                "Components": [
+                  {
+                    "Type": "TextArea",
+                    "Name": "pinCodeTitle",
+                    "X": 5,
+                    "Y": 4,
+                    "Width": 100,
+                    "Height": 24,
+                    "TextId": "__SingleUse_F13C",
+                    "TextRotation": "0",
+                    "AutoSize": true
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "pinCodeText",
+                    "X": 105,
+                    "Y": 4,
+                    "Width": 375,
+                    "Height": 24,
+                    "TextId": "__SingleUse_CKVP",
+                    "TextRotation": "0",
+                    "Wildcard1": {
+                      "TextId": "pinCode",
+                      "UseBuffer": true,
+                      "BufferSize": 4
+                    }
+                  }
+                ]
+              },
+              {
+                "Type": "Container",
+                "Name": "bithdate",
+                "Y": 43,
+                "Width": 480,
+                "Height": 33,
+                "Components": [
+                  {
+                    "Type": "TextArea",
+                    "Name": "birthdateTitle",
+                    "X": 5,
+                    "Y": 4,
+                    "Width": 167,
+                    "Height": 24,
+                    "TextId": "__SingleUse_SM47",
+                    "TextRotation": "0",
+                    "AutoSize": true
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "birthdateText",
+                    "X": 172,
+                    "Y": 4,
+                    "Width": 308,
+                    "Height": 24,
+                    "TextId": "__SingleUse_FJCS",
+                    "TextRotation": "0",
+                    "Wildcard1": {
+                      "TextId": "birthdate",
+                      "UseBuffer": true,
+                      "BufferSize": 10
+                    }
+                  }
+                ]
+              },
               {
                 "Type": "Container",
                 "Name": "fio",
@@ -227,22 +461,22 @@
                   {
                     "Type": "TextArea",
                     "Name": "fioTitle",
-                    "X": 3,
+                    "X": 5,
                     "Y": 4,
                     "Width": 56,
                     "Height": 24,
-                    "TextId": "__SingleUse_SM47",
+                    "TextId": "__SingleUse_3GBR",
                     "TextRotation": "0",
                     "AutoSize": true
                   },
                   {
                     "Type": "TextArea",
                     "Name": "fioText",
-                    "X": 65,
+                    "X": 61,
                     "Y": 4,
-                    "Width": 410,
+                    "Width": 419,
                     "Height": 24,
-                    "TextId": "__SingleUse_FJCS",
+                    "TextId": "__SingleUse_65KO",
                     "TextRotation": "0",
                     "Wildcard1": {
                       "TextId": "fio",
@@ -257,7 +491,7 @@
           {
             "Type": "Line",
             "Name": "separator",
-            "Y": 60,
+            "Y": 32,
             "Width": 480,
             "Height": 10,
             "EndX": 480,
@@ -265,21 +499,73 @@
             "LineEndingStyle": "Butt"
           },
           {
-            "Type": "ButtonWithIcon",
+            "Type": "FlexButton",
             "Name": "exitButton",
-            "X": 420,
-            "Width": 60,
-            "Height": 60,
-            "Pressed": "__designer\\Blue_Buttons_Round_icon_button_pressed.png",
-            "Released": "__designer\\Blue_Buttons_Round_icon_button.png",
-            "IconPressed": "__designer\\Blue_Icons_Back_arrow_32.png",
-            "IconReleased": "__designer\\Blue_Icons_Back_arrow_32.png",
-            "IconX": 22,
-            "IconY": 15,
-            "IconHeight": 30,
-            "IconWidth": 17,
-            "ButtonStyle": "Style5",
-            "IconStyle": "Icon5"
+            "X": 449,
+            "Y": 1,
+            "Width": 31,
+            "Height": 31,
+            "ButtonTrigger": {
+              "Type": "TouchButtonTrigger"
+            },
+            "ButtonStyles": [
+              {
+                "Type": "TextButtonStyle",
+                "Y": -3,
+                "TextId": "__SingleUse_C4FD",
+                "TextRotation": "0",
+                "ColorReleased": {
+                  "Red": 10,
+                  "Green": 10,
+                  "Blue": 10
+                },
+                "ColorPressed": {
+                  "Red": 10,
+                  "Green": 10,
+                  "Blue": 10
+                }
+              },
+              {
+                "Type": "BoxWithBorderButtonStyle",
+                "Width": 31,
+                "Height": 31,
+                "LockToFlexButtonSize": true,
+                "ColorReleased": {
+                  "Red": 204,
+                  "Green": 31,
+                  "Blue": 31
+                },
+                "ColorPressed": {
+                  "Red": 156,
+                  "Green": 40,
+                  "Blue": 40
+                },
+                "ColorBorderReleased": {
+                  "Green": 51,
+                  "Blue": 102
+                },
+                "ColorBorderPressed": {
+                  "Red": 51,
+                  "Green": 102,
+                  "Blue": 153
+                }
+              }
+            ]
+          },
+          {
+            "Type": "TextArea",
+            "Name": "titleText",
+            "X": 5,
+            "Y": 1,
+            "Width": 438,
+            "Height": 31,
+            "TextId": "__SingleUse_DQ0S",
+            "TextRotation": "0",
+            "Wildcard1": {
+              "TextId": "studentId",
+              "UseBuffer": true,
+              "BufferSize": 10
+            }
           }
         ],
         "Interactions": [

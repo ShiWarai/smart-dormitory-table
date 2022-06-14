@@ -6,13 +6,13 @@
 
 #include <gui/common/FrontendApplication.hpp>
 #include <touchgfx/containers/Container.hpp>
-#include <touchgfx/widgets/TextAreaWithWildcard.hpp>
+#include <touchgfx/containers/buttons/Buttons.hpp>
 #include <touchgfx/containers/ScrollableContainer.hpp>
 #include <touchgfx/containers/Container.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
+#include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 #include <touchgfx/widgets/canvas/Line.hpp>
 #include <touchgfx/widgets/canvas/PainterRGB565.hpp>
-#include <touchgfx/widgets/ButtonWithIcon.hpp>
 
 class ProfileViewBase : public touchgfx::Container
 {
@@ -29,34 +29,56 @@ protected:
     /*
      * Member Declarations
      */
-    touchgfx::TextAreaWithOneWildcard titleText;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::TouchButtonTrigger >  >  deleteButton;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::TouchButtonTrigger >  >  confirmButton;
     touchgfx::ScrollableContainer profileData;
+    touchgfx::Container role;
+    touchgfx::TextArea roleTitle;
+    touchgfx::TextAreaWithOneWildcard roleText;
+    touchgfx::Container room;
+    touchgfx::TextArea roomTitle;
+    touchgfx::TextAreaWithOneWildcard roomText;
+    touchgfx::Container pinCode;
+    touchgfx::TextArea pinCodeTitle;
+    touchgfx::TextAreaWithOneWildcard pinCodeText;
+    touchgfx::Container bithdate;
+    touchgfx::TextArea birthdateTitle;
+    touchgfx::TextAreaWithOneWildcard birthdateText;
     touchgfx::Container fio;
     touchgfx::TextArea fioTitle;
     touchgfx::TextAreaWithOneWildcard fioText;
     touchgfx::Line separator;
     touchgfx::PainterRGB565 separatorPainter;
-    touchgfx::ButtonWithIcon exitButton;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::TouchButtonTrigger >  >  exitButton;
+    touchgfx::TextAreaWithOneWildcard titleText;
 
     /*
      * Wildcard Buffers
      */
-    static const uint16_t TITLETEXT_SIZE = 10;
-    touchgfx::Unicode::UnicodeChar titleTextBuffer[TITLETEXT_SIZE];
+    static const uint16_t ROLETEXT_SIZE = 4;
+    touchgfx::Unicode::UnicodeChar roleTextBuffer[ROLETEXT_SIZE];
+    static const uint16_t ROOMTEXT_SIZE = 128;
+    touchgfx::Unicode::UnicodeChar roomTextBuffer[ROOMTEXT_SIZE];
+    static const uint16_t PINCODETEXT_SIZE = 4;
+    touchgfx::Unicode::UnicodeChar pinCodeTextBuffer[PINCODETEXT_SIZE];
+    static const uint16_t BIRTHDATETEXT_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar birthdateTextBuffer[BIRTHDATETEXT_SIZE];
     static const uint16_t FIOTEXT_SIZE = 128;
     touchgfx::Unicode::UnicodeChar fioTextBuffer[FIOTEXT_SIZE];
+    static const uint16_t TITLETEXT_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar titleTextBuffer[TITLETEXT_SIZE];
 
 private:
 
     /*
      * Callback Declarations
      */
-    touchgfx::Callback<ProfileViewBase, const touchgfx::AbstractButton&> buttonCallback;
+    touchgfx::Callback<ProfileViewBase, const touchgfx::AbstractButtonContainer&> flexButtonCallback;
 
     /*
      * Callback Handler Declarations
      */
-    void buttonCallbackHandler(const touchgfx::AbstractButton& src);
+    void flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer& src);
 
 };
 

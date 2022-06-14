@@ -6,19 +6,64 @@
   <Texts>
     <TextGroup Id="Group1" />
     <TextGroup Id="Unsorted">
-      <Text Id="fio" Alignment="Left" TypographyId="Default">
+      <Text Id="__SingleUse_GLOP" Alignment="Center" TypographyId="Russian">
+        <Translation Language="GB">Удалить</Translation>
+      </Text>
+      <Text Id="__SingleUse_C22A" Alignment="Center" TypographyId="Russian">
+        <Translation Language="GB">Подтвердить</Translation>
+      </Text>
+      <Text Id="__SingleUse_C4FD" Alignment="Center" TypographyId="number">
+        <Translation Language="GB">x</Translation>
+      </Text>
+      <Text Id="role" Alignment="Left" TypographyId="number">
         <Translation Language="GB" />
       </Text>
-      <Text Id="__SingleUse_FJCS" Alignment="Left" TypographyId="FIO">
-        <Translation Language="GB">&lt;value&gt;</Translation>
+      <Text Id="__SingleUse_8TX6" Alignment="Left" TypographyId="number">
+        <Translation Language="GB"> &lt;value&gt;</Translation>
       </Text>
-      <Text Id="__SingleUse_SM47" Alignment="Left" TypographyId="Russian">
+      <Text Id="__SingleUse_DVCZ" Alignment="Left" TypographyId="Russian">
+        <Translation Language="GB">Комната:</Translation>
+      </Text>
+      <Text Id="fio" Alignment="Left" TypographyId="number">
+        <Translation Language="GB" />
+      </Text>
+      <Text Id="room" Alignment="Left" TypographyId="number">
+        <Translation Language="GB" />
+      </Text>
+      <Text Id="pinCode" Alignment="Left" TypographyId="number">
+        <Translation Language="GB" />
+      </Text>
+      <Text Id="__SingleUse_0ZEI" Alignment="Left" TypographyId="number">
+        <Translation Language="GB"> &lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_RFG9" Alignment="Left" TypographyId="Russian">
+        <Translation Language="GB">Роль:</Translation>
+      </Text>
+      <Text Id="__SingleUse_CKVP" Alignment="Left" TypographyId="number">
+        <Translation Language="GB"> &lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_F13C" Alignment="Left" TypographyId="Russian">
+        <Translation Language="GB">ПИН-код:</Translation>
+      </Text>
+      <Text Id="__SingleUse_65KO" Alignment="Left" TypographyId="FIO">
+        <Translation Language="GB"> &lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_3GBR" Alignment="Left" TypographyId="Russian">
         <Translation Language="GB">ФИО:</Translation>
       </Text>
-      <Text Id="__SingleUse_DQ0S" Alignment="Left" TypographyId="studentID">
-        <Translation Language="GB">ID: &lt;value&gt;</Translation>
+      <Text Id="birthdate" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB" />
       </Text>
-      <Text Id="__SingleUse_U8JL" Alignment="Center" TypographyId="studentID">
+      <Text Id="__SingleUse_FJCS" Alignment="Left" TypographyId="date">
+        <Translation Language="GB"> &lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_SM47" Alignment="Left" TypographyId="Russian">
+        <Translation Language="GB">Дата рождения:</Translation>
+      </Text>
+      <Text Id="__SingleUse_DQ0S" Alignment="Left" TypographyId="number">
+        <Translation Language="GB">Студенческий: &lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_U8JL" Alignment="Center" TypographyId="number">
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
       <Text Id="studentId" Alignment="Left" TypographyId="Small">
@@ -43,8 +88,9 @@
     <Typography Id="Large" Font="verdana.ttf" Size="40" Bpp="4" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Small" Font="verdana.ttf" Size="10" Bpp="4" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Typography_00" Font="trebucbi.ttf" Size="48" Bpp="4" Direction="LTR" FallbackCharacter="?" />
-    <Typography Id="studentID" Font="verdana.ttf" Size="25" Bpp="4" Direction="LTR" FallbackCharacter="?" WildcardCharacterRanges="0-9" />
+    <Typography Id="number" Font="verdana.ttf" Size="25" Bpp="4" Direction="LTR" FallbackCharacter="?" WildcardCharacterRanges="0-9" />
     <Typography Id="Russian" Font="verdana.ttf" Size="20" Bpp="4" Direction="LTR" FallbackCharacter="?" WildcardCharacterRanges="А-я" />
     <Typography Id="FIO" Font="verdana.ttf" Size="20" Bpp="4" Direction="LTR" FallbackCharacter="?" WildcardCharacterRanges="А-я,0x20" />
+    <Typography Id="date" Font="verdana.ttf" Size="20" Bpp="4" Direction="LTR" FallbackCharacter="?" WildcardCharacterRanges="0-9,0x2E,0x2D" />
   </Typographies>
 </TextDatabase>
