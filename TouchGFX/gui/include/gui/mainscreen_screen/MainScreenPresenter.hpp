@@ -29,7 +29,7 @@ public:
 
     long getCurrentStudentId();
     void requestResident(long currentStudentId);
-    void setResident(Resident resident);
+    void setResidentToProfile(Resident resident);
 private:
     MainScreenPresenter();
 

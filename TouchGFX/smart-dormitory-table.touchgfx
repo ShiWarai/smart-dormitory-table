@@ -129,6 +129,16 @@
             "Height": 272,
             "Visible": false,
             "CustomContainerDefinitionName": "ScreenKeyboard"
+          },
+          {
+            "Type": "TextArea",
+            "Name": "authResult",
+            "Y": 224,
+            "Width": 480,
+            "Height": 30,
+            "Visible": false,
+            "TextId": "__SingleUse_L1XJ",
+            "TextRotation": "0"
           }
         ],
         "Interactions": [

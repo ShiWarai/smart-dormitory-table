@@ -34,6 +34,7 @@ protected:
     touchgfx::ScalableImage plugSwipeImage;
     touchgfx::TextAreaWithOneWildcard studentIdText;
     ScreenKeyboard keyboard;
+    touchgfx::TextArea authResult;
 
     /*
      * Wildcard Buffers

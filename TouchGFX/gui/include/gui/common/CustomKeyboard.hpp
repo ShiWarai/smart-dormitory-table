@@ -32,6 +32,8 @@ public:
 
     Unicode::UnicodeChar* getBuffer();
 
+    void updateBuffer(Unicode::UnicodeChar new_buffer[], uint32_t new_buffer_size);
+
 private:
     /*
      * The size of the buffer that is used by the keyboard.

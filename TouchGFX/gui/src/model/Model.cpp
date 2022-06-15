@@ -1,5 +1,6 @@
 #include <gui/model/Model.hpp>
 #include <gui/model/ModelListener.hpp>
+#include "../../../../../Core/Inc/base64.h"
 
 
 extern "C"{
@@ -29,7 +30,7 @@ void Model::tick()
 	{
 		if (confirm_tag(lastRfid))
 		{
-			modelListener->setStudentId(lastRfid);
+			modelListener->setStudentIdToView(lastRfid);
 
 			// Saving all data
 			this->currentStudentId = lastRfid;
@@ -53,12 +54,30 @@ long Model::getStudentId() {
 	return this->currentStudentId;
 }
 
+void Model::setCredentials(Resident user)
+{
+	this->currentUser = user;
+
+	// Check credentials
+	std::string credits = this->currentUser.studentId + ":" + this->currentUser.pinCode;
+
+	printf("Credits: %s\r\n", credits.c_str());
+	
+	this->encoded_credits = macaron::Base64::Encode(credits);
+
+	printf("ENCODED: %s\r\n", encoded_credits.c_str());
+
+	sprintf(request_str, "GET /resident/%s HTTP/1.1\r\nHost: ridramecraft.ru:8080\r\nAuthorization:Basic %s\r\n\r\n",
+		this->currentUser.studentId.c_str(), encoded_credits.c_str());
+
+	xQueueSend(wifiRequestMessages, request_str, 0);
+	currentRequestType = AUTH;
+}
+
 void Model::requestResident(std::string currentStudentId) {
 	
 	sprintf(request_str, "GET /resident/%s HTTP/1.1\r\nHost: ridramecraft.ru:8080\r\nAuthorization:Basic %s\r\n\r\n",
-			currentStudentId.c_str(), "MTIzNDU2NzoxMTEx");
-
-	//printf("REQUEST:\r\n%s\r\n", request_str);
+			currentStudentId.c_str(), encoded_credits.c_str());
 
 	xQueueSend(wifiRequestMessages, request_str, 0);
 	currentRequestType = GET_RESIDENT;
@@ -68,8 +87,25 @@ void Model::responseHandler(Response response)
 {
 	switch (currentRequestType)
 	{
-	case GET_RESIDENT:
-		modelListener->setResident(residentFromJson(std::string(response.content.begin(), response.content.end())));
+	case RequestType::GET_RESIDENT:
+		if (response.statusCode == 200)
+			modelListener->setResidentToProfile(residentFromJson(std::string(response.content.begin(), response.content.end())));
+		else
+			printf("Something wrong with response: %s\r\n", std::string(response.content.begin(), response.content.end()).c_str());
+		break;
+	case RequestType::AUTH:
+		if (response.statusCode == 200)
+		{
+			currentUser = residentFromJson(std::string(response.content.begin(), response.content.end()));
+			printf("GET USER!\r\n");
+			modelListener->setAuth(true);
+		}
+		else
+		{
+			printf("Something wrong with response: %s\r\n", std::string(response.content.begin(), response.content.end()).c_str());
+			printf("NO USER!\r\n");
+			modelListener->setAuth(true);
+		}
 		break;
 	default:
 		printf("No such request\r\n");

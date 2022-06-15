@@ -27,8 +27,9 @@ public:
 
     virtual ~WaitingScreenPresenter() {};
 
-    void setStudentId(long currentStudentId);
-
+    void setStudentIdToView(long currentStudentId);
+    void setCredentialsToModel(long studentId, std::string pinCode);
+    void setAuth(bool isAuth);
 private:
     WaitingScreenPresenter();
 

@@ -126,3 +126,13 @@ void CustomKeyboard::setTouchable(bool touch)
 Unicode::UnicodeChar* CustomKeyboard::getBuffer() {
     return keyboard.getBuffer();
 }
+
+void CustomKeyboard::updateBuffer(Unicode::UnicodeChar new_buffer[], uint32_t new_buffer_size)
+{
+    for (int i = 0; i < BUFFER_SIZE; i++) {
+        if (i < new_buffer_size)
+            buffer[i] = new_buffer[i];
+        else
+            buffer[i] = 0;
+    }
+}

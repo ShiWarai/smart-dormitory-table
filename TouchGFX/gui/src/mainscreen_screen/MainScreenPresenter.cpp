@@ -26,7 +26,7 @@ void MainScreenPresenter::requestResident(long currentStudentId)
     model->requestResident(std::to_string(currentStudentId));
 }
 
-void MainScreenPresenter::setResident(Resident resident)
+void MainScreenPresenter::setResidentToProfile(Resident resident)
 {
-    view.setResident(resident);
+    view.setResidentToProfile(resident);
 }

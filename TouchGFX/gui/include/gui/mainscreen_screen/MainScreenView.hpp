@@ -15,7 +15,7 @@ public:
     virtual void updateStudentId();
     virtual void updateResident();
 
-    void setResident(Resident resident);
+    void setResidentToProfile(Resident resident);
 protected:
 };
 

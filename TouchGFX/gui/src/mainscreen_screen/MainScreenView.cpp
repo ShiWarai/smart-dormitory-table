@@ -2,7 +2,7 @@
 
 MainScreenView::MainScreenView()
 {
-    profileView.setPtr(this, presenter);
+    profileView.setParent(this, presenter);
 }
 
 void MainScreenView::setupScreen()
@@ -24,7 +24,7 @@ void MainScreenView::updateResident()
 	presenter->requestResident(presenter->getCurrentStudentId());
 }
 
-void MainScreenView::setResident(Resident resident)
+void MainScreenView::setResidentToProfile(Resident resident)
 {
     // Change mode
     profileView.setResident(resident);
