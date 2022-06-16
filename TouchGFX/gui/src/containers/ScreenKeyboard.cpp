@@ -8,8 +8,6 @@ ScreenKeyboard::ScreenKeyboard()
 
 void ScreenKeyboard::initialize()
 {
-    successExit = false;
-
     ScreenKeyboardBase::initialize();
 }
 
@@ -20,8 +18,9 @@ void ScreenKeyboard::setParent(ScreenKeyboardParent* parent)
 
 void ScreenKeyboard::raise(InputsController* inputController) {
     this->inputController = inputController;
+    successExit = false;
 
-    printf("INPUT: %u\r\n", this->inputController->selectedInput);
+    printf("Start input text: %s\r\n", this->inputController->inputBuffer);
 
     Unicode::UnicodeChar buffer[MAX_INPUT];
 
@@ -34,6 +33,7 @@ void ScreenKeyboard::raise(InputsController* inputController) {
     {
     case T_PINCODEINPUT:
         enterTitle.setWildcard(TypedText(T_PINCODEINPUT).getText());
+        break;
     default:
         break;
     }

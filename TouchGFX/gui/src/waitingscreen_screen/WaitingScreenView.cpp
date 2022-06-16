@@ -89,6 +89,7 @@ void WaitingScreenView::setAuth(bool isAuth)
         authResult.setWildcard(TypedText(T_SUCCESS).getText());
     else
         authResult.setWildcard(TypedText(T_ERROR).getText());
+
     authResult.setVisible(true);
     authResult.invalidate();
 }
