@@ -33,8 +33,8 @@ protected:
     touchgfx::TextArea waitingText;
     touchgfx::ScalableImage plugSwipeImage;
     touchgfx::TextAreaWithOneWildcard studentIdText;
+    touchgfx::TextAreaWithOneWildcard authResult;
     ScreenKeyboard keyboard;
-    touchgfx::TextArea authResult;
 
     /*
      * Wildcard Buffers

@@ -11,32 +11,34 @@ TEXT_LOCATION_FLASH_PRAGMA
 KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE = {
     170, // T_pinCodeInput
     21, // T_EnteredText
-    193, // T_NumMode
-    189, // T_AlphaMode
-    162, // T___SingleUse_L1XJ
+    200, // T_NumMode
+    196, // T_AlphaMode
+    178, // T_error
+    162, // T_success
+    21, // T___SingleUse_L1XJ
     47, // T___SingleUse_UPWT
     22, // T_inputName
     22, // T_pinCode
     22, // T_role
     132, // T___SingleUse_39B4
-    178, // T___SingleUse_MBSV
+    185, // T___SingleUse_MBSV
     22, // T_room
     154, // T___SingleUse_GLOP
     120, // T___SingleUse_C22A
-    199, // T___SingleUse_C4FD
+    206, // T___SingleUse_C4FD
     132, // T___SingleUse_8TX6
     136, // T___SingleUse_DVCZ
     22, // T_fio
     20, // T___SingleUse_CKVP
     145, // T___SingleUse_F13C
     20, // T___SingleUse_65KO
-    184, // T___SingleUse_3GBR
+    191, // T___SingleUse_3GBR
     22, // T_birthdate
     20, // T___SingleUse_FJCS
     93, // T___SingleUse_SM47
     0, // T___SingleUse_DQ0S
     21, // T___SingleUse_U8JL
-    197, // T_studentId
+    204, // T_studentId
     108, // T___SingleUse_Y3NY
     58, // T___SingleUse_SHLX
     77, // T___SingleUse_C02T

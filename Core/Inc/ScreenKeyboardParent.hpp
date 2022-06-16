@@ -5,7 +5,8 @@ class ScreenKeyboardParent
 {
 public:
 	virtual void showKeyboardCallback() {};
-	virtual void hideKeyboardCallback() {};
+	virtual void hideOkKeyboardCallback() {};
+	virtual void hideCancelKeyboardCallback() {};
 };
 
 #endif

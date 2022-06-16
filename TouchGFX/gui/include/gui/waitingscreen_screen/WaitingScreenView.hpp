@@ -15,13 +15,15 @@ public:
     virtual void handleTickEvent();
 
     void setStudentId(long currentStudentId);
-    void hideKeyboardCallback();
+    void hideOkKeyboardCallback();
+    void hideCancelKeyboardCallback();
     void setAuth(bool auth);
 private:
     InputsController inputController;
     static const uint16_t WAITING_DURATION = 180;
     uint16_t waitingLoadingCounter = 0;
     uint16_t waitingPinCodeCounter = 0;
+    uint16_t errorCooldownCounter = 0;
 
     bool confirm_tag(long tag);
 };

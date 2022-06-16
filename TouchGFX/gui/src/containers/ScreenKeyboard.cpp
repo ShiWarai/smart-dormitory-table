@@ -8,6 +8,8 @@ ScreenKeyboard::ScreenKeyboard()
 
 void ScreenKeyboard::initialize()
 {
+    successExit = false;
+
     ScreenKeyboardBase::initialize();
 }
 
@@ -23,7 +25,7 @@ void ScreenKeyboard::raise(InputsController* inputController) {
 
     Unicode::UnicodeChar buffer[MAX_INPUT];
 
-    Unicode::fromUTF8((const uint8_t*)(this->inputController->textInputs), buffer, MAX_INPUT);
+    Unicode::fromUTF8((const uint8_t*)(this->inputController->inputBuffer), buffer, MAX_INPUT);
 
     keyboard.updateBuffer(buffer, MAX_INPUT);
 
@@ -43,8 +45,8 @@ void ScreenKeyboard::raise(InputsController* inputController) {
 void ScreenKeyboard::updateInputBuffer()
 {
     Unicode::UnicodeChar* buffer = keyboard.getBuffer();
-    Unicode::toUTF8(buffer, (uint8_t*) inputController->textInputs, MAX_INPUT);
-    printf("Update to: %s\r\n", inputController->textInputs);
+    Unicode::toUTF8(buffer, (uint8_t*) inputController->inputBuffer, MAX_INPUT);
+    printf("Update to: %s\r\n", inputController->inputBuffer);
     successExit = true;
 }
 
@@ -54,6 +56,8 @@ void ScreenKeyboard::hideKeyboard() {
     this->setVisible(false);
     this->invalidate();
 
-    if(successExit)
-        parent->hideKeyboardCallback();
+    if (successExit)
+        parent->hideOkKeyboardCallback();
+    else
+        parent->hideCancelKeyboardCallback();
 }

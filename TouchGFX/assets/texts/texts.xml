@@ -20,10 +20,17 @@
         <Translation Language="GB">123</Translation>
       </Text>
     </TextGroup>
-    <TextGroup Id="Group1" />
+    <TextGroup Id="Basic">
+      <Text Id="error" Alignment="Center" TypographyId="Russian">
+        <Translation Language="GB">Ошибка</Translation>
+      </Text>
+      <Text Id="success" Alignment="Center" TypographyId="Russian">
+        <Translation Language="GB">Успешно</Translation>
+      </Text>
+    </TextGroup>
     <TextGroup Id="Unsorted">
       <Text Id="__SingleUse_L1XJ" Alignment="Center" TypographyId="Russian">
-        <Translation Language="GB">Успешно</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
       <Text Id="__SingleUse_UPWT" Alignment="Center" TypographyId="Russian">
         <Translation Language="GB">Введите &lt;placeholder&gt;:</Translation>

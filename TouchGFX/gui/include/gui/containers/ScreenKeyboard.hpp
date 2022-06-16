@@ -22,7 +22,7 @@ protected:
     CustomKeyboard keyboard;
 private:
     InputsController* inputController;
-    bool successExit = false;
+    bool successExit;
 
     ScreenKeyboardParent* parent;
 };

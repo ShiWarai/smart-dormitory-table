@@ -104,7 +104,7 @@ void Model::responseHandler(Response response)
 		{
 			printf("Something wrong with response: %s\r\n", std::string(response.content.begin(), response.content.end()).c_str());
 			printf("NO USER!\r\n");
-			modelListener->setAuth(true);
+			modelListener->setAuth(false);
 		}
 		break;
 	default:

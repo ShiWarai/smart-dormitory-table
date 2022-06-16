@@ -12,6 +12,6 @@ enum INPUTS {
 #define MAX_INPUT 18
 
 struct InputsController {
-	char textInputs[MAX_INPUT];
+	char inputBuffer[MAX_INPUT];
 	unsigned short selectedInput = -1;
 };

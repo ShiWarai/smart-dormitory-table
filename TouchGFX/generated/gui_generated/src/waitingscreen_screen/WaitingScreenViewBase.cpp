@@ -32,22 +32,22 @@ WaitingScreenViewBase::WaitingScreenViewBase()
     studentIdText.setWildcard(studentIdTextBuffer);
     studentIdText.setTypedText(touchgfx::TypedText(T___SINGLEUSE_U8JL));
 
-    keyboard.setXY(0, 0);
-    keyboard.setVisible(false);
-
     authResult.setPosition(0, 224, 480, 30);
     authResult.setVisible(false);
     authResult.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     authResult.setLinespacing(0);
     authResult.setTypedText(touchgfx::TypedText(T___SINGLEUSE_L1XJ));
 
+    keyboard.setXY(0, 0);
+    keyboard.setVisible(false);
+
     add(__background);
     add(waitingBackground);
     add(waitingText);
     add(plugSwipeImage);
     add(studentIdText);
-    add(keyboard);
     add(authResult);
+    add(keyboard);
 }
 
 void WaitingScreenViewBase::setupScreen()

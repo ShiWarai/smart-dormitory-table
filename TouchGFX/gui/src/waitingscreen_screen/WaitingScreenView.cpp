@@ -33,8 +33,11 @@ void WaitingScreenView::handleTickEvent()
         if (waitingLoadingCounter == 0)
         {
             // open keyboard
+            memset(inputController.inputBuffer, '\0', MAX_INPUT);
             inputController.selectedInput = INPUTS::PIN_CODE;
             keyboard.raise(&inputController);
+            // hide
+            authResult.setVisible(false);
         }
     }
 
@@ -47,17 +50,32 @@ void WaitingScreenView::handleTickEvent()
             application().gotoMainScreenScreenSlideTransitionWest();
         }
     }
+
+    if (errorCooldownCounter > 0)
+    {
+        errorCooldownCounter--;
+        if (errorCooldownCounter == 0)
+        {
+            Unicode::itoa(0, studentIdTextBuffer, STUDENTIDTEXT_SIZE, 10);
+            studentIdText.invalidate();
+
+            authResult.setVisible(false);
+            authResult.invalidate();
+        }
+    }
 }
 
-void WaitingScreenView::hideKeyboardCallback() 
+void WaitingScreenView::hideOkKeyboardCallback() 
 {
-
-    std::string pinCode(inputController.textInputs);
+    std::string pinCode(inputController.inputBuffer);
     printf("INPUT DATA: %s\r\n", pinCode.c_str());
 
     presenter->setCredentialsToModel((long) Unicode::atoi(studentIdTextBuffer), pinCode);
+}
 
-    //waitingPinCodeCounter = WAITING_DURATION;
+void WaitingScreenView::hideCancelKeyboardCallback()
+{
+    errorCooldownCounter = WAITING_DURATION;
 }
 
 void WaitingScreenView::setAuth(bool isAuth)
@@ -65,7 +83,12 @@ void WaitingScreenView::setAuth(bool isAuth)
     if (isAuth)
         waitingPinCodeCounter = WAITING_DURATION;
     else
-        printf("No auth!\r\n");
+        errorCooldownCounter = WAITING_DURATION;
 
-    authResult.setVisible(isAuth);
+    if(isAuth)
+        authResult.setWildcard(TypedText(T_SUCCESS).getText());
+    else
+        authResult.setWildcard(TypedText(T_ERROR).getText());
+    authResult.setVisible(true);
+    authResult.invalidate();
 }
