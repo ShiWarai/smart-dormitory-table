@@ -14,7 +14,11 @@ public:
 
     virtual void updateStudentId();
     virtual void updateResident();
+    virtual void goBack();
+    virtual void showProfileView();
+    virtual void showObjectsListView();
 
+    void hideAllContainers();
     void setResidentToProfile(Resident resident);
 protected:
 };

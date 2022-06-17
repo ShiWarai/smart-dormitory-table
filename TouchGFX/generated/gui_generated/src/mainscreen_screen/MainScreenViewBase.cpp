@@ -20,16 +20,14 @@ MainScreenViewBase::MainScreenViewBase() :
     mainBackground.setXY(0, 0);
     mainBackground.setBitmap(touchgfx::Bitmap(BITMAP_BLUE_BACKGROUNDS_MAIN_BG_480X272PX_ID));
 
-    profileView.setXY(0, 34);
-
-    exitButton.setBoxWithBorderPosition(0, 0, 26, 26);
-    exitButton.setBorderSize(0);
-    exitButton.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(204, 31, 31), touchgfx::Color::getColorFromRGB(156, 40, 40), touchgfx::Color::getColorFromRGB(0, 51, 102), touchgfx::Color::getColorFromRGB(51, 102, 153));
-    exitButton.setText(TypedText(T___SINGLEUSE_UHS0));
-    exitButton.setTextPosition(0, -3, 26, 26);
-    exitButton.setTextColors(touchgfx::Color::getColorFromRGB(10, 10, 10), touchgfx::Color::getColorFromRGB(10, 10, 10));
-    exitButton.setPosition(454, 0, 26, 26);
-    exitButton.setAction(flexButtonCallback);
+    backButton.setBoxWithBorderPosition(0, 0, 26, 26);
+    backButton.setBorderSize(0);
+    backButton.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(204, 31, 31), touchgfx::Color::getColorFromRGB(156, 40, 40), touchgfx::Color::getColorFromRGB(0, 51, 102), touchgfx::Color::getColorFromRGB(51, 102, 153));
+    backButton.setText(TypedText(T___SINGLEUSE_UHS0));
+    backButton.setTextPosition(0, -3, 26, 26);
+    backButton.setTextColors(touchgfx::Color::getColorFromRGB(10, 10, 10), touchgfx::Color::getColorFromRGB(10, 10, 10));
+    backButton.setPosition(454, 0, 26, 26);
+    backButton.setAction(flexButtonCallback);
 
     separator.setPosition(0, 26, 480, 8);
     separatorPainter.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
@@ -46,17 +44,35 @@ MainScreenViewBase::MainScreenViewBase() :
     studentTitle.setWildcard(studentTitleBuffer);
     studentTitle.setTypedText(touchgfx::TypedText(T___SINGLEUSE_9HVZ));
 
+    objectsButton.setBoxWithBorderPosition(0, 0, 26, 26);
+    objectsButton.setBorderSize(0);
+    objectsButton.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(250, 167, 42), touchgfx::Color::getColorFromRGB(252, 203, 68), touchgfx::Color::getColorFromRGB(0, 51, 102), touchgfx::Color::getColorFromRGB(51, 102, 153));
+    objectsButton.setText(TypedText(T___SINGLEUSE_1ID4));
+    objectsButton.setTextPosition(0, 0, 26, 26);
+    objectsButton.setTextColors(touchgfx::Color::getColorFromRGB(10, 10, 10), touchgfx::Color::getColorFromRGB(10, 10, 10));
+    objectsButton.setPosition(428, 0, 26, 26);
+    objectsButton.setAction(flexButtonCallback);
+
+    profileView.setXY(0, 34);
+    profileView.setVisible(false);
+
+    objectsListView.setXY(0, 34);
+    objectsListView.setVisible(false);
+
     add(__background);
     add(mainBackground);
-    add(profileView);
-    add(exitButton);
+    add(backButton);
     add(separator);
     add(studentTitle);
+    add(objectsButton);
+    add(profileView);
+    add(objectsListView);
 }
 
 void MainScreenViewBase::setupScreen()
 {
     profileView.initialize();
+    objectsListView.initialize();
     //UpdateStudentId
     //When screen transition begins call virtual function
     //Call updateStudentId
@@ -64,18 +80,25 @@ void MainScreenViewBase::setupScreen()
 
     //UpdateResident
     //When UpdateStudentId completed call virtual function
-    //Call updateResident
-    updateResident();
+    //Call showProfileView
+    showProfileView();
 
 }
 
 void MainScreenViewBase::flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer& src)
 {
-    if (&src == &exitButton)
+    if (&src == &backButton)
     {
-        //exit
-        //When exitButton clicked change screen to WaitingScreen
-        //Go to WaitingScreen with no screen transition
-        application().gotoWaitingScreenScreenNoTransition();
+        //back
+        //When backButton clicked call virtual function
+        //Call goBack
+        goBack();
+    }
+    else if (&src == &objectsButton)
+    {
+        //objectsListShow
+        //When objectsButton clicked call virtual function
+        //Call showObjectsListView
+        showObjectsListView();
     }
 }

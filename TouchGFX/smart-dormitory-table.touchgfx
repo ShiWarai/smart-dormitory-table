@@ -171,16 +171,8 @@
             "Style": "Image2"
           },
           {
-            "Type": "CustomContainerInstance",
-            "Name": "profileView",
-            "Y": 34,
-            "Width": 480,
-            "Height": 238,
-            "CustomContainerDefinitionName": "ProfileView"
-          },
-          {
             "Type": "FlexButton",
-            "Name": "exitButton",
+            "Name": "backButton",
             "X": 454,
             "Width": 26,
             "Height": 26,
@@ -254,6 +246,76 @@
               "UseBuffer": true,
               "BufferSize": 10
             }
+          },
+          {
+            "Type": "FlexButton",
+            "Name": "objectsButton",
+            "X": 428,
+            "Width": 26,
+            "Height": 26,
+            "ButtonTrigger": {
+              "Type": "TouchButtonTrigger"
+            },
+            "ButtonStyles": [
+              {
+                "Type": "TextButtonStyle",
+                "TextId": "__SingleUse_1ID4",
+                "TextRotation": "0",
+                "ColorReleased": {
+                  "Red": 10,
+                  "Green": 10,
+                  "Blue": 10
+                },
+                "ColorPressed": {
+                  "Red": 10,
+                  "Green": 10,
+                  "Blue": 10
+                }
+              },
+              {
+                "Type": "BoxWithBorderButtonStyle",
+                "Width": 26,
+                "Height": 26,
+                "LockToFlexButtonSize": true,
+                "ColorReleased": {
+                  "Red": 250,
+                  "Green": 167,
+                  "Blue": 42
+                },
+                "ColorPressed": {
+                  "Red": 252,
+                  "Green": 203,
+                  "Blue": 68
+                },
+                "ColorBorderReleased": {
+                  "Green": 51,
+                  "Blue": 102
+                },
+                "ColorBorderPressed": {
+                  "Red": 51,
+                  "Green": 102,
+                  "Blue": 153
+                }
+              }
+            ]
+          },
+          {
+            "Type": "CustomContainerInstance",
+            "Name": "profileView",
+            "Y": 34,
+            "Width": 480,
+            "Height": 238,
+            "Visible": false,
+            "CustomContainerDefinitionName": "ProfileView"
+          },
+          {
+            "Type": "CustomContainerInstance",
+            "Name": "objectsListView",
+            "Y": 34,
+            "Width": 480,
+            "Height": 238,
+            "Visible": false,
+            "CustomContainerDefinitionName": "ObjectsListView"
           }
         ],
         "Interactions": [
@@ -276,19 +338,29 @@
             },
             "Action": {
               "Type": "ActionCustom",
-              "FunctionName": "updateResident"
+              "FunctionName": "showProfileView"
             }
           },
           {
-            "InteractionName": "exit",
+            "InteractionName": "back",
             "Trigger": {
               "Type": "TriggerClicked",
-              "TriggerComponent": "exitButton"
+              "TriggerComponent": "backButton"
             },
             "Action": {
-              "Type": "ActionGotoScreen",
-              "ScreenTransitionType": "ScreenTransitionNone",
-              "ActionComponent": "WaitingScreen"
+              "Type": "ActionCustom",
+              "FunctionName": "goBack"
+            }
+          },
+          {
+            "InteractionName": "objectsListShow",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "objectsButton"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "showObjectsListView"
             }
           }
         ]
@@ -746,6 +818,26 @@
             }
           }
         ]
+      },
+      {
+        "Name": "ObjectsListView",
+        "Y": 34,
+        "Width": 480,
+        "Height": 238,
+        "Components": [
+          {
+            "Type": "TextArea",
+            "Name": "textArea1",
+            "X": 151,
+            "Y": 102,
+            "Width": 179,
+            "Height": 24,
+            "TextId": "__SingleUse_BM5L",
+            "TextRotation": "0",
+            "AutoSize": true
+          }
+        ],
+        "Interactions": []
       }
     ],
     "Name": "smart-dormitory-table",

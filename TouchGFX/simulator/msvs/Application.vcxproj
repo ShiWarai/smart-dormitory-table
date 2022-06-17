@@ -35,6 +35,8 @@
     <ClCompile Include="..\..\generated\gui_generated\src\containers\ProfileViewBase.cpp"/>
     <ClCompile Include="..\..\gui\src\common\CustomKeyboard.cpp"/>
     <ClCompile Include="..\..\generated\gui_generated\src\containers\ScreenKeyboardBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\containers\ObjectsListView.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\ObjectsListViewBase.cpp"/>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(ApplicationRoot)\assets\texts\texts.xml"/>
@@ -211,6 +213,8 @@
     <ClInclude Include="..\..\gui\include\gui\common\KeyboardLayout.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\containers\ScreenKeyboard.hpp"/>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\ScreenKeyboardBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\containers\ObjectsListView.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\ObjectsListViewBase.hpp"/>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(ApplicationRoot)\generated\simulator\touchgfx.rc"/>

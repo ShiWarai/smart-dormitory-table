@@ -29,6 +29,12 @@
       </Text>
     </TextGroup>
     <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_BM5L" Alignment="Left" TypographyId="Russian">
+        <Translation Language="GB">Пока ничего нет!</Translation>
+      </Text>
+      <Text Id="__SingleUse_1ID4" Alignment="Center" TypographyId="Russian">
+        <Translation Language="GB">O</Translation>
+      </Text>
       <Text Id="__SingleUse_9HVZ" Alignment="Left" TypographyId="number">
         <Translation Language="GB">Номер студенческого: &lt;value&gt;</Translation>
       </Text>

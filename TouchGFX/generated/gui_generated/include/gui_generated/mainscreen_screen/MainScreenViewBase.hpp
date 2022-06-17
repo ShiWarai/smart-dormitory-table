@@ -9,11 +9,12 @@
 #include <gui/mainscreen_screen/MainScreenPresenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/widgets/Image.hpp>
-#include <gui/containers/ProfileView.hpp>
 #include <touchgfx/containers/buttons/Buttons.hpp>
 #include <touchgfx/widgets/canvas/Line.hpp>
 #include <touchgfx/widgets/canvas/PainterRGB565.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
+#include <gui/containers/ProfileView.hpp>
+#include <gui/containers/ObjectsListView.hpp>
 
 class MainScreenViewBase : public touchgfx::View<MainScreenPresenter>
 {
@@ -30,7 +31,17 @@ public:
         // Override and implement this function in MainScreen
     }
 
-    virtual void updateResident()
+    virtual void showProfileView()
+    {
+        // Override and implement this function in MainScreen
+    }
+
+    virtual void goBack()
+    {
+        // Override and implement this function in MainScreen
+    }
+
+    virtual void showObjectsListView()
     {
         // Override and implement this function in MainScreen
     }
@@ -45,11 +56,13 @@ protected:
      */
     touchgfx::Box __background;
     touchgfx::Image mainBackground;
-    ProfileView profileView;
-    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::TouchButtonTrigger >  >  exitButton;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::TouchButtonTrigger >  >  backButton;
     touchgfx::Line separator;
     touchgfx::PainterRGB565 separatorPainter;
     touchgfx::TextAreaWithOneWildcard studentTitle;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::TouchButtonTrigger >  >  objectsButton;
+    ProfileView profileView;
+    ObjectsListView objectsListView;
 
     /*
      * Wildcard Buffers
