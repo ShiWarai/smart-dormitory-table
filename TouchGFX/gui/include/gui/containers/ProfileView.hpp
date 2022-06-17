@@ -15,7 +15,6 @@ public:
     virtual void initialize();
 
     void setParent(MainScreenView* ptr1, MainScreenPresenter* ptr2);
-    void setStudentId(long currentStudentId);
     void setResident(Resident resident);
 private:
     MainScreenView* view;

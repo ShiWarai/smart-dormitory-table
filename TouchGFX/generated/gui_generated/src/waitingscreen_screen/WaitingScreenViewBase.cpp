@@ -16,7 +16,7 @@ WaitingScreenViewBase::WaitingScreenViewBase()
     waitingBackground.setPosition(0, 0, 480, 272);
     waitingBackground.setScalingAlgorithm(touchgfx::ScalableImage::NEAREST_NEIGHBOR);
 
-    waitingText.setPosition(0, 73, 480, 32);
+    waitingText.setPosition(0, 89, 480, 27);
     waitingText.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     waitingText.setLinespacing(0);
     waitingText.setTypedText(touchgfx::TypedText(T___SINGLEUSE_I2QG));
@@ -25,7 +25,7 @@ WaitingScreenViewBase::WaitingScreenViewBase()
     plugSwipeImage.setPosition(156, 145, 169, 67);
     plugSwipeImage.setScalingAlgorithm(touchgfx::ScalableImage::NEAREST_NEIGHBOR);
 
-    studentIdText.setPosition(0, 105, 480, 31);
+    studentIdText.setPosition(0, 116, 480, 29);
     studentIdText.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     studentIdText.setLinespacing(0);
     Unicode::snprintf(studentIdTextBuffer, STUDENTIDTEXT_SIZE, "%s", touchgfx::TypedText(T_STUDENTID).getText());

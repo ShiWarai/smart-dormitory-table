@@ -5,18 +5,17 @@
 #include <touchgfx/Color.hpp>
 #include <texts/TextKeysAndLanguages.hpp>
 
-ProfileViewBase::ProfileViewBase() :
-    flexButtonCallback(this, &ProfileViewBase::flexButtonCallbackHandler)
+ProfileViewBase::ProfileViewBase()
 {
     setWidth(480);
-    setHeight(272);
+    setHeight(238);
     deleteButton.setBoxWithBorderPosition(0, 0, 144, 45);
     deleteButton.setBorderSize(1);
     deleteButton.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(189, 21, 21), touchgfx::Color::getColorFromRGB(120, 16, 16), touchgfx::Color::getColorFromRGB(255, 48, 48), touchgfx::Color::getColorFromRGB(217, 65, 65));
     deleteButton.setText(TypedText(T___SINGLEUSE_GLOP));
     deleteButton.setTextPosition(0, 8, 144, 45);
     deleteButton.setTextColors(touchgfx::Color::getColorFromRGB(10, 10, 10), touchgfx::Color::getColorFromRGB(10, 10, 10));
-    deleteButton.setPosition(326, 218, 144, 45);
+    deleteButton.setPosition(326, 184, 144, 45);
     deleteButton.setVisible(false);
 
     confirmButton.setBoxWithBorderPosition(0, 0, 144, 45);
@@ -25,13 +24,13 @@ ProfileViewBase::ProfileViewBase() :
     confirmButton.setText(TypedText(T___SINGLEUSE_C22A));
     confirmButton.setTextPosition(0, 8, 144, 45);
     confirmButton.setTextColors(touchgfx::Color::getColorFromRGB(10, 10, 10), touchgfx::Color::getColorFromRGB(10, 10, 10));
-    confirmButton.setPosition(10, 218, 144, 45);
+    confirmButton.setPosition(10, 184, 144, 45);
 
-    profileData.setPosition(0, 38, 480, 180);
+    profileData.setPosition(0, 0, 480, 184);
     profileData.enableHorizontalScroll(false);
     profileData.setScrollbarsColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
 
-    role.setPosition(0, 133, 480, 33);
+    role.setPosition(0, 132, 480, 33);
 
     roleTitle.setXY(5, 4);
     roleTitle.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
@@ -48,7 +47,7 @@ ProfileViewBase::ProfileViewBase() :
     role.add(roleText);
     profileData.add(role);
 
-    room.setPosition(0, 103, 480, 33);
+    room.setPosition(0, 99, 480, 33);
 
     roomTitle.setXY(5, 4);
     roomTitle.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
@@ -65,7 +64,7 @@ ProfileViewBase::ProfileViewBase() :
     room.add(roomText);
     profileData.add(room);
 
-    pinCode.setPosition(0, 70, 480, 33);
+    pinCode.setPosition(0, 66, 480, 33);
 
     pinCodeTitle.setXY(5, 4);
     pinCodeTitle.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
@@ -82,7 +81,7 @@ ProfileViewBase::ProfileViewBase() :
     pinCode.add(pinCodeText);
     profileData.add(pinCode);
 
-    bithdate.setPosition(0, 37, 480, 33);
+    bithdate.setPosition(0, 33, 480, 33);
 
     birthdateTitle.setXY(5, 4);
     birthdateTitle.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
@@ -99,7 +98,7 @@ ProfileViewBase::ProfileViewBase() :
     bithdate.add(birthdateText);
     profileData.add(bithdate);
 
-    fio.setPosition(0, 4, 480, 33);
+    fio.setPosition(0, 0, 480, 33);
 
     fioTitle.setXY(5, 4);
     fioTitle.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
@@ -117,51 +116,13 @@ ProfileViewBase::ProfileViewBase() :
     profileData.add(fio);
     profileData.setScrollbarsPermanentlyVisible();
 
-    separator.setPosition(0, 34, 480, 8);
-    separatorPainter.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
-    separator.setPainter(separatorPainter);
-    separator.setStart(0, 0);
-    separator.setEnd(480, 0);
-    separator.setLineWidth(10);
-    separator.setLineEndingStyle(touchgfx::Line::BUTT_CAP_ENDING);
-
-    exitButton.setBoxWithBorderPosition(0, 0, 37, 34);
-    exitButton.setBorderSize(0);
-    exitButton.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(204, 31, 31), touchgfx::Color::getColorFromRGB(156, 40, 40), touchgfx::Color::getColorFromRGB(0, 51, 102), touchgfx::Color::getColorFromRGB(51, 102, 153));
-    exitButton.setText(TypedText(T___SINGLEUSE_C4FD));
-    exitButton.setTextPosition(0, -3, 37, 34);
-    exitButton.setTextColors(touchgfx::Color::getColorFromRGB(10, 10, 10), touchgfx::Color::getColorFromRGB(10, 10, 10));
-    exitButton.setPosition(443, 0, 37, 34);
-    exitButton.setAction(flexButtonCallback);
-
-    titleText.setPosition(5, 1, 438, 33);
-    titleText.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
-    titleText.setLinespacing(0);
-    Unicode::snprintf(titleTextBuffer, TITLETEXT_SIZE, "%s", touchgfx::TypedText(T_STUDENTID).getText());
-    titleText.setWildcard(titleTextBuffer);
-    titleText.setTypedText(touchgfx::TypedText(T___SINGLEUSE_DQ0S));
-
     add(deleteButton);
     add(confirmButton);
     add(profileData);
-    add(separator);
-    add(exitButton);
-    add(titleText);
 }
 
 void ProfileViewBase::initialize()
 {
 
-}
-
-void ProfileViewBase::flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer& src)
-{
-    if (&src == &exitButton)
-    {
-        //exit
-        //When exitButton clicked change screen to WaitingScreen
-        //Go to WaitingScreen with no screen transition
-        application().gotoWaitingScreenScreenNoTransition();
-    }
 }
 

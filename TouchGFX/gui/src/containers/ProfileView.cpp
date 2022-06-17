@@ -18,11 +18,6 @@ void ProfileView::setParent(MainScreenView* ptr1, MainScreenPresenter* ptr2)
     presenter = ptr2;
 }
 
-void ProfileView::setStudentId(long currentStudentId) {
-    Unicode::itoa(currentStudentId, titleTextBuffer, TITLETEXT_SIZE, 10);
-    titleText.invalidate();
-}
-
 void ProfileView::setResident(Resident resident) {
 
     printf("FIO: %s\r\n", resident.FIO.c_str());

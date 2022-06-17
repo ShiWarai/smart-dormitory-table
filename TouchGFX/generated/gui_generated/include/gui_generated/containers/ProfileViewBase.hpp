@@ -11,8 +11,6 @@
 #include <touchgfx/containers/Container.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
-#include <touchgfx/widgets/canvas/Line.hpp>
-#include <touchgfx/widgets/canvas/PainterRGB565.hpp>
 
 class ProfileViewBase : public touchgfx::Container
 {
@@ -47,10 +45,6 @@ protected:
     touchgfx::Container fio;
     touchgfx::TextArea fioTitle;
     touchgfx::TextAreaWithOneWildcard fioText;
-    touchgfx::Line separator;
-    touchgfx::PainterRGB565 separatorPainter;
-    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::TouchButtonTrigger >  >  exitButton;
-    touchgfx::TextAreaWithOneWildcard titleText;
 
     /*
      * Wildcard Buffers
@@ -65,20 +59,8 @@ protected:
     touchgfx::Unicode::UnicodeChar birthdateTextBuffer[BIRTHDATETEXT_SIZE];
     static const uint16_t FIOTEXT_SIZE = 129;
     touchgfx::Unicode::UnicodeChar fioTextBuffer[FIOTEXT_SIZE];
-    static const uint16_t TITLETEXT_SIZE = 10;
-    touchgfx::Unicode::UnicodeChar titleTextBuffer[TITLETEXT_SIZE];
 
 private:
-
-    /*
-     * Callback Declarations
-     */
-    touchgfx::Callback<ProfileViewBase, const touchgfx::AbstractButtonContainer&> flexButtonCallback;
-
-    /*
-     * Callback Handler Declarations
-     */
-    void flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer& src);
 
 };
 

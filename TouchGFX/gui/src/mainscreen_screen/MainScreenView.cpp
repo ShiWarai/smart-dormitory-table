@@ -16,7 +16,8 @@ void MainScreenView::tearDownScreen()
 }
 
 void MainScreenView::updateStudentId() {
-    profileView.setStudentId(presenter->getCurrentStudentId());
+    Unicode::itoa(presenter->getCurrentStudentId(), studentTitleBuffer, STUDENTTITLE_SIZE, 10);
+    studentTitle.invalidate();
 }
 
 void MainScreenView::updateResident()

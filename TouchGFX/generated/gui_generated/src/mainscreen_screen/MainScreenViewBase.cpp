@@ -4,10 +4,12 @@
 #include <gui_generated/mainscreen_screen/MainScreenViewBase.hpp>
 #include <touchgfx/Color.hpp>
 #include <BitmapDatabase.hpp>
+#include <texts/TextKeysAndLanguages.hpp>
 #include <touchgfx/canvas_widget_renderer/CanvasWidgetRenderer.hpp>
 
 
-MainScreenViewBase::MainScreenViewBase()
+MainScreenViewBase::MainScreenViewBase() :
+    flexButtonCallback(this, &MainScreenViewBase::flexButtonCallbackHandler)
 {
 
     touchgfx::CanvasWidgetRenderer::setupBuffer(canvasBuffer, CANVAS_BUFFER_SIZE);
@@ -18,11 +20,38 @@ MainScreenViewBase::MainScreenViewBase()
     mainBackground.setXY(0, 0);
     mainBackground.setBitmap(touchgfx::Bitmap(BITMAP_BLUE_BACKGROUNDS_MAIN_BG_480X272PX_ID));
 
-    profileView.setXY(0, 0);
+    profileView.setXY(0, 34);
+
+    exitButton.setBoxWithBorderPosition(0, 0, 26, 26);
+    exitButton.setBorderSize(0);
+    exitButton.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(204, 31, 31), touchgfx::Color::getColorFromRGB(156, 40, 40), touchgfx::Color::getColorFromRGB(0, 51, 102), touchgfx::Color::getColorFromRGB(51, 102, 153));
+    exitButton.setText(TypedText(T___SINGLEUSE_UHS0));
+    exitButton.setTextPosition(0, -3, 26, 26);
+    exitButton.setTextColors(touchgfx::Color::getColorFromRGB(10, 10, 10), touchgfx::Color::getColorFromRGB(10, 10, 10));
+    exitButton.setPosition(454, 0, 26, 26);
+    exitButton.setAction(flexButtonCallback);
+
+    separator.setPosition(0, 26, 480, 8);
+    separatorPainter.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    separator.setPainter(separatorPainter);
+    separator.setStart(0, 0);
+    separator.setEnd(480, 0);
+    separator.setLineWidth(10);
+    separator.setLineEndingStyle(touchgfx::Line::BUTT_CAP_ENDING);
+
+    studentTitle.setPosition(5, 0, 366, 26);
+    studentTitle.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    studentTitle.setLinespacing(0);
+    Unicode::snprintf(studentTitleBuffer, STUDENTTITLE_SIZE, "%s", touchgfx::TypedText(T_STUDENTID).getText());
+    studentTitle.setWildcard(studentTitleBuffer);
+    studentTitle.setTypedText(touchgfx::TypedText(T___SINGLEUSE_9HVZ));
 
     add(__background);
     add(mainBackground);
     add(profileView);
+    add(exitButton);
+    add(separator);
+    add(studentTitle);
 }
 
 void MainScreenViewBase::setupScreen()
@@ -38,4 +67,15 @@ void MainScreenViewBase::setupScreen()
     //Call updateResident
     updateResident();
 
+}
+
+void MainScreenViewBase::flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer& src)
+{
+    if (&src == &exitButton)
+    {
+        //exit
+        //When exitButton clicked change screen to WaitingScreen
+        //Go to WaitingScreen with no screen transition
+        application().gotoWaitingScreenScreenNoTransition();
+    }
 }

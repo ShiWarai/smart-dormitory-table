@@ -15,6 +15,8 @@ KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE = {
     196, // T_AlphaMode
     178, // T_error
     162, // T_success
+    0, // T___SingleUse_9HVZ
+    206, // T___SingleUse_UHS0
     21, // T___SingleUse_L1XJ
     47, // T___SingleUse_UPWT
     22, // T_inputName
@@ -25,7 +27,6 @@ KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE = {
     22, // T_room
     154, // T___SingleUse_GLOP
     120, // T___SingleUse_C22A
-    206, // T___SingleUse_C4FD
     132, // T___SingleUse_8TX6
     136, // T___SingleUse_DVCZ
     22, // T_fio
@@ -36,7 +37,6 @@ KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE = {
     22, // T_birthdate
     20, // T___SingleUse_FJCS
     93, // T___SingleUse_SM47
-    0, // T___SingleUse_DQ0S
     21, // T___SingleUse_U8JL
     204, // T_studentId
     108, // T___SingleUse_Y3NY

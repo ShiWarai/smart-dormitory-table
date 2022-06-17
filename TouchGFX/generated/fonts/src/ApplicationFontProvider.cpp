@@ -28,8 +28,8 @@ touchgfx::Font* ApplicationFontProvider::getFont(touchgfx::FontId typography)
         // verdana_20_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[4]);
     case Typography::NUMBER:
-        // verdana_25_4bpp
-        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[0]);
+        // verdana_20_4bpp
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[4]);
     case Typography::FIO:
         // verdana_20_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[4]);

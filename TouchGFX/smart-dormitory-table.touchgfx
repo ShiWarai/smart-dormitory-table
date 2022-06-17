@@ -92,9 +92,9 @@
           {
             "Type": "TextArea",
             "Name": "waitingText",
-            "Y": 73,
+            "Y": 89,
             "Width": 480,
-            "Height": 32,
+            "Height": 27,
             "TextId": "__SingleUse_I2QG",
             "TextRotation": "0"
           },
@@ -111,9 +111,9 @@
           {
             "Type": "TextArea",
             "Name": "studentIdText",
-            "Y": 105,
+            "Y": 116,
             "Width": 480,
-            "Height": 31,
+            "Height": 29,
             "TextId": "__SingleUse_U8JL",
             "TextRotation": "0",
             "Wildcard1": {
@@ -173,9 +173,87 @@
           {
             "Type": "CustomContainerInstance",
             "Name": "profileView",
+            "Y": 34,
             "Width": 480,
-            "Height": 272,
+            "Height": 238,
             "CustomContainerDefinitionName": "ProfileView"
+          },
+          {
+            "Type": "FlexButton",
+            "Name": "exitButton",
+            "X": 454,
+            "Width": 26,
+            "Height": 26,
+            "ButtonTrigger": {
+              "Type": "TouchButtonTrigger"
+            },
+            "ButtonStyles": [
+              {
+                "Type": "TextButtonStyle",
+                "Y": -3,
+                "TextId": "__SingleUse_UHS0",
+                "TextRotation": "0",
+                "ColorReleased": {
+                  "Red": 10,
+                  "Green": 10,
+                  "Blue": 10
+                },
+                "ColorPressed": {
+                  "Red": 10,
+                  "Green": 10,
+                  "Blue": 10
+                }
+              },
+              {
+                "Type": "BoxWithBorderButtonStyle",
+                "Width": 26,
+                "Height": 26,
+                "LockToFlexButtonSize": true,
+                "ColorReleased": {
+                  "Red": 204,
+                  "Green": 31,
+                  "Blue": 31
+                },
+                "ColorPressed": {
+                  "Red": 156,
+                  "Green": 40,
+                  "Blue": 40
+                },
+                "ColorBorderReleased": {
+                  "Green": 51,
+                  "Blue": 102
+                },
+                "ColorBorderPressed": {
+                  "Red": 51,
+                  "Green": 102,
+                  "Blue": 153
+                }
+              }
+            ]
+          },
+          {
+            "Type": "Line",
+            "Name": "separator",
+            "Y": 26,
+            "Width": 480,
+            "Height": 8,
+            "EndX": 480,
+            "LineWidth": 10,
+            "LineEndingStyle": "Butt"
+          },
+          {
+            "Type": "TextArea",
+            "Name": "studentTitle",
+            "X": 5,
+            "Width": 366,
+            "Height": 26,
+            "TextId": "__SingleUse_9HVZ",
+            "TextRotation": "0",
+            "Wildcard1": {
+              "TextId": "studentId",
+              "UseBuffer": true,
+              "BufferSize": 10
+            }
           }
         ],
         "Interactions": [
@@ -200,6 +278,18 @@
               "Type": "ActionCustom",
               "FunctionName": "updateResident"
             }
+          },
+          {
+            "InteractionName": "exit",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "exitButton"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionNone",
+              "ActionComponent": "WaitingScreen"
+            }
           }
         ]
       }
@@ -207,14 +297,15 @@
     "CustomContainerDefinitions": [
       {
         "Name": "ProfileView",
+        "Y": 34,
         "Width": 480,
-        "Height": 272,
+        "Height": 238,
         "Components": [
           {
             "Type": "FlexButton",
             "Name": "deleteButton",
             "X": 326,
-            "Y": 218,
+            "Y": 184,
             "Width": 144,
             "Height": 45,
             "Visible": false,
@@ -271,7 +362,7 @@
             "Type": "FlexButton",
             "Name": "confirmButton",
             "X": 10,
-            "Y": 218,
+            "Y": 184,
             "Width": 144,
             "Height": 45,
             "ButtonTrigger": {
@@ -323,9 +414,8 @@
           {
             "Type": "ScrollableContainer",
             "Name": "profileData",
-            "Y": 38,
             "Width": 480,
-            "Height": 180,
+            "Height": 184,
             "VerticalScrollEnabled": true,
             "ScrollbarsVisible": true,
             "ScrollbarsVisibleOnPressed": true,
@@ -334,7 +424,7 @@
               {
                 "Type": "Container",
                 "Name": "role",
-                "Y": 133,
+                "Y": 132,
                 "Width": 480,
                 "Height": 33,
                 "Components": [
@@ -369,7 +459,7 @@
               {
                 "Type": "Container",
                 "Name": "room",
-                "Y": 103,
+                "Y": 99,
                 "Width": 480,
                 "Height": 33,
                 "Components": [
@@ -404,7 +494,7 @@
               {
                 "Type": "Container",
                 "Name": "pinCode",
-                "Y": 70,
+                "Y": 66,
                 "Width": 480,
                 "Height": 33,
                 "Components": [
@@ -439,7 +529,7 @@
               {
                 "Type": "Container",
                 "Name": "bithdate",
-                "Y": 37,
+                "Y": 33,
                 "Width": 480,
                 "Height": 33,
                 "Components": [
@@ -474,7 +564,6 @@
               {
                 "Type": "Container",
                 "Name": "fio",
-                "Y": 4,
                 "Width": 480,
                 "Height": 33,
                 "Components": [
@@ -507,101 +596,9 @@
                 ]
               }
             ]
-          },
-          {
-            "Type": "Line",
-            "Name": "separator",
-            "Y": 34,
-            "Width": 480,
-            "Height": 8,
-            "EndX": 480,
-            "LineWidth": 10,
-            "LineEndingStyle": "Butt"
-          },
-          {
-            "Type": "FlexButton",
-            "Name": "exitButton",
-            "X": 443,
-            "Width": 37,
-            "Height": 34,
-            "ButtonTrigger": {
-              "Type": "TouchButtonTrigger"
-            },
-            "ButtonStyles": [
-              {
-                "Type": "TextButtonStyle",
-                "Y": -3,
-                "TextId": "__SingleUse_C4FD",
-                "TextRotation": "0",
-                "ColorReleased": {
-                  "Red": 10,
-                  "Green": 10,
-                  "Blue": 10
-                },
-                "ColorPressed": {
-                  "Red": 10,
-                  "Green": 10,
-                  "Blue": 10
-                }
-              },
-              {
-                "Type": "BoxWithBorderButtonStyle",
-                "Width": 37,
-                "Height": 34,
-                "LockToFlexButtonSize": true,
-                "ColorReleased": {
-                  "Red": 204,
-                  "Green": 31,
-                  "Blue": 31
-                },
-                "ColorPressed": {
-                  "Red": 156,
-                  "Green": 40,
-                  "Blue": 40
-                },
-                "ColorBorderReleased": {
-                  "Green": 51,
-                  "Blue": 102
-                },
-                "ColorBorderPressed": {
-                  "Red": 51,
-                  "Green": 102,
-                  "Blue": 153
-                }
-              }
-            ]
-          },
-          {
-            "Type": "TextArea",
-            "Name": "titleText",
-            "X": 5,
-            "Y": 1,
-            "Width": 438,
-            "Height": 33,
-            "TextId": "__SingleUse_DQ0S",
-            "TextRotation": "0",
-            "Wildcard1": {
-              "TextId": "studentId",
-              "UseBuffer": true,
-              "BufferSize": 10
-            }
           }
         ],
-        "Interactions": [
-          {
-            "InteractionName": "exit",
-            "HasCompletedTrigger": true,
-            "Trigger": {
-              "Type": "TriggerClicked",
-              "TriggerComponent": "exitButton"
-            },
-            "Action": {
-              "Type": "ActionGotoScreen",
-              "ScreenTransitionType": "ScreenTransitionNone",
-              "ActionComponent": "WaitingScreen"
-            }
-          }
-        ]
+        "Interactions": []
       },
       {
         "Name": "ScreenKeyboard",

@@ -10,6 +10,10 @@
 #include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/widgets/Image.hpp>
 #include <gui/containers/ProfileView.hpp>
+#include <touchgfx/containers/buttons/Buttons.hpp>
+#include <touchgfx/widgets/canvas/Line.hpp>
+#include <touchgfx/widgets/canvas/PainterRGB565.hpp>
+#include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 
 class MainScreenViewBase : public touchgfx::View<MainScreenPresenter>
 {
@@ -42,8 +46,28 @@ protected:
     touchgfx::Box __background;
     touchgfx::Image mainBackground;
     ProfileView profileView;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::TouchButtonTrigger >  >  exitButton;
+    touchgfx::Line separator;
+    touchgfx::PainterRGB565 separatorPainter;
+    touchgfx::TextAreaWithOneWildcard studentTitle;
+
+    /*
+     * Wildcard Buffers
+     */
+    static const uint16_t STUDENTTITLE_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar studentTitleBuffer[STUDENTTITLE_SIZE];
 
 private:
+
+    /*
+     * Callback Declarations
+     */
+    touchgfx::Callback<MainScreenViewBase, const touchgfx::AbstractButtonContainer&> flexButtonCallback;
+
+    /*
+     * Callback Handler Declarations
+     */
+    void flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer& src);
 
     /*
      * Canvas Buffer Size

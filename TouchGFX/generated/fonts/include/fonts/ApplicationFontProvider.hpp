@@ -37,7 +37,7 @@ struct TypographyFontIndex
     static const touchgfx::FontId TYPOGRAPHY_00 = 3; // trebucbi_48_4bpp
     static const touchgfx::FontId RUSSIAN = 4;       // verdana_20_4bpp
     static const touchgfx::FontId ENGLISH = 4;       // verdana_20_4bpp
-    static const touchgfx::FontId NUMBER = 0;        // verdana_25_4bpp
+    static const touchgfx::FontId NUMBER = 4;        // verdana_20_4bpp
     static const touchgfx::FontId FIO = 4;           // verdana_20_4bpp
     static const touchgfx::FontId DATE = 4;          // verdana_20_4bpp
     static const touchgfx::FontId ROOM = 4;          // verdana_20_4bpp
