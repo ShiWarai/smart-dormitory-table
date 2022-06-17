@@ -3,6 +3,13 @@
 
 #include <gui_generated/common/FrontendApplicationBase.hpp>
 
+// SCREENS
+enum SCREENS {
+    WELCOME_SCREEN,
+    WAITING_SCREEN,
+    MAIN_SCREEN
+};
+
 class FrontendHeap;
 
 using namespace touchgfx;
@@ -18,6 +25,8 @@ public:
         model.tick();
         FrontendApplicationBase::handleTickEvent();
     }
+
+    void gotoScreen(SCREENS targetScreen);
 private:
 };
 

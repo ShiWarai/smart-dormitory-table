@@ -17,7 +17,22 @@ void WaitingScreenPresenter::deactivate()
 
 }
 
-void WaitingScreenPresenter::setStudentId(long currentStudentId)
+void WaitingScreenPresenter::setStudentIdToView(long currentStudentId)
 {
     view.setStudentId(currentStudentId);
+}
+
+void WaitingScreenPresenter::setCredentialsToModel(long studentId, std::string pinCode)
+{
+    Resident resident;
+
+    resident.studentId = std::to_string(studentId);
+    resident.pinCode = pinCode;
+
+    model->setCredentials(resident);
+}
+
+void WaitingScreenPresenter::setAuth(bool isAuth)
+{
+    view.setAuth(isAuth);
 }

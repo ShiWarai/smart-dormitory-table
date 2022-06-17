@@ -19,6 +19,7 @@ class ModelListener;
 
 enum RequestType {
     NONE,
+    AUTH,
     GET_RESIDENT,
     TEST
 };
@@ -36,6 +37,7 @@ public:
 
     long getStudentId();
     void requestResident(std::string currentStudentId);
+    void setCredentials(Resident user);
 protected:
     ModelListener* modelListener;
 private:
@@ -51,6 +53,8 @@ private:
 
     long lastRfid = 0;
     long currentStudentId;
+    Resident currentUser;
+    std::string encoded_credits;
 };
 
 #endif // MODEL_HPP

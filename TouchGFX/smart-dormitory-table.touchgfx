@@ -53,7 +53,7 @@
           },
           {
             "Type": "TextArea",
-            "Name": "textArea1",
+            "Name": "createdBy",
             "X": 7,
             "Y": 254,
             "Width": 60,
@@ -121,11 +121,30 @@
               "UseBuffer": true,
               "BufferSize": 10
             }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "authResult",
+            "Y": 224,
+            "Width": 480,
+            "Height": 30,
+            "Visible": false,
+            "TextId": "__SingleUse_L1XJ",
+            "TextRotation": "0",
+            "Wildcard1": {}
+          },
+          {
+            "Type": "CustomContainerInstance",
+            "Name": "keyboard",
+            "Width": 480,
+            "Height": 272,
+            "Visible": false,
+            "CustomContainerDefinitionName": "ScreenKeyboard"
           }
         ],
         "Interactions": [
           {
-            "InteractionName": "changeScreen",
+            "InteractionName": "changeScreenToMain",
             "Trigger": {
               "Type": "TriggerNone"
             },
@@ -580,6 +599,153 @@
               "Type": "ActionGotoScreen",
               "ScreenTransitionType": "ScreenTransitionNone",
               "ActionComponent": "WaitingScreen"
+            }
+          }
+        ]
+      },
+      {
+        "Name": "ScreenKeyboard",
+        "Width": 480,
+        "Height": 272,
+        "Components": [
+          {
+            "Type": "Image",
+            "Name": "background",
+            "Width": 480,
+            "Height": 272,
+            "RelativeFilename": "__designer\\Blue_Backgrounds_Main_bg_480x272px.png"
+          },
+          {
+            "Type": "FlexButton",
+            "Name": "enterButton",
+            "Y": 222,
+            "Width": 50,
+            "Height": 50,
+            "ButtonTrigger": {
+              "Type": "ClickButtonTrigger"
+            },
+            "ButtonStyles": [
+              {
+                "Type": "IconButtonStyle",
+                "X": 10,
+                "Y": 10,
+                "Style": "Icon11",
+                "IconReleased": "__designer\\Blue_Icons_Done_32.png",
+                "IconPressed": "__designer\\Blue_Icons_Done_32.png"
+              },
+              {
+                "Type": "BoxWithBorderButtonStyle",
+                "Width": 50,
+                "Height": 50,
+                "LockToFlexButtonSize": true,
+                "ColorReleased": {
+                  "Red": 96,
+                  "Green": 183,
+                  "Blue": 230
+                },
+                "ColorPressed": {
+                  "Red": 140,
+                  "Green": 185,
+                  "Blue": 245
+                },
+                "ColorBorderReleased": {
+                  "Red": 107
+                },
+                "ColorBorderPressed": {
+                  "Red": 145
+                }
+              }
+            ]
+          },
+          {
+            "Type": "TextArea",
+            "Name": "enterTitle",
+            "Y": 6,
+            "Width": 480,
+            "Height": 27,
+            "TextId": "__SingleUse_UPWT",
+            "TextRotation": "0",
+            "Wildcard1": {
+              "TextId": "inputName"
+            }
+          },
+          {
+            "Type": "FlexButton",
+            "Name": "exitButton",
+            "X": 430,
+            "Y": 222,
+            "Width": 50,
+            "Height": 50,
+            "ButtonTrigger": {
+              "Type": "ClickButtonTrigger"
+            },
+            "ButtonStyles": [
+              {
+                "Type": "IconButtonStyle",
+                "X": 12,
+                "Y": 10,
+                "Style": "Icon15",
+                "IconReleased": "__designer\\Blue_Icons_Eject_32.png",
+                "IconPressed": "__designer\\Blue_Icons_Eject_32.png"
+              },
+              {
+                "Type": "BoxWithBorderButtonStyle",
+                "Width": 50,
+                "Height": 50,
+                "LockToFlexButtonSize": true,
+                "ColorReleased": {
+                  "Red": 212,
+                  "Green": 36,
+                  "Blue": 36
+                },
+                "ColorPressed": {
+                  "Red": 153,
+                  "Green": 9,
+                  "Blue": 14
+                },
+                "ColorBorderReleased": {
+                  "Red": 107
+                },
+                "ColorBorderPressed": {
+                  "Red": 145
+                }
+              }
+            ]
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "updateInput",
+            "HasCompletedTrigger": true,
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "enterButton"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "updateInputBuffer"
+            }
+          },
+          {
+            "InteractionName": "goBack1",
+            "Trigger": {
+              "Type": "TriggerInteractionCompleted",
+              "InteractionToTriggerOn": "updateInput"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "hideKeyboard"
+            }
+          },
+          {
+            "InteractionName": "goBack2",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "exitButton"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "hideKeyboard"
             }
           }
         ]

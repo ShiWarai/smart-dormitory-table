@@ -16,8 +16,9 @@ public:
     }
 
     virtual void setLoadingProgress(uint8_t value) {}
-    virtual void setStudentId(long currentStudentId) {}
-    virtual void setResident(Resident resident) {};
+    virtual void setStudentIdToView(long currentStudentId) {}
+    virtual void setResidentToProfile(Resident resident) {}
+    virtual void setAuth(bool isAuth) {}
 protected:
     Model* model;
 };

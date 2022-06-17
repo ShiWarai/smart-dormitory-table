@@ -15,8 +15,6 @@ public:
     
     void updateProgressValue(unsigned short value);
 
-    void connectionInit();
-
 private:
     static const uint16_t WAITING_DURATION = 180;
     uint16_t waitingCounter = 0;

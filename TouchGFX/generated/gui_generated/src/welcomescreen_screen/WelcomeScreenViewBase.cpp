@@ -35,17 +35,17 @@ WelcomeScreenViewBase::WelcomeScreenViewBase()
     wifiDoneTitle.setLinespacing(0);
     wifiDoneTitle.setTypedText(touchgfx::TypedText(T___SINGLEUSE_SHLX));
 
-    textArea1.setXY(7, 254);
-    textArea1.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
-    textArea1.setLinespacing(0);
-    textArea1.setTypedText(touchgfx::TypedText(T___SINGLEUSE_Y3NY));
+    createdBy.setXY(7, 254);
+    createdBy.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    createdBy.setLinespacing(0);
+    createdBy.setTypedText(touchgfx::TypedText(T___SINGLEUSE_Y3NY));
 
     add(__background);
     add(welcomeBackground);
     add(welcomeText);
     add(initialProgress);
     add(wifiDoneTitle);
-    add(textArea1);
+    add(createdBy);
 }
 
 void WelcomeScreenViewBase::setupScreen()
