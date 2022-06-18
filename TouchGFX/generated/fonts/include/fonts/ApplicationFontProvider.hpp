@@ -27,6 +27,7 @@ struct Typography
     static const touchgfx::FontId DISPLAY = 11;
     static const touchgfx::FontId KEYBOARD = 12;
     static const touchgfx::FontId MODE = 13;
+    static const touchgfx::FontId OBJECTNAME = 14;
 };
 
 struct TypographyFontIndex
@@ -45,6 +46,7 @@ struct TypographyFontIndex
     static const touchgfx::FontId DISPLAY = 5;       // arial_28_4bpp
     static const touchgfx::FontId KEYBOARD = 6;      // arial_20_4bpp
     static const touchgfx::FontId MODE = 7;          // arial_24_4bpp
+    static const touchgfx::FontId OBJECTNAME = 4;    // verdana_20_4bpp
     static const uint16_t NUMBER_OF_FONTS = 8;
 };
 

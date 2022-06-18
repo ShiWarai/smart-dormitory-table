@@ -51,6 +51,9 @@ touchgfx::Font* ApplicationFontProvider::getFont(touchgfx::FontId typography)
     case Typography::MODE:
         // arial_24_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[7]);
+    case Typography::OBJECTNAME:
+        // verdana_20_4bpp
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[4]);
     default:
         return 0;
     }

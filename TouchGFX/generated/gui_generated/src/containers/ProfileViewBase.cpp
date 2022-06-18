@@ -8,14 +8,14 @@
 ProfileViewBase::ProfileViewBase()
 {
     setWidth(480);
-    setHeight(238);
+    setHeight(242);
     deleteButton.setBoxWithBorderPosition(0, 0, 144, 45);
     deleteButton.setBorderSize(1);
     deleteButton.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(189, 21, 21), touchgfx::Color::getColorFromRGB(120, 16, 16), touchgfx::Color::getColorFromRGB(255, 48, 48), touchgfx::Color::getColorFromRGB(217, 65, 65));
     deleteButton.setText(TypedText(T___SINGLEUSE_GLOP));
     deleteButton.setTextPosition(0, 8, 144, 45);
     deleteButton.setTextColors(touchgfx::Color::getColorFromRGB(10, 10, 10), touchgfx::Color::getColorFromRGB(10, 10, 10));
-    deleteButton.setPosition(326, 184, 144, 45);
+    deleteButton.setPosition(326, 188, 144, 45);
     deleteButton.setVisible(false);
 
     confirmButton.setBoxWithBorderPosition(0, 0, 144, 45);
@@ -24,7 +24,7 @@ ProfileViewBase::ProfileViewBase()
     confirmButton.setText(TypedText(T___SINGLEUSE_C22A));
     confirmButton.setTextPosition(0, 8, 144, 45);
     confirmButton.setTextColors(touchgfx::Color::getColorFromRGB(10, 10, 10), touchgfx::Color::getColorFromRGB(10, 10, 10));
-    confirmButton.setPosition(10, 184, 144, 45);
+    confirmButton.setPosition(10, 188, 144, 45);
 
     profileData.setPosition(0, 0, 480, 184);
     profileData.enableHorizontalScroll(false);

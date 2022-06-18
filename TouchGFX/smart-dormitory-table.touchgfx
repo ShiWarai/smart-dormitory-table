@@ -228,7 +228,7 @@
             "Name": "separator",
             "Y": 26,
             "Width": 480,
-            "Height": 8,
+            "Height": 4,
             "EndX": 480,
             "LineWidth": 10,
             "LineEndingStyle": "Butt"
@@ -302,18 +302,18 @@
           {
             "Type": "CustomContainerInstance",
             "Name": "profileView",
-            "Y": 34,
+            "Y": 30,
             "Width": 480,
-            "Height": 238,
+            "Height": 242,
             "Visible": false,
             "CustomContainerDefinitionName": "ProfileView"
           },
           {
             "Type": "CustomContainerInstance",
             "Name": "objectsListView",
-            "Y": 34,
+            "Y": 30,
             "Width": 480,
-            "Height": 238,
+            "Height": 242,
             "Visible": false,
             "CustomContainerDefinitionName": "ObjectsListView"
           }
@@ -369,15 +369,15 @@
     "CustomContainerDefinitions": [
       {
         "Name": "ProfileView",
-        "Y": 34,
+        "Y": 30,
         "Width": 480,
-        "Height": 238,
+        "Height": 242,
         "Components": [
           {
             "Type": "FlexButton",
             "Name": "deleteButton",
             "X": 326,
-            "Y": 184,
+            "Y": 188,
             "Width": 144,
             "Height": 45,
             "Visible": false,
@@ -434,7 +434,7 @@
             "Type": "FlexButton",
             "Name": "confirmButton",
             "X": 10,
-            "Y": 184,
+            "Y": 188,
             "Width": 144,
             "Height": 45,
             "ButtonTrigger": {
@@ -821,20 +821,134 @@
       },
       {
         "Name": "ObjectsListView",
-        "Y": 34,
+        "Y": 30,
         "Width": 480,
-        "Height": 238,
+        "Height": 242,
         "Components": [
           {
             "Type": "TextArea",
-            "Name": "textArea1",
-            "X": 151,
-            "Y": 102,
-            "Width": 179,
-            "Height": 24,
-            "TextId": "__SingleUse_BM5L",
+            "Name": "loadingTitle",
+            "X": 126,
+            "Y": 97,
+            "Width": 228,
+            "Height": 49,
+            "TextId": "__SingleUse_QKD3",
             "TextRotation": "0",
             "AutoSize": true
+          },
+          {
+            "Type": "ScrollList",
+            "Name": "objectsList",
+            "Width": 480,
+            "Height": 242,
+            "Visible": false,
+            "Snapping": true,
+            "ItemTemplateName": "ObjectInList",
+            "Easing": "Back",
+            "EasingOption": "In",
+            "SwipeAcceleration": 1.0,
+            "DragAcceleration": 1.0
+          }
+        ],
+        "Interactions": []
+      },
+      {
+        "Name": "ObjectInList",
+        "Width": 480,
+        "Height": 48,
+        "Components": [
+          {
+            "Type": "FlexButton",
+            "Name": "createReservation",
+            "X": 440,
+            "Y": 6,
+            "Width": 36,
+            "Height": 36,
+            "ButtonTrigger": {
+              "Type": "ClickButtonTrigger"
+            },
+            "ButtonStyles": [
+              {
+                "Type": "IconButtonStyle",
+                "X": 3,
+                "Y": 3,
+                "Style": "Icon11",
+                "IconReleased": "__designer\\Blue_Icons_Done_32.png",
+                "IconPressed": "__designer\\Blue_Icons_Done_32.png"
+              },
+              {
+                "Type": "BoxWithBorderButtonStyle",
+                "Width": 36,
+                "Height": 36,
+                "LockToFlexButtonSize": true,
+                "ColorReleased": {
+                  "Green": 106,
+                  "Blue": 255
+                },
+                "ColorPressed": {
+                  "Green": 153,
+                  "Blue": 204
+                },
+                "ColorBorderReleased": {
+                  "Red": 28,
+                  "Green": 33,
+                  "Blue": 38
+                },
+                "ColorBorderPressed": {
+                  "Red": 51,
+                  "Green": 102,
+                  "Blue": 153
+                }
+              }
+            ]
+          },
+          {
+            "Type": "TextArea",
+            "Name": "objectName",
+            "X": 10,
+            "Y": 12,
+            "Height": 24,
+            "TextId": "__SingleUse_PYWX",
+            "TextRotation": "0",
+            "AutoSize": true,
+            "Wildcard1": {
+              "UseBuffer": true,
+              "BufferSize": 28
+            }
+          },
+          {
+            "Type": "Line",
+            "Name": "line1",
+            "X": 381,
+            "Width": 6,
+            "Height": 48,
+            "EndY": 48,
+            "LineWidth": 10,
+            "LineEndingStyle": "Square"
+          },
+          {
+            "Type": "TextArea",
+            "Name": "objectStatus",
+            "X": 389,
+            "Y": 12,
+            "Height": 24,
+            "TextId": "__SingleUse_PFMI",
+            "TextRotation": "0",
+            "AutoSize": true,
+            "Wildcard1": {
+              "UseBuffer": true,
+              "BufferSize": 3
+            }
+          },
+          {
+            "Type": "Line",
+            "Name": "line2",
+            "X": 430,
+            "Width": 7,
+            "Height": 48,
+            "EndY": 48,
+            "LineWidth": 10,
+            "LineEndingStyle": "Square"
           }
         ],
         "Interactions": []

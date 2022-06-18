@@ -5,20 +5,49 @@
 #include <texts/TextKeysAndLanguages.hpp>
 #include <touchgfx/Color.hpp>
 
-ObjectsListViewBase::ObjectsListViewBase()
+ObjectsListViewBase::ObjectsListViewBase() :
+    updateItemCallback(this, &ObjectsListViewBase::updateItemCallbackHandler)
 {
     setWidth(480);
-    setHeight(238);
-    textArea1.setXY(151, 102);
-    textArea1.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
-    textArea1.setLinespacing(0);
-    textArea1.setTypedText(touchgfx::TypedText(T___SINGLEUSE_BM5L));
+    setHeight(242);
+    loadingTitle.setXY(126, 97);
+    loadingTitle.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    loadingTitle.setLinespacing(0);
+    loadingTitle.setTypedText(touchgfx::TypedText(T___SINGLEUSE_QKD3));
 
-    add(textArea1);
+    objectsList.setPosition(0, 0, 480, 242);
+    objectsList.setHorizontal(false);
+    objectsList.setCircular(false);
+    objectsList.setEasingEquation(touchgfx::EasingEquations::backEaseIn);
+    objectsList.setSwipeAcceleration(10);
+    objectsList.setDragAcceleration(10);
+    objectsList.setNumberOfItems(0);
+    objectsList.setPadding(0, 0);
+    objectsList.setSnapping(true);
+    objectsList.setDrawableSize(48, 0);
+    objectsList.setDrawables(objectsListListItems, updateItemCallback);
+    objectsList.setVisible(false);
+
+    add(loadingTitle);
+    add(objectsList);
 }
 
 void ObjectsListViewBase::initialize()
 {
+    objectsList.initialize();
+    for (int i = 0; i < objectsListListItems.getNumberOfDrawables(); i++)
+    {
+        objectsListListItems[i].initialize();
+    }
+}
 
+void ObjectsListViewBase::updateItemCallbackHandler(touchgfx::DrawableListItemsInterface* items, int16_t containerIndex, int16_t itemIndex)
+{
+    if (items == &objectsListListItems)
+    {
+        touchgfx::Drawable* d = items->getDrawable(containerIndex);
+        ObjectInList* cc = (ObjectInList*)d;
+        objectsListUpdateItem(*cc, itemIndex);
+    }
 }
 

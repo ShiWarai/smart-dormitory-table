@@ -9,40 +9,44 @@ KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE;
 
 TEXT_LOCATION_FLASH_PRAGMA
 KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE = {
-    187, // T_pinCodeInput
+    203, // T_pinCodeInput
     21, // T_EnteredText
-    217, // T_NumMode
-    213, // T_AlphaMode
-    195, // T_error
-    179, // T_success
-    77, // T___SingleUse_BM5L
-    223, // T___SingleUse_1ID4
+    233, // T_NumMode
+    229, // T_AlphaMode
+    211, // T_error
+    195, // T_success
+    141, // T___SingleUse_QKD3
+    68, // T_objectType
+    21, // T___SingleUse_PFMI
+    58, // T_objectName
+    21, // T___SingleUse_PYWX
+    239, // T___SingleUse_1ID4
     0, // T___SingleUse_9HVZ
-    225, // T___SingleUse_UHS0
+    241, // T___SingleUse_UHS0
     21, // T___SingleUse_L1XJ
     47, // T___SingleUse_UPWT
     22, // T_inputName
     22, // T_pinCode
     22, // T_role
-    149, // T___SingleUse_39B4
-    202, // T___SingleUse_MBSV
+    165, // T___SingleUse_39B4
+    218, // T___SingleUse_MBSV
     22, // T_room
-    171, // T___SingleUse_GLOP
-    137, // T___SingleUse_C22A
-    149, // T___SingleUse_8TX6
-    153, // T___SingleUse_DVCZ
+    187, // T___SingleUse_GLOP
+    153, // T___SingleUse_C22A
+    165, // T___SingleUse_8TX6
+    169, // T___SingleUse_DVCZ
     22, // T_fio
     20, // T___SingleUse_CKVP
-    162, // T___SingleUse_F13C
+    178, // T___SingleUse_F13C
     20, // T___SingleUse_65KO
-    208, // T___SingleUse_3GBR
+    224, // T___SingleUse_3GBR
     22, // T_birthdate
     20, // T___SingleUse_FJCS
-    110, // T___SingleUse_SM47
+    114, // T___SingleUse_SM47
     21, // T___SingleUse_U8JL
-    221, // T_studentId
-    125, // T___SingleUse_Y3NY
-    58, // T___SingleUse_SHLX
-    94, // T___SingleUse_C02T
+    237, // T_studentId
+    129, // T___SingleUse_Y3NY
+    79, // T___SingleUse_SHLX
+    98, // T___SingleUse_C02T
     23 // T___SingleUse_I2QG
 };

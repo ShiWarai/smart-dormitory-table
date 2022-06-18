@@ -29,7 +29,7 @@ MainScreenViewBase::MainScreenViewBase() :
     backButton.setPosition(454, 0, 26, 26);
     backButton.setAction(flexButtonCallback);
 
-    separator.setPosition(0, 26, 480, 8);
+    separator.setPosition(0, 26, 480, 4);
     separatorPainter.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     separator.setPainter(separatorPainter);
     separator.setStart(0, 0);
@@ -53,10 +53,10 @@ MainScreenViewBase::MainScreenViewBase() :
     objectsButton.setPosition(428, 0, 26, 26);
     objectsButton.setAction(flexButtonCallback);
 
-    profileView.setXY(0, 34);
+    profileView.setXY(0, 30);
     profileView.setVisible(false);
 
-    objectsListView.setXY(0, 34);
+    objectsListView.setXY(0, 30);
     objectsListView.setVisible(false);
 
     add(__background);
