@@ -3,6 +3,9 @@
 
 #include <gui/model/ModelListener.hpp>
 #include <mvp/Presenter.hpp>
+#include "../../../../../Core/Inc/Object.h"
+
+#include <vector>
 
 using namespace touchgfx;
 
@@ -29,7 +32,9 @@ public:
 
     long getCurrentStudentId();
     void requestResident(long currentStudentId);
+    void requestObjects();
     void setResidentToProfile(Resident resident);
+    void setObjectsToObjectsList(std::vector<Object> list);
 private:
     MainScreenPresenter();
 

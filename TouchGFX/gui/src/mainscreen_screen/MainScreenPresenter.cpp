@@ -26,7 +26,17 @@ void MainScreenPresenter::requestResident(long currentStudentId)
     model->requestResident(std::to_string(currentStudentId));
 }
 
+void MainScreenPresenter::requestObjects()
+{
+    model->requestObjects();
+}
+
 void MainScreenPresenter::setResidentToProfile(Resident resident)
 {
     view.setResidentToProfile(resident);
+}
+
+void MainScreenPresenter::setObjectsToObjectsList(std::vector<Object> list)
+{
+    view.setObjectsToObjectsList(list);
 }

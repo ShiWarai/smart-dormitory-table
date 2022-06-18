@@ -38,7 +38,6 @@ void Model::tick()
 	}
 	if (xQueueReceive(wifiResponseMessages, response_str, 0) == pdTRUE)
 	{
-		//printf("RESPONSE:\r\n%s\r\n", response_str);
 
 		HttpResponseParser parser;
 		Response response;
@@ -71,16 +70,25 @@ void Model::setCredentials(Resident user)
 		this->currentUser.studentId.c_str(), encoded_credits.c_str());
 
 	xQueueSend(wifiRequestMessages, request_str, 0);
-	currentRequestType = AUTH;
+	currentRequestType = RequestType::AUTH;
 }
 
-void Model::requestResident(std::string currentStudentId) {
-	
+void Model::requestResident(std::string currentStudentId) 
+{	
 	sprintf(request_str, "GET /resident/%s HTTP/1.1\r\nHost: ridramecraft.ru:8080\r\nAuthorization:Basic %s\r\n\r\n",
 			currentStudentId.c_str(), encoded_credits.c_str());
 
 	xQueueSend(wifiRequestMessages, request_str, 0);
-	currentRequestType = GET_RESIDENT;
+	currentRequestType = RequestType::GET_RESIDENT;
+}
+
+void Model::requestObjects()
+{
+	sprintf(request_str, "GET /object/all HTTP/1.1\r\nHost: ridramecraft.ru:8080\r\nAuthorization:Basic %s\r\n\r\n",
+			encoded_credits.c_str());
+
+	xQueueSend(wifiRequestMessages, request_str, 0);
+	currentRequestType = RequestType::GET_OBJECTS;
 }
 
 void Model::responseHandler(Response response)
@@ -89,26 +97,44 @@ void Model::responseHandler(Response response)
 	{
 	case RequestType::GET_RESIDENT:
 		if (response.statusCode == 200)
+		{
+			printf("GET USER!\r\n");
 			modelListener->setResidentToProfile(residentFromJson(std::string(response.content.begin(), response.content.end())));
+		}
 		else
+		{
+			printf("NO USER!\r\n");
 			printf("Something wrong with response: %s\r\n", std::string(response.content.begin(), response.content.end()).c_str());
+		}
+		break;
+	case RequestType::GET_OBJECTS:
+		if (response.statusCode == 200)
+		{
+			printf("GET OBJECT!\r\n");
+			modelListener->setObjectsToObjectsList(objectsFromJson(std::string(response.content.begin(), response.content.end())));
+		}
+		else
+		{
+			printf("NO OBJECT!\r\n");
+			modelListener->setObjectsToObjectsList({});
+		}
 		break;
 	case RequestType::AUTH:
 		if (response.statusCode == 200)
 		{
-			currentUser = residentFromJson(std::string(response.content.begin(), response.content.end()));
 			printf("GET USER!\r\n");
+			currentUser = residentFromJson(std::string(response.content.begin(), response.content.end()));
 			modelListener->setAuth(true);
 		}
 		else
 		{
-			printf("Something wrong with response: %s\r\n", std::string(response.content.begin(), response.content.end()).c_str());
 			printf("NO USER!\r\n");
+			printf("Something wrong with response: %s\r\n", std::string(response.content.begin(), response.content.end()).c_str());
 			modelListener->setAuth(false);
 		}
 		break;
 	default:
-		printf("No such request\r\n");
+		printf("NO SUCH REQUEST!\r\n");
 		break;
 	}
 
@@ -136,4 +162,25 @@ Resident Model::residentFromJson(std::string resident_str)
 	resident.role = resident_json["role"];
 
 	return resident;
+}
+
+std::vector<Object> Model::objectsFromJson(std::string objects_str)
+{
+	json objects_json = json::parse(objects_str);
+
+	std::vector<Object> objects;
+
+	for (size_t i = 0; i < objects_json.size(); i++)
+	{
+		Object object;
+
+		object.id = objects_json[i]["id"];
+		object.name = objects_json[i]["name"];
+		object.statusId = objects_json[i]["statusId"];
+		object.typeId = objects_json[i]["typeId"];
+
+		objects.push_back(object);
+	}
+
+	return objects;
 }

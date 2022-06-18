@@ -25,10 +25,19 @@ void MainScreenView::updateResident()
 	presenter->requestResident(presenter->getCurrentStudentId());
 }
 
+void MainScreenView::updateObjectsList()
+{
+    presenter->requestObjects();
+}
+
 void MainScreenView::setResidentToProfile(Resident resident)
 {
-    // Change mode
     profileView.setResident(resident);
+}
+
+void MainScreenView::setObjectsToObjectsList(std::vector<Object> list)
+{
+    objectsListView.setObjectsList(list);
 }
 
 void MainScreenView::goBack() {
@@ -43,19 +52,18 @@ void MainScreenView::goBack() {
 }
 
 void MainScreenView::showProfileView() {
-    printf("showProfile!\r\n");
-
     hideAllContainers();
 
     updateResident();
+
     profileView.setVisible(true);
-    profileView.initialize();
+    profileView.invalidate();
 }
 
 void MainScreenView::showObjectsListView() {
-    printf("showObjectsList!\r\n");
-
     hideAllContainers();
+
+    updateObjectsList();
     
     objectsListView.setVisible(true);
     objectsListView.invalidate();
@@ -65,4 +73,6 @@ void MainScreenView::hideAllContainers()
 {
     profileView.setVisible(false);
     objectsListView.setVisible(false);
+
+    this->invalidate();
 }

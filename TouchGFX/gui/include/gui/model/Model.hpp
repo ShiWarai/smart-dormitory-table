@@ -6,9 +6,11 @@
 #include <queue.h>
 #include <task.h>
 #include <vector>
-
 #include <string>
+
 #include "../../../../../Core/Inc/Resident.h"
+#include "../../../../../Core/Inc/Object.h"
+
 #include "../../../../../Core/Inc/http/httpresponseparser.h"
 #include "../../../../../Core/Inc/json/json.hpp"
 
@@ -21,6 +23,7 @@ enum RequestType {
     NONE,
     AUTH,
     GET_RESIDENT,
+    GET_OBJECTS,
     TEST
 };
 
@@ -37,6 +40,7 @@ public:
 
     long getStudentId();
     void requestResident(std::string currentStudentId);
+    void requestObjects();
     void setCredentials(Resident user);
 protected:
     ModelListener* modelListener;
@@ -44,6 +48,7 @@ private:
     void responseHandler(Response response);
     bool confirm_tag(long tag);
     Resident residentFromJson(std::string resident_str);
+    std::vector<Object> objectsFromJson(std::string objects_str);
 
     char request_str[1028];
     char response_str[8128];

@@ -2,6 +2,9 @@
 #define OBJECTSLISTVIEW_HPP
 
 #include <gui_generated/containers/ObjectsListViewBase.hpp>
+#include "../../../../../Core/Inc/Object.h"
+
+#include <vector>
 
 class ObjectsListView : public ObjectsListViewBase
 {
@@ -10,6 +13,8 @@ public:
     virtual ~ObjectsListView() {}
 
     virtual void initialize();
+
+    void setObjectsList(std::vector<Object> list);
 protected:
 };
 
