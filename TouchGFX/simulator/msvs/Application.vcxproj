@@ -188,6 +188,7 @@
     <ClInclude Include="..\..\..\Core\Inc\InputsCollection.h"/>
     <ClInclude Include="..\..\..\Core\Inc\json\json.hpp"/>
     <ClInclude Include="..\..\..\Core\Inc\Object.h"/>
+    <ClInclude Include="..\..\..\Core\Inc\Reservation.h"/>
     <ClInclude Include="..\..\..\Core\Inc\Resident.h"/>
     <ClInclude Include="..\..\..\Core\Inc\ScreenKeyboardParent.hpp"/>
     <ClInclude Include="..\..\generated\simulator\include\simulator\video\DirectFrameBufferVideoController.hpp"/>

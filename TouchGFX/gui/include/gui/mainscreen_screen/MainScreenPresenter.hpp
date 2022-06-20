@@ -4,6 +4,7 @@
 #include <gui/model/ModelListener.hpp>
 #include <mvp/Presenter.hpp>
 #include "../../../../../Core/Inc/Object.h"
+#include "../../../../../Core/Inc/Reservation.h"
 
 #include <vector>
 
@@ -33,6 +34,7 @@ public:
     long getCurrentStudentId();
     void requestResident(long currentStudentId);
     void requestObjects();
+    void requestCreateReservation(Reservation reservation);
     void setResidentToProfile(Resident resident);
     void setObjectsToObjectsList(std::vector<Object> list);
 private:

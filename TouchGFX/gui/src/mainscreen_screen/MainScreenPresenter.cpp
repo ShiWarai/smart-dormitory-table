@@ -31,6 +31,11 @@ void MainScreenPresenter::requestObjects()
     model->requestObjects();
 }
 
+void MainScreenPresenter::requestCreateReservation(Reservation reservation)
+{
+    model->requestCreateReservation(reservation);
+}
+
 void MainScreenPresenter::setResidentToProfile(Resident resident)
 {
     view.setResidentToProfile(resident);

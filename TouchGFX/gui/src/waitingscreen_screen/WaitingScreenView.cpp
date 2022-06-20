@@ -3,11 +3,13 @@
 
 WaitingScreenView::WaitingScreenView()
 {
-    keyboard.setParent(this);
+
 }
 
 void WaitingScreenView::setupScreen()
 {
+    keyboard.setParent(this);
+
     WaitingScreenViewBase::setupScreen();
 }
 

@@ -6,6 +6,9 @@
 
 #include <vector>
 
+class MainScreenView;
+class MainScreenPresenter;
+
 class ObjectsListView : public ObjectsListViewBase
 {
 public:
@@ -15,6 +18,7 @@ public:
     virtual void initialize();
     virtual void objectsListUpdateItem(ObjectInList& item, int16_t itemIndex);
 
+    void setParent(MainScreenView* ptr1, MainScreenPresenter* ptr2);
     void setObjectsList(std::vector<Object> list);
 protected:
 private:
@@ -22,6 +26,9 @@ private:
 
     touchgfx::Callback<ObjectsListView, touchgfx::DrawableListItemsInterface*, int16_t, int16_t> updateItemCallback;
     void updateItemCallbackHandler(touchgfx::DrawableListItemsInterface* items, int16_t containerIndex, int16_t itemIndex);
+
+    MainScreenView* view;
+    MainScreenPresenter* presenter;
 };
 
 #endif // OBJECTSLISTVIEW_HPP

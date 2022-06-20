@@ -2,11 +2,13 @@
 
 MainScreenView::MainScreenView()
 {
-    profileView.setParent(this, presenter);
 }
 
 void MainScreenView::setupScreen()
 {
+    profileView.setParent(this, presenter);
+    objectsListView.setParent(this, presenter);
+
     MainScreenViewBase::setupScreen();
 }
 

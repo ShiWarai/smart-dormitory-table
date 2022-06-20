@@ -38,7 +38,6 @@ void Model::tick()
 	}
 	if (xQueueReceive(wifiResponseMessages, response_str, 0) == pdTRUE)
 	{
-
 		HttpResponseParser parser;
 		Response response;
 
@@ -64,8 +63,6 @@ void Model::setCredentials(Resident user)
 	
 	this->encoded_credits = macaron::Base64::Encode(credits);
 
-	printf("ENCODED: %s\r\n", encoded_credits.c_str());
-
 	sprintf(request_str, "GET /resident/%s HTTP/1.1\r\nHost: ridramecraft.ru:8080\r\nAuthorization:Basic %s\r\n\r\n",
 		this->currentUser.studentId.c_str(), encoded_credits.c_str());
 
@@ -80,6 +77,19 @@ void Model::requestResident(std::string currentStudentId)
 
 	xQueueSend(wifiRequestMessages, request_str, 0);
 	currentRequestType = RequestType::GET_RESIDENT;
+}
+
+void Model::requestCreateReservation(Reservation reservation)
+{
+	printf("Reservation Object id: %ld\r\n", reservation.objectId);
+
+	std::string reservation_json = jsonFromReservation(reservation);
+	sprintf(request_str, "POST /reservation/ HTTP/1.1\r\nHost: ridramecraft.ru:8080\r\nAuthorization:Basic %s\r\n"
+						 "Content-Type: application/json\r\nContent-Length: %u\r\n\r\n%s\r\n",
+						 encoded_credits.c_str(), reservation_json.size(), reservation_json.c_str());
+
+	xQueueSend(wifiRequestMessages, request_str, 0);
+	currentRequestType = RequestType::CREATE_RESERVATION;
 }
 
 void Model::requestObjects()
@@ -117,6 +127,17 @@ void Model::responseHandler(Response response)
 		{
 			printf("NO OBJECT!\r\n");
 			modelListener->setObjectsToObjectsList({});
+		}
+		break;
+	case RequestType::CREATE_RESERVATION:
+		if (response.statusCode == 200)
+		{
+			printf("RESERVATION CREATED!\r\n");
+			//modelListener->setObjectsToObjectsList(objectsFromJson(std::string(response.content.begin(), response.content.end())));
+		}
+		else
+		{
+			printf("CANT CREATE!\r\n");
 		}
 		break;
 	case RequestType::AUTH:
@@ -183,4 +204,17 @@ std::vector<Object> Model::objectsFromJson(std::string objects_str)
 	}
 
 	return objects;
+}
+
+std::string Model::jsonFromReservation(Reservation reservation)
+{
+	json reservation_json =
+	{
+		{"objectId", reservation.objectId},
+		{"reason", reservation.reason},
+		{"startReservation", reservation.startReservation},
+		{"endReservation", reservation.endReservation}
+	};
+
+	return reservation_json.dump();
 }

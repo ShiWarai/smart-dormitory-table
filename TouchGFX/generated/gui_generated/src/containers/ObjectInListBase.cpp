@@ -6,16 +6,18 @@
 #include <BitmapDatabase.hpp>
 #include <texts/TextKeysAndLanguages.hpp>
 
-ObjectInListBase::ObjectInListBase()
+ObjectInListBase::ObjectInListBase() :
+    flexButtonCallback(this, &ObjectInListBase::flexButtonCallbackHandler)
 {
     setWidth(480);
     setHeight(48);
-    createReservation.setBoxWithBorderPosition(0, 0, 36, 36);
-    createReservation.setBorderSize(0);
-    createReservation.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0, 106, 255), touchgfx::Color::getColorFromRGB(0, 153, 204), touchgfx::Color::getColorFromRGB(28, 33, 38), touchgfx::Color::getColorFromRGB(51, 102, 153));
-    createReservation.setIconBitmaps(Bitmap(BITMAP_BLUE_ICONS_DONE_32_ID), Bitmap(BITMAP_BLUE_ICONS_DONE_32_ID));
-    createReservation.setIconXY(3, 3);
-    createReservation.setPosition(440, 6, 36, 36);
+    reservationButton.setBoxWithBorderPosition(0, 0, 36, 36);
+    reservationButton.setBorderSize(0);
+    reservationButton.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0, 106, 255), touchgfx::Color::getColorFromRGB(0, 153, 204), touchgfx::Color::getColorFromRGB(28, 33, 38), touchgfx::Color::getColorFromRGB(51, 102, 153));
+    reservationButton.setIconBitmaps(Bitmap(BITMAP_BLUE_ICONS_DONE_32_ID), Bitmap(BITMAP_BLUE_ICONS_DONE_32_ID));
+    reservationButton.setIconXY(3, 3);
+    reservationButton.setPosition(440, 6, 36, 36);
+    reservationButton.setAction(flexButtonCallback);
 
     objectName.setXY(10, 12);
     objectName.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
@@ -49,7 +51,7 @@ ObjectInListBase::ObjectInListBase()
     line2.setLineWidth(10);
     line2.setLineEndingStyle(touchgfx::Line::SQUARE_CAP_ENDING);
 
-    add(createReservation);
+    add(reservationButton);
     add(objectName);
     add(line1);
     add(objectStatus);
@@ -59,5 +61,16 @@ ObjectInListBase::ObjectInListBase()
 void ObjectInListBase::initialize()
 {
 
+}
+
+void ObjectInListBase::flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer& src)
+{
+    if (&src == &reservationButton)
+    {
+        //createReservation
+        //When reservationButton clicked call virtual function
+        //Call reservationHandle
+        reservationHandle();
+    }
 }
 

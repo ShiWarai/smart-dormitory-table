@@ -15,6 +15,12 @@ void ObjectsListView::objectsListUpdateItem(ObjectInList& item, int16_t itemInde
     //printf("UPDATE LIST: %d\r\n", itemIndex);
 }
 
+void ObjectsListView::setParent(MainScreenView* ptr1, MainScreenPresenter* ptr2)
+{
+    view = ptr1;
+    presenter = ptr2;
+}
+
 void ObjectsListView::setObjectsList(std::vector<Object> list)
 {
     printf("Fill objects list...\r\n");
@@ -24,6 +30,7 @@ void ObjectsListView::setObjectsList(std::vector<Object> list)
         printf("Object: %s\r\n", list[i].name.c_str());
         currentObjects[i].initialize();
         currentObjects[i].setObject(list[i]);
+        currentObjects[i].setParent(this, presenter);
         currentObjects[i].invalidate();
     }
     

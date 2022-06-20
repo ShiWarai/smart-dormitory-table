@@ -10,6 +10,7 @@
 
 #include "../../../../../Core/Inc/Resident.h"
 #include "../../../../../Core/Inc/Object.h"
+#include "../../../../../Core/Inc/Reservation.h"
 
 #include "../../../../../Core/Inc/http/httpresponseparser.h"
 #include "../../../../../Core/Inc/json/json.hpp"
@@ -24,6 +25,8 @@ enum RequestType {
     AUTH,
     GET_RESIDENT,
     GET_OBJECTS,
+    CREATE_RESERVATION,
+    DELETE_RESERVATION,
     TEST
 };
 
@@ -40,6 +43,7 @@ public:
 
     long getStudentId();
     void requestResident(std::string currentStudentId);
+    void requestCreateReservation(Reservation reservation);
     void requestObjects();
     void setCredentials(Resident user);
 protected:
@@ -49,11 +53,12 @@ private:
     bool confirm_tag(long tag);
     Resident residentFromJson(std::string resident_str);
     std::vector<Object> objectsFromJson(std::string objects_str);
+    std::string jsonFromReservation(Reservation reservation);
 
     char request_str[1028];
     char response_str[8128];
 
-    RequestType currentRequestType = NONE;
+    RequestType currentRequestType = RequestType::NONE;
     uint8_t wifiProgress = 0;
 
     long lastRfid = 0;

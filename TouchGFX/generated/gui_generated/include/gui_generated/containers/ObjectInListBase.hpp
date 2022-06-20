@@ -10,6 +10,7 @@
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 #include <touchgfx/widgets/canvas/Line.hpp>
 #include <touchgfx/widgets/canvas/PainterRGB565.hpp>
+#include <touchgfx/mixins/ClickListener.hpp>
 
 class ObjectInListBase : public touchgfx::Container
 {
@@ -17,6 +18,14 @@ public:
     ObjectInListBase();
     virtual ~ObjectInListBase() {}
     virtual void initialize();
+
+    /*
+     * Virtual Action Handlers
+     */
+    virtual void reservationHandle()
+    {
+        // Override and implement this function in ObjectInList
+    }
 
 protected:
     FrontendApplication& application() {
@@ -26,7 +35,7 @@ protected:
     /*
      * Member Declarations
      */
-    touchgfx::IconButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  createReservation;
+    touchgfx::ClickListener< touchgfx::IconButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  > reservationButton;
     touchgfx::TextAreaWithOneWildcard objectName;
     touchgfx::Line line1;
     touchgfx::PainterRGB565 line1Painter;
@@ -43,6 +52,16 @@ protected:
     touchgfx::Unicode::UnicodeChar objectStatusBuffer[OBJECTSTATUS_SIZE];
 
 private:
+
+    /*
+     * Callback Declarations
+     */
+    touchgfx::Callback<ObjectInListBase, const touchgfx::AbstractButtonContainer&> flexButtonCallback;
+
+    /*
+     * Callback Handler Declarations
+     */
+    void flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer& src);
 
 };
 

@@ -859,7 +859,7 @@
         "Components": [
           {
             "Type": "FlexButton",
-            "Name": "createReservation",
+            "Name": "reservationButton",
             "X": 440,
             "Y": 6,
             "Width": 36,
@@ -900,7 +900,8 @@
                   "Blue": 153
                 }
               }
-            ]
+            ],
+            "Clickable": true
           },
           {
             "Type": "TextArea",
@@ -951,7 +952,19 @@
             "LineEndingStyle": "Square"
           }
         ],
-        "Interactions": []
+        "Interactions": [
+          {
+            "InteractionName": "createReservation",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "reservationButton"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "reservationHandle"
+            }
+          }
+        ]
       }
     ],
     "Name": "smart-dormitory-table",
