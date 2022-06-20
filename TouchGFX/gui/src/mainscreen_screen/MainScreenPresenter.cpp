@@ -36,6 +36,11 @@ void MainScreenPresenter::requestCreateReservation(Reservation reservation)
     model->requestCreateReservation(reservation);
 }
 
+void MainScreenPresenter::requestGetTime()
+{
+    model->requestCurrentTime();
+}
+
 void MainScreenPresenter::setResidentToProfile(Resident resident)
 {
     view.setResidentToProfile(resident);
@@ -44,4 +49,9 @@ void MainScreenPresenter::setResidentToProfile(Resident resident)
 void MainScreenPresenter::setObjectsToObjectsList(std::vector<Object> list)
 {
     view.setObjectsToObjectsList(list);
+}
+
+void MainScreenPresenter::setDatetimeToReservation(std::string datetime)
+{
+    view.setDatetimeToReservation(datetime);
 }

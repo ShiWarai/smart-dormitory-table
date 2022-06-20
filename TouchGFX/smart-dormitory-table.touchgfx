@@ -316,6 +316,14 @@
             "Height": 242,
             "Visible": false,
             "CustomContainerDefinitionName": "ObjectsListView"
+          },
+          {
+            "Type": "CustomContainerInstance",
+            "Name": "keyboard",
+            "Width": 480,
+            "Height": 272,
+            "Visible": false,
+            "CustomContainerDefinitionName": "ScreenKeyboard"
           }
         ],
         "Interactions": [

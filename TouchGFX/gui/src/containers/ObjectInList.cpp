@@ -52,14 +52,12 @@ void ObjectInList::setObject(Object object)
 
 void ObjectInList::createReservationHandle()
 {
-    Reservation newReservation;
+    Reservation new_reservation;
 
-    newReservation.objectId = object.id;
-    newReservation.reason = "created by Console";
-    newReservation.startReservation = "2022-06-19T21:02:05.458+03:00";
-    newReservation.endReservation = "2022-06-20T22:02:05.458+03:00";
+    new_reservation.objectId = object.id;
 
-    presenter->requestCreateReservation(newReservation);
+    view->setReservation(new_reservation);
+    presenter->requestGetTime();
 }
 
 void ObjectInList::deleteReservationHandle()

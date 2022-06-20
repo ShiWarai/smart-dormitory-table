@@ -15,6 +15,7 @@
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 #include <gui/containers/ProfileView.hpp>
 #include <gui/containers/ObjectsListView.hpp>
+#include <gui/containers/ScreenKeyboard.hpp>
 
 class MainScreenViewBase : public touchgfx::View<MainScreenPresenter>
 {
@@ -63,6 +64,7 @@ protected:
     touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::TouchButtonTrigger >  >  objectsButton;
     ProfileView profileView;
     ObjectsListView objectsListView;
+    ScreenKeyboard keyboard;
 
     /*
      * Wildcard Buffers

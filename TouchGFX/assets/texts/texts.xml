@@ -5,6 +5,9 @@
   </Languages>
   <Texts>
     <TextGroup Id="Input">
+      <Text Id="datetimeInput" Alignment="Left" TypographyId="Russian">
+        <Translation Language="GB">время</Translation>
+      </Text>
       <Text Id="pinCodeInput" Alignment="Left" TypographyId="Russian">
         <Translation Language="GB">пин-код</Translation>
       </Text>

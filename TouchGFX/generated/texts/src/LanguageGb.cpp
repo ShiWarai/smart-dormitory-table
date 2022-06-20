@@ -9,10 +9,11 @@ KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE;
 
 TEXT_LOCATION_FLASH_PRAGMA
 KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE = {
+    224, // T_datetimeInput
     203, // T_pinCodeInput
     21, // T_EnteredText
-    233, // T_NumMode
-    229, // T_AlphaMode
+    239, // T_NumMode
+    235, // T_AlphaMode
     211, // T_error
     195, // T_success
     141, // T___SingleUse_QKD3
@@ -20,9 +21,9 @@ KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE = {
     21, // T___SingleUse_PFMI
     58, // T_objectName
     21, // T___SingleUse_PYWX
-    239, // T___SingleUse_1ID4
+    245, // T___SingleUse_1ID4
     0, // T___SingleUse_9HVZ
-    241, // T___SingleUse_UHS0
+    247, // T___SingleUse_UHS0
     21, // T___SingleUse_L1XJ
     47, // T___SingleUse_UPWT
     22, // T_inputName
@@ -39,12 +40,12 @@ KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE = {
     20, // T___SingleUse_CKVP
     178, // T___SingleUse_F13C
     20, // T___SingleUse_65KO
-    224, // T___SingleUse_3GBR
+    230, // T___SingleUse_3GBR
     22, // T_birthdate
     20, // T___SingleUse_FJCS
     114, // T___SingleUse_SM47
     21, // T___SingleUse_U8JL
-    237, // T_studentId
+    243, // T_studentId
     129, // T___SingleUse_Y3NY
     79, // T___SingleUse_SHLX
     98, // T___SingleUse_C02T

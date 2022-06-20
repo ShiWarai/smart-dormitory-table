@@ -22,6 +22,7 @@ public:
     virtual void setStudentIdToView(long currentStudentId) {}
     virtual void setResidentToProfile(Resident resident) {}
     virtual void setObjectsToObjectsList(std::vector<Object> list) {}
+    virtual void setDatetimeToReservation(std::string datetime) {}
     virtual void setAuth(bool isAuth) {}
 protected:
     Model* model;

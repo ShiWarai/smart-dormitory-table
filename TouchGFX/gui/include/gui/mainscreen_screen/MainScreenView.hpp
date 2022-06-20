@@ -14,6 +14,7 @@ public:
     virtual ~MainScreenView() {}
     virtual void setupScreen();
     virtual void tearDownScreen();
+    virtual void handleTickEvent();
 
     virtual void updateStudentId();
     virtual void updateResident();
@@ -23,9 +24,14 @@ public:
     virtual void showObjectsListView();
 
     void hideAllContainers();
+    void showKeyboard(InputsController* inputController, ScreenKeyboardParent* parent);
     void setResidentToProfile(Resident resident);
     void setObjectsToObjectsList(std::vector<Object> list);
+    void setDatetimeToReservation(std::string datetime);
 protected:
+private:
+
+    uint16_t waitingCurrentDatetimeCounter = 0;
 };
 
 #endif // MAINSCREENVIEW_HPP

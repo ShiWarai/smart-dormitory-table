@@ -78,3 +78,30 @@ void MainScreenView::hideAllContainers()
 
     this->invalidate();
 }
+
+void MainScreenView::showKeyboard(InputsController* inputController, ScreenKeyboardParent* parent)
+{
+    keyboard.setParent(parent);
+
+    keyboard.raise(inputController);
+}
+
+void MainScreenView::setDatetimeToReservation(std::string datetime)
+{
+	objectsListView.setDatetime(datetime);
+}
+
+//Handles delays
+void MainScreenView::handleTickEvent()
+{
+    /*
+    if (waitingCurrentDatetimeCounter > 0)
+    {
+        waitingCurrentDatetimeCounter--;
+        if (waitingCurrentDatetimeCounter == 0)
+        {
+            // open keyboard
+
+        }
+    }*/
+}

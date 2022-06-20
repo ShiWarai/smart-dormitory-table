@@ -1,4 +1,7 @@
 #include <gui/containers/ObjectsListView.hpp>
+#include <gui/mainscreen_screen/MainScreenView.hpp>
+#include <gui/mainscreen_screen/MainScreenPresenter.hpp>
+
 
 ObjectsListView::ObjectsListView() : updateItemCallback(this, &ObjectsListView::updateItemCallbackHandler)
 {
@@ -44,6 +47,22 @@ void ObjectsListView::setObjectsList(std::vector<Object> list)
     loadingTitle.invalidate();
 }
 
+void ObjectsListView::setDatetime(std::string time)
+{
+    printf("DATE: %s\r\n", time.c_str());
+    reservation.startReservation = time;
+
+    sprintf(inputController.inputBuffer, time.substr(0, 16).c_str());
+    inputController.selectedInput = INPUTS::DATETIME;
+
+    view->showKeyboard(&inputController, (ScreenKeyboardParent*)this);
+}
+
+void ObjectsListView::setReservation(Reservation base_reservation)
+{
+    this->reservation = base_reservation;
+}
+
 void ObjectsListView::updateItemCallbackHandler(touchgfx::DrawableListItemsInterface* items, int16_t containerIndex, int16_t itemIndex)
 {
     if (items == &currentObjects)
@@ -53,3 +72,21 @@ void ObjectsListView::updateItemCallbackHandler(touchgfx::DrawableListItemsInter
         objectsListUpdateItem(*cc, itemIndex);
     }
 }
+
+void ObjectsListView::hideOkKeyboardCallback()
+{
+    printf("OK!\r\n");
+
+    reservation.endReservation = std::string(inputController.inputBuffer) + ":00.000+03:00";
+    reservation.reason = "created by Console";
+
+    presenter->requestCreateReservation(reservation);
+}
+
+void ObjectsListView::hideCancelKeyboardCallback()
+{
+    printf("CANCEL!\r\n");
+
+    this->reservation = Reservation();
+}
+

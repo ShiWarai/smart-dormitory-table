@@ -32,7 +32,7 @@ public:
 
     Unicode::UnicodeChar* getBuffer();
 
-    void updateBuffer(Unicode::UnicodeChar new_buffer[], uint32_t new_buffer_size);
+    void updateBuffer(Unicode::UnicodeChar new_buffer[], uint32_t new_buffer_size, uint32_t current_pos);
 
 private:
     /*

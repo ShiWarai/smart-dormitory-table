@@ -35,8 +35,10 @@ public:
     void requestResident(long currentStudentId);
     void requestObjects();
     void requestCreateReservation(Reservation reservation);
+    void requestGetTime();
     void setResidentToProfile(Resident resident);
     void setObjectsToObjectsList(std::vector<Object> list);
+    void setDatetimeToReservation(std::string datetime);
 private:
     MainScreenPresenter();
 

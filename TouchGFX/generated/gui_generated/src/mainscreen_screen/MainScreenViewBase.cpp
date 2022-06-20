@@ -59,6 +59,9 @@ MainScreenViewBase::MainScreenViewBase() :
     objectsListView.setXY(0, 30);
     objectsListView.setVisible(false);
 
+    keyboard.setXY(0, 0);
+    keyboard.setVisible(false);
+
     add(__background);
     add(mainBackground);
     add(backButton);
@@ -67,12 +70,14 @@ MainScreenViewBase::MainScreenViewBase() :
     add(objectsButton);
     add(profileView);
     add(objectsListView);
+    add(keyboard);
 }
 
 void MainScreenViewBase::setupScreen()
 {
     profileView.initialize();
     objectsListView.initialize();
+    keyboard.initialize();
     //UpdateStudentId
     //When screen transition begins call virtual function
     //Call updateStudentId
