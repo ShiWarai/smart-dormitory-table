@@ -2,6 +2,8 @@
 #include <gui/model/ModelListener.hpp>
 #include "../../../../../Core/Inc/base64.h"
 
+#define SELF_ROOM 167
+
 
 extern "C"{
 	extern QueueHandle_t wifiInitMessages;
@@ -38,8 +40,6 @@ void Model::tick()
 	}
 	if (xQueueReceive(wifiResponseMessages, response_str, 0) == pdTRUE)
 	{
-		//printf("RESPONSE:\r\n%s\r\n", response_str);
-
 		HttpResponseParser parser;
 		Response response;
 
@@ -65,50 +65,121 @@ void Model::setCredentials(Resident user)
 	
 	this->encoded_credits = macaron::Base64::Encode(credits);
 
-	printf("ENCODED: %s\r\n", encoded_credits.c_str());
-
 	sprintf(request_str, "GET /resident/%s HTTP/1.1\r\nHost: ridramecraft.ru:8080\r\nAuthorization:Basic %s\r\n\r\n",
 		this->currentUser.studentId.c_str(), encoded_credits.c_str());
 
 	xQueueSend(wifiRequestMessages, request_str, 0);
-	currentRequestType = AUTH;
+	currentRequestType = RequestType::AUTH;
 }
 
-void Model::requestResident(std::string currentStudentId) {
-	
+void Model::requestResident(std::string currentStudentId) 
+{	
 	sprintf(request_str, "GET /resident/%s HTTP/1.1\r\nHost: ridramecraft.ru:8080\r\nAuthorization:Basic %s\r\n\r\n",
 			currentStudentId.c_str(), encoded_credits.c_str());
 
 	xQueueSend(wifiRequestMessages, request_str, 0);
-	currentRequestType = GET_RESIDENT;
+	currentRequestType = RequestType::GET_RESIDENT;
 }
 
-void Model::responseHandler(Response response)
+void Model::requestCreateReservation(Reservation reservation)
 {
+	printf("Reservation Object id: %ld\r\n", reservation.objectId);
+
+	std::string reservation_json = jsonFromReservation(reservation);
+	sprintf(request_str, "POST /reservation/ HTTP/1.1\r\nHost: ridramecraft.ru:8080\r\nAuthorization:Basic %s\r\n"
+						 "Content-Type: application/json\r\nContent-Length: %u\r\n\r\n%s\r\n",
+						 encoded_credits.c_str(), reservation_json.size(), reservation_json.c_str());
+
+	xQueueSend(wifiRequestMessages, request_str, 0);
+	currentRequestType = RequestType::CREATE_RESERVATION;
+}
+
+void Model::requestObjects()
+{
+	sprintf(request_str, "GET /object/by?room=%d HTTP/1.1\r\nHost: ridramecraft.ru:8080\r\nAuthorization:Basic %s\r\n\r\n",
+			SELF_ROOM, encoded_credits.c_str());
+
+	xQueueSend(wifiRequestMessages, request_str, 0);
+	currentRequestType = RequestType::GET_OBJECTS;
+}
+
+void Model::requestCurrentTime()
+{
+	sprintf(request_str, "GET /api/timezone/Europe/Moscow HTTP/1.1\r\nHost: worldtimeapi.org:80\r\n\r\n");
+
+	xQueueSend(wifiRequestMessages, request_str, 0);
+	currentRequestType = RequestType::GET_TIME;
+}
+
+void Model::responseHandler(Response __response)
+{
+	std::string response = std::string(__response.content.begin(), __response.content.end());
+
 	switch (currentRequestType)
 	{
 	case RequestType::GET_RESIDENT:
-		if (response.statusCode == 200)
-			modelListener->setResidentToProfile(residentFromJson(std::string(response.content.begin(), response.content.end())));
+		if (__response.statusCode == 200)
+		{
+			printf("GET USER!\r\n");
+			modelListener->setResidentToProfile(residentFromJson(response));
+		}
 		else
-			printf("Something wrong with response: %s\r\n", std::string(response.content.begin(), response.content.end()).c_str());
+		{
+			printf("NO USER!\r\n");
+			printf("Something wrong with response: %s\r\n", response.c_str());
+		}
+		break;
+	case RequestType::GET_OBJECTS:
+		if (__response.statusCode == 200)
+		{
+			printf("GET OBJECT!\r\n");
+			modelListener->setObjectsToObjectsList(objectsFromJson(response));
+		}
+		else
+		{
+			printf("NO OBJECT!\r\n");
+			modelListener->setObjectsToObjectsList({});
+		}
+		break;
+	case RequestType::CREATE_RESERVATION:
+		if (__response.statusCode == 200)
+		{
+			printf("RESERVATION CREATED!\r\n");
+			//modelListener->setObjectsToObjectsList(objectsFromJson(response));
+		}
+		else
+		{
+			printf("CANT CREATE!\r\n");
+		}
+		break;
+	case RequestType::GET_TIME:
+		if (__response.statusCode == 200)
+		{
+			printf("GOT TIME!\r\n");
+			modelListener->setDatetimeToReservation(datetimeFromJson(response));
+			//modelListener->setObjectsToObjectsList(objectsFromJson(response));
+		}
+		else
+		{
+			printf("NO TIME!\r\n");
+		}
 		break;
 	case RequestType::AUTH:
-		if (response.statusCode == 200)
+		if (__response.statusCode == 200)
 		{
-			currentUser = residentFromJson(std::string(response.content.begin(), response.content.end()));
 			printf("GET USER!\r\n");
+			currentUser = residentFromJson(response);
 			modelListener->setAuth(true);
 		}
 		else
 		{
-			printf("Something wrong with response: %s\r\n", std::string(response.content.begin(), response.content.end()).c_str());
 			printf("NO USER!\r\n");
+			printf("Something wrong with response: %s\r\n", response.c_str());
 			modelListener->setAuth(false);
 		}
 		break;
 	default:
-		printf("No such request\r\n");
+		printf("NO SUCH REQUEST!\r\n");
 		break;
 	}
 
@@ -136,4 +207,45 @@ Resident Model::residentFromJson(std::string resident_str)
 	resident.role = resident_json["role"];
 
 	return resident;
+}
+
+std::vector<Object> Model::objectsFromJson(std::string objects_str)
+{
+	json objects_json = json::parse(objects_str);
+
+	std::vector<Object> objects;
+
+	for (size_t i = 0; i < objects_json.size(); i++)
+	{
+		Object object;
+
+		object.id = objects_json[i]["id"];
+		object.name = objects_json[i]["name"];
+		object.statusId = objects_json[i]["statusId"];
+		object.typeId = objects_json[i]["typeId"];
+
+		objects.push_back(object);
+	}
+
+	return objects;
+}
+
+std::string Model::jsonFromReservation(Reservation reservation)
+{
+	json reservation_json =
+	{
+		{"objectId", reservation.objectId},
+		{"reason", reservation.reason},
+		{"startReservation", reservation.startReservation},
+		{"endReservation", reservation.endReservation}
+	};
+
+	return reservation_json.dump();
+}
+
+std::string Model::datetimeFromJson(std::string time_str)
+{
+	json time_json = json::parse(time_str);
+
+	return (std::string) time_json["datetime"];
 }

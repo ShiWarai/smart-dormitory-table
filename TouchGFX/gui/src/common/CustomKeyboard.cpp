@@ -127,7 +127,7 @@ Unicode::UnicodeChar* CustomKeyboard::getBuffer() {
     return keyboard.getBuffer();
 }
 
-void CustomKeyboard::updateBuffer(Unicode::UnicodeChar new_buffer[], uint32_t new_buffer_size)
+void CustomKeyboard::updateBuffer(Unicode::UnicodeChar new_buffer[], uint32_t new_buffer_size, uint32_t current_pos)
 {
     for (int i = 0; i < BUFFER_SIZE; i++) {
         if (i < new_buffer_size)
@@ -135,4 +135,6 @@ void CustomKeyboard::updateBuffer(Unicode::UnicodeChar new_buffer[], uint32_t ne
         else
             buffer[i] = 0;
     }
+
+    keyboard.setBufferPosition(current_pos);
 }

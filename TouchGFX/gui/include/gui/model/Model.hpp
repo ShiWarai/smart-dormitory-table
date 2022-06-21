@@ -6,9 +6,12 @@
 #include <queue.h>
 #include <task.h>
 #include <vector>
-
 #include <string>
+
 #include "../../../../../Core/Inc/Resident.h"
+#include "../../../../../Core/Inc/Object.h"
+#include "../../../../../Core/Inc/Reservation.h"
+
 #include "../../../../../Core/Inc/http/httpresponseparser.h"
 #include "../../../../../Core/Inc/json/json.hpp"
 
@@ -21,6 +24,10 @@ enum RequestType {
     NONE,
     AUTH,
     GET_RESIDENT,
+    GET_OBJECTS,
+    CREATE_RESERVATION,
+    DELETE_RESERVATION,
+    GET_TIME,
     TEST
 };
 
@@ -37,18 +44,24 @@ public:
 
     long getStudentId();
     void requestResident(std::string currentStudentId);
+    void requestCreateReservation(Reservation reservation);
+    void requestObjects();
+    void requestCurrentTime();
     void setCredentials(Resident user);
 protected:
     ModelListener* modelListener;
 private:
-    void responseHandler(Response response);
+    void responseHandler(Response __response);
     bool confirm_tag(long tag);
     Resident residentFromJson(std::string resident_str);
+    std::vector<Object> objectsFromJson(std::string objects_str);
+    std::string datetimeFromJson(std::string time_str);
+    std::string jsonFromReservation(Reservation reservation);
 
     char request_str[1028];
     char response_str[8128];
 
-    RequestType currentRequestType = NONE;
+    RequestType currentRequestType = RequestType::NONE;
     uint8_t wifiProgress = 0;
 
     long lastRfid = 0;

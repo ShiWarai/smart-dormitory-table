@@ -903,15 +903,23 @@ void networkFunc(void *argument)
   /* USER CODE BEGIN networkFunc */
 	uint8_t progress = 0;
 
-	osDelay(1000);
+	osDelay(5000);
 
 	printf("\r\nConnecting to WiFi...\r\n");
 
 	esp_init(&huart7);
+
+
 	char ssid[] = "IoT_Case";
 	char password[] = "qweqweqwe";
 
 	NET_STATS config = {"192.168.2.250", "192.168.2.1", "255.255.255.0"};
+
+
+//	char ssid[] = "Ridrame";
+//	char password[] = "ridramecraft";
+//
+//	NET_STATS config = {"192.168.0.120", "192.168.0.1", "255.255.255.0"};
 
 	esp_set_wifi_mode(STATION_MODE);
 	progress = 20;
@@ -939,8 +947,9 @@ void networkFunc(void *argument)
 	xQueueSend(wifiInitMessages, &progress, 0);
 
 	// "GET / HTTP/1.1\r\nHost: 192.168.0.102:80\r\n\r\n";
-	sprintf(request, "GET /projects/led_controller/led HTTP/1.1\r\nHost: ridramecraft.ru:80\r\n\r\n");
-	printf("JSON:\r\n%s\r\n", esp_get_http_json(request, response, 8128));
+	sprintf(request, "GET /ping HTTP/1.1\r\nHost: ridramecraft.ru:8080\r\n\r\n");
+	esp_send_request(request, response, 8128);
+	printf("PING: %s\r\n", response);
 
 	progress = 100;
 	xQueueSend(wifiInitMessages, &progress, 0);

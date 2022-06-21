@@ -35,6 +35,10 @@
     <ClCompile Include="..\..\generated\gui_generated\src\containers\ProfileViewBase.cpp"/>
     <ClCompile Include="..\..\gui\src\common\CustomKeyboard.cpp"/>
     <ClCompile Include="..\..\generated\gui_generated\src\containers\ScreenKeyboardBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\containers\ObjectsListView.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\ObjectsListViewBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\containers\ObjectInList.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\ObjectInListBase.cpp"/>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(ApplicationRoot)\assets\texts\texts.xml"/>
@@ -183,6 +187,8 @@
     <ClInclude Include="..\..\..\Core\Inc\http\urlparser.h"/>
     <ClInclude Include="..\..\..\Core\Inc\InputsCollection.h"/>
     <ClInclude Include="..\..\..\Core\Inc\json\json.hpp"/>
+    <ClInclude Include="..\..\..\Core\Inc\Object.h"/>
+    <ClInclude Include="..\..\..\Core\Inc\Reservation.h"/>
     <ClInclude Include="..\..\..\Core\Inc\Resident.h"/>
     <ClInclude Include="..\..\..\Core\Inc\ScreenKeyboardParent.hpp"/>
     <ClInclude Include="..\..\generated\simulator\include\simulator\video\DirectFrameBufferVideoController.hpp"/>
@@ -211,6 +217,10 @@
     <ClInclude Include="..\..\gui\include\gui\common\KeyboardLayout.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\containers\ScreenKeyboard.hpp"/>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\ScreenKeyboardBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\containers\ObjectsListView.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\ObjectsListViewBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\containers\ObjectInList.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\ObjectInListBase.hpp"/>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(ApplicationRoot)\generated\simulator\touchgfx.rc"/>

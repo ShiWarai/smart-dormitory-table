@@ -3,6 +3,10 @@
 
 #include <gui/model/ModelListener.hpp>
 #include <mvp/Presenter.hpp>
+#include "../../../../../Core/Inc/Object.h"
+#include "../../../../../Core/Inc/Reservation.h"
+
+#include <vector>
 
 using namespace touchgfx;
 
@@ -29,7 +33,12 @@ public:
 
     long getCurrentStudentId();
     void requestResident(long currentStudentId);
+    void requestObjects();
+    void requestCreateReservation(Reservation reservation);
+    void requestGetTime();
     void setResidentToProfile(Resident resident);
+    void setObjectsToObjectsList(std::vector<Object> list);
+    void setDatetimeToReservation(std::string datetime);
 private:
     MainScreenPresenter();
 
