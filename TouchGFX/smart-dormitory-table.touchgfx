@@ -445,6 +445,7 @@
             "Y": 188,
             "Width": 144,
             "Height": 45,
+            "Visible": false,
             "ButtonTrigger": {
               "Type": "TouchButtonTrigger"
             },
@@ -602,7 +603,8 @@
                       "TextId": "pinCode",
                       "UseBuffer": true,
                       "BufferSize": 5
-                    }
+                    },
+                    "Clickable": true
                   }
                 ]
               },
@@ -678,7 +680,19 @@
             ]
           }
         ],
-        "Interactions": []
+        "Interactions": [
+          {
+            "InteractionName": "updateResident",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "confirmButton"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "updateResident"
+            }
+          }
+        ]
       },
       {
         "Name": "ScreenKeyboard",

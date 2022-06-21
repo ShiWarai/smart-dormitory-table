@@ -31,11 +31,11 @@ void ScreenKeyboard::raise(InputsController* inputController) {
     // Set placeholder by input
     switch (inputController->selectedInput)
     {
-    case T_PINCODEINPUT:
+    case INPUTS::PIN_CODE:
         enterTitle.setWildcard(TypedText(T_PINCODEINPUT).getText());
         break;
-    case T_DATETIMEINPUT:
-        enterTitle.setWildcard(TypedText(T_DATETIMEINPUT).getText());
+    case INPUTS::END_DATETIME:
+        enterTitle.setWildcard(TypedText(T_ENDDATETIMEINPUT).getText());
         break;
     default:
         break;

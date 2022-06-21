@@ -4,7 +4,6 @@
 #include <gui_generated/containers/ObjectsListViewBase.hpp>
 #include "../../../../../Core/Inc/Object.h"
 #include "../../../../../Core/Inc/ScreenKeyboardParent.hpp"
-#include "../../../../../Core/Inc/InputsCollection.h"
 
 #include <vector>
 

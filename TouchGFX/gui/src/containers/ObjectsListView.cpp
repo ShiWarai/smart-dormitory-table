@@ -53,7 +53,7 @@ void ObjectsListView::setDatetime(std::string time)
     reservation.startReservation = time;
 
     sprintf(inputController.inputBuffer, time.substr(0, 16).c_str());
-    inputController.selectedInput = INPUTS::DATETIME;
+    inputController.selectedInput = INPUTS::END_DATETIME;
 
     view->showKeyboard(&inputController, (ScreenKeyboardParent*)this);
 }

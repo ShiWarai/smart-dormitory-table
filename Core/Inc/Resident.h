@@ -4,7 +4,9 @@
 
 struct Resident
 {
-	std::string FIO;
+	std::string surname;
+	std::string name;
+	std::string patronymic;
 	std::string studentId;
 	std::string birthdate;
 	std::string pinCode;

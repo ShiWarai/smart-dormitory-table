@@ -5,7 +5,8 @@
 #include <touchgfx/Color.hpp>
 #include <texts/TextKeysAndLanguages.hpp>
 
-ProfileViewBase::ProfileViewBase()
+ProfileViewBase::ProfileViewBase() :
+    flexButtonCallback(this, &ProfileViewBase::flexButtonCallbackHandler)
 {
     setWidth(480);
     setHeight(242);
@@ -25,6 +26,8 @@ ProfileViewBase::ProfileViewBase()
     confirmButton.setTextPosition(0, 8, 144, 45);
     confirmButton.setTextColors(touchgfx::Color::getColorFromRGB(10, 10, 10), touchgfx::Color::getColorFromRGB(10, 10, 10));
     confirmButton.setPosition(10, 188, 144, 45);
+    confirmButton.setVisible(false);
+    confirmButton.setAction(flexButtonCallback);
 
     profileData.setPosition(0, 0, 480, 184);
     profileData.enableHorizontalScroll(false);
@@ -124,5 +127,16 @@ ProfileViewBase::ProfileViewBase()
 void ProfileViewBase::initialize()
 {
 
+}
+
+void ProfileViewBase::flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer& src)
+{
+    if (&src == &confirmButton)
+    {
+        //updateResident
+        //When confirmButton clicked call virtual function
+        //Call updateResident
+        updateResident();
+    }
 }
 

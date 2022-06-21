@@ -11,6 +11,7 @@
 #include <touchgfx/containers/Container.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
+#include <touchgfx/mixins/ClickListener.hpp>
 
 class ProfileViewBase : public touchgfx::Container
 {
@@ -18,6 +19,14 @@ public:
     ProfileViewBase();
     virtual ~ProfileViewBase() {}
     virtual void initialize();
+
+    /*
+     * Virtual Action Handlers
+     */
+    virtual void updateResident()
+    {
+        // Override and implement this function in ProfileView
+    }
 
 protected:
     FrontendApplication& application() {
@@ -38,7 +47,7 @@ protected:
     touchgfx::TextAreaWithOneWildcard roomText;
     touchgfx::Container pinCode;
     touchgfx::TextArea pinCodeTitle;
-    touchgfx::TextAreaWithOneWildcard pinCodeText;
+    touchgfx::ClickListener< touchgfx::TextAreaWithOneWildcard > pinCodeText;
     touchgfx::Container bithdate;
     touchgfx::TextArea birthdateTitle;
     touchgfx::TextAreaWithOneWildcard birthdateText;
@@ -61,6 +70,16 @@ protected:
     touchgfx::Unicode::UnicodeChar fioTextBuffer[FIOTEXT_SIZE];
 
 private:
+
+    /*
+     * Callback Declarations
+     */
+    touchgfx::Callback<ProfileViewBase, const touchgfx::AbstractButtonContainer&> flexButtonCallback;
+
+    /*
+     * Callback Handler Declarations
+     */
+    void flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer& src);
 
 };
 

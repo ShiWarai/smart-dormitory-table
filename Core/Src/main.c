@@ -910,16 +910,18 @@ void networkFunc(void *argument)
 	esp_init(&huart7);
 
 
+	/*
 	char ssid[] = "IoT_Case";
 	char password[] = "qweqweqwe";
 
 	NET_STATS config = {"192.168.2.250", "192.168.2.1", "255.255.255.0"};
+	*/
 
 
-//	char ssid[] = "Ridrame";
-//	char password[] = "ridramecraft";
-//
-//	NET_STATS config = {"192.168.0.120", "192.168.0.1", "255.255.255.0"};
+	char ssid[] = "JESUS_2_4";
+	char password[] = "228485657";
+
+	NET_STATS config = {"192.168.0.180", "192.168.0.1", "255.255.255.0"};
 
 	esp_set_wifi_mode(STATION_MODE);
 	progress = 20;

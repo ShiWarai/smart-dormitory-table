@@ -1,5 +1,4 @@
 #include <gui/waitingscreen_screen/WaitingScreenView.hpp>
-#include "../../../../../Core/Inc/InputsCollection.h"
 
 WaitingScreenView::WaitingScreenView()
 {
