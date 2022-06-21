@@ -24,6 +24,7 @@ enum RequestType {
     NONE,
     AUTH,
     GET_RESIDENT,
+    UPDATE_RESIDENT,
     GET_OBJECTS,
     CREATE_RESERVATION,
     DELETE_RESERVATION,
@@ -44,6 +45,7 @@ public:
 
     long getStudentId();
     void requestResident(std::string currentStudentId);
+    void requestUpdateResident(Resident resident);
     void requestCreateReservation(Reservation reservation);
     void requestObjects();
     void requestCurrentTime();
@@ -54,6 +56,7 @@ private:
     void responseHandler(Response __response);
     bool confirm_tag(long tag);
     Resident residentFromJson(std::string resident_str);
+    std::string jsonFromResident(Resident resident);
     std::vector<Object> objectsFromJson(std::string objects_str);
     std::string datetimeFromJson(std::string time_str);
     std::string jsonFromReservation(Reservation reservation);

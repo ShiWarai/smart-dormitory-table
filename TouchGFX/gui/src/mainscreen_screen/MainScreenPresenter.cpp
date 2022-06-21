@@ -17,6 +17,10 @@ void MainScreenPresenter::deactivate()
 
 }
 
+void MainScreenPresenter::returnToWaitingView() {
+    view.goBack();
+}
+
 long MainScreenPresenter::getCurrentStudentId() {
     return model->getStudentId();
 }
@@ -24,6 +28,11 @@ long MainScreenPresenter::getCurrentStudentId() {
 void MainScreenPresenter::requestResident(long currentStudentId)
 {
     model->requestResident(std::to_string(currentStudentId));
+}
+
+void MainScreenPresenter::requestUpdateResident(Resident resident)
+{
+    model->requestUpdateResident(resident);
 }
 
 void MainScreenPresenter::requestObjects()

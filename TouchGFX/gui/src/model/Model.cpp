@@ -81,6 +81,19 @@ void Model::requestResident(std::string currentStudentId)
 	currentRequestType = RequestType::GET_RESIDENT;
 }
 
+void Model::requestUpdateResident(Resident resident)
+{
+	printf("Resident: %s\r\n", resident.studentId.c_str());
+
+	std::string resident_json = jsonFromResident(resident);
+	sprintf(request_str, "PUT /resident/%s HTTP/1.1\r\nHost: ridramecraft.ru:8080\r\nAuthorization:Basic %s\r\n"
+		"Content-Type: application/json\r\nContent-Length: %u\r\n\r\n%s\r\n",
+		resident.studentId.c_str(), encoded_credits.c_str(), resident_json.size(), resident_json.c_str());
+
+	xQueueSend(wifiRequestMessages, request_str, 0);
+	currentRequestType = RequestType::UPDATE_RESIDENT;
+}
+
 void Model::requestCreateReservation(Reservation reservation)
 {
 	printf("Reservation Object id: %ld\r\n", reservation.objectId);
@@ -127,6 +140,18 @@ void Model::responseHandler(Response __response)
 		{
 			printf("NO USER!\r\n");
 			printf("Something wrong with response: %s\r\n", response.c_str());
+		}
+		break;
+	case RequestType::UPDATE_RESIDENT:
+		if (__response.statusCode == 200)
+		{
+			printf("RESIDENT IS UPDATED!\r\n");
+
+			modelListener->returnToWaitingView();
+		}
+		else
+		{
+			printf("CANT UPDATE!\r\n");
 		}
 		break;
 	case RequestType::GET_OBJECTS:
@@ -192,21 +217,33 @@ Resident Model::residentFromJson(std::string resident_str)
 
 	Resident resident;
 
-	resident.FIO = (std::string)resident_json["surname"]
-					+ " " + (std::string)resident_json["name"]
-					+ " " + (std::string)resident_json.value("patronymic", "");
-
+	resident.surname = resident_json["surname"];
+	resident.name = resident_json["name"];
+	resident.patronymic = resident_json.value("patronymic", "");
 	resident.studentId = resident_json["studentId"];
-
 	resident.birthdate = resident_json["birthdate"];
-
 	resident.pinCode = "****";
-
 	resident.room = resident_json.value("roomNumber", 0);
-
 	resident.role = resident_json["role"];
 
 	return resident;
+}
+
+std::string Model::jsonFromResident(Resident resident)
+{
+	json resident_json =
+	{
+		{"surname", resident.surname},
+		{"name", resident.name},
+		{"patronymic", resident.patronymic},
+		{"birthdate", resident.birthdate},
+		{"studentId", resident.studentId},
+		{"pinCode", resident.pinCode},
+		{"roomNumber", resident.room},
+		{"role", resident.role}
+	};
+
+	return resident_json.dump();
 }
 
 std::vector<Object> Model::objectsFromJson(std::string objects_str)

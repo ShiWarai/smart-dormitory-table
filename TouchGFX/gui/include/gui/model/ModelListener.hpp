@@ -18,6 +18,7 @@ public:
         model = m;
     }
 
+    virtual void returnToWaitingView() {};
     virtual void setLoadingProgress(uint8_t value) {}
     virtual void setStudentIdToView(long currentStudentId) {}
     virtual void setResidentToProfile(Resident resident) {}

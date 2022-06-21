@@ -32,7 +32,9 @@ public:
     virtual ~MainScreenPresenter() {};
 
     long getCurrentStudentId();
+    void returnToWaitingView();
     void requestResident(long currentStudentId);
+    void requestUpdateResident(Resident resident);
     void requestObjects();
     void requestCreateReservation(Reservation reservation);
     void requestGetTime();
