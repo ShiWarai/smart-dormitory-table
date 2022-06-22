@@ -4,14 +4,15 @@
 #include <gui_generated/containers/ObjectInListBase.hpp>
 #include "../../../../../Core/Inc/Object.h"
 #include "../../../../../Core/Inc/Reservation.h"
+#include <touchgfx/Color.hpp>
 
 class ObjectsListView;
 class MainScreenPresenter;
 
 enum ReservationState {
-    NONE_RESERVATION,
+    AVAILABLE_RESERVATION,
     MY_RESERVATION,
-    SOMEONES_RESERVATION
+    NOTAVAILABLE_RESERVATION
 };
 
 class ObjectInList : public ObjectInListBase
@@ -29,7 +30,9 @@ public:
     void deleteReservationHandle();
 private:
     Object object;
-    ReservationState state = ReservationState::NONE_RESERVATION;
+    ReservationState state;
+
+    void setColorToReservationButton(touchgfx::colortype base, touchgfx::colortype touched);
 
     ObjectsListView* view;
     MainScreenPresenter* presenter;

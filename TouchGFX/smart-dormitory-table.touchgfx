@@ -908,18 +908,9 @@
                   "Blue": 255
                 },
                 "ColorPressed": {
-                  "Green": 153,
-                  "Blue": 204
-                },
-                "ColorBorderReleased": {
-                  "Red": 28,
-                  "Green": 33,
-                  "Blue": 38
-                },
-                "ColorBorderPressed": {
-                  "Red": 51,
-                  "Green": 102,
-                  "Blue": 153
+                  "Red": 13,
+                  "Green": 41,
+                  "Blue": 117
                 }
               }
             ],

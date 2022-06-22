@@ -4,6 +4,7 @@
 
 struct Reservation
 {
+    long id;
     long objectId;
     long residentId;
     std::string reason;

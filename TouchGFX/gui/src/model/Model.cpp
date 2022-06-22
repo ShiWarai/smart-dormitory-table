@@ -109,7 +109,7 @@ void Model::requestCreateReservation(Reservation reservation)
 
 void Model::requestObjects()
 {
-	sprintf(request_str, "GET /object/by?room=%d HTTP/1.1\r\nHost: ridramecraft.ru:8080\r\nAuthorization:Basic %s\r\n\r\n",
+	sprintf(request_str, "GET /tablet/object/by?room=%d HTTP/1.1\r\nHost: ridramecraft.ru:8080\r\nAuthorization:Basic %s\r\n\r\n",
 			SELF_ROOM, encoded_credits.c_str());
 
 	xQueueSend(wifiRequestMessages, request_str, 0);
@@ -124,8 +124,18 @@ void Model::requestCurrentTime()
 	currentRequestType = RequestType::GET_TIME;
 }
 
+void Model::requestDeleteReservation(Reservation reservation)
+{
+	sprintf(request_str, "DELETE /reservation/%ld HTTP/1.1\r\nHost: ridramecraft.ru:8080\r\nAuthorization:Basic %s\r\n\r\n",
+		reservation.id, encoded_credits.c_str());
+
+	xQueueSend(wifiRequestMessages, request_str, 0);
+	currentRequestType = RequestType::DELETE_RESERVATION;
+}
+
 void Model::responseHandler(Response __response)
 {
+	bool isFinalResponse = true;
 	std::string response = std::string(__response.content.begin(), __response.content.end());
 
 	switch (currentRequestType)
@@ -170,11 +180,24 @@ void Model::responseHandler(Response __response)
 		if (__response.statusCode == 200)
 		{
 			printf("RESERVATION CREATED!\r\n");
-			//modelListener->setObjectsToObjectsList(objectsFromJson(response));
+			isFinalResponse = false;
+			requestObjects();
 		}
 		else
 		{
 			printf("CANT CREATE!\r\n");
+		}
+		break;
+	case RequestType::DELETE_RESERVATION:
+		if (__response.statusCode == 200)
+		{
+			printf("RESERVATION DELETED!\r\n");
+			isFinalResponse = false;
+			requestObjects();
+		}
+		else
+		{
+			printf("CANT DELETE!\r\n");
 		}
 		break;
 	case RequestType::GET_TIME:
@@ -182,7 +205,6 @@ void Model::responseHandler(Response __response)
 		{
 			printf("GOT TIME!\r\n");
 			modelListener->setDatetimeToReservation(datetimeFromJson(response));
-			//modelListener->setObjectsToObjectsList(objectsFromJson(response));
 		}
 		else
 		{
@@ -199,7 +221,6 @@ void Model::responseHandler(Response __response)
 		else
 		{
 			printf("NO USER!\r\n");
-			printf("Something wrong with response: %s\r\n", response.c_str());
 			modelListener->setAuth(false);
 		}
 		break;
@@ -208,7 +229,8 @@ void Model::responseHandler(Response __response)
 		break;
 	}
 
-	currentRequestType = NONE;
+	if(isFinalResponse)
+		currentRequestType = NONE;
 }
 
 Resident Model::residentFromJson(std::string resident_str)
@@ -256,10 +278,14 @@ std::vector<Object> Model::objectsFromJson(std::string objects_str)
 	{
 		Object object;
 
-		object.id = objects_json[i]["id"];
-		object.name = objects_json[i]["name"];
-		object.statusId = objects_json[i]["statusId"];
-		object.typeId = objects_json[i]["typeId"];
+		object.id = objects_json[i]["object"]["id"];
+		object.name = objects_json[i]["object"]["name"];
+		object.status_id = objects_json[i]["object"]["statusId"];
+		object.type_id = objects_json[i]["object"]["typeId"];
+
+		object.available = objects_json[i]["canBeReserved"];
+		for(size_t j = 0; j < objects_json[i]["residentActiveReservations"].size(); j++)
+			object.user_reservations.push_back(objects_json[i]["residentActiveReservations"][j]);
 
 		objects.push_back(object);
 	}

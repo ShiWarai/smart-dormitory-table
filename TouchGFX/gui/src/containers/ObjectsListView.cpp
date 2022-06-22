@@ -15,7 +15,6 @@ void ObjectsListView::initialize()
 
 void ObjectsListView::objectsListUpdateItem(ObjectInList& item, int16_t itemIndex)
 {
-    //printf("UPDATE LIST: %d\r\n", itemIndex);
 }
 
 void ObjectsListView::setParent(MainScreenView* ptr1, MainScreenPresenter* ptr2)
@@ -25,12 +24,9 @@ void ObjectsListView::setParent(MainScreenView* ptr1, MainScreenPresenter* ptr2)
 }
 
 void ObjectsListView::setObjectsList(std::vector<Object> list)
-{
-    printf("Fill objects list...\r\n");
-    
+{  
     for (size_t i = 0; i < list.size(); i++)
     {
-        printf("Object: %s\r\n", list[i].name.c_str());
         currentObjects[i].initialize();
         currentObjects[i].setObject(list[i]);
         currentObjects[i].setParent(this, presenter);
@@ -75,18 +71,14 @@ void ObjectsListView::updateItemCallbackHandler(touchgfx::DrawableListItemsInter
 
 void ObjectsListView::hideOkKeyboardCallback()
 {
-    printf("OK!\r\n");
-
     reservation.endReservation = std::string(inputController.inputBuffer) + ":00.000+03:00";
-    reservation.reason = "created by Console";
+    reservation.reason = "";
 
     presenter->requestCreateReservation(reservation);
 }
 
 void ObjectsListView::hideCancelKeyboardCallback()
 {
-    printf("CANCEL!\r\n");
-
     this->reservation = Reservation();
 }
 
