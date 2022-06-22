@@ -964,7 +964,9 @@ void networkFunc(void *argument)
 	{
 		if(xQueueReceive(wifiRequestMessages, request, 0) == pdTRUE)
 		{
+			//printf("REQUEST: %s\r\n", request);
 			esp_send_request(request, response, 8128);
+			//printf("RESPONSE: %s\r\n", response);
 
 			xQueueSend(wifiResponseMessages, response, 0);
 		}

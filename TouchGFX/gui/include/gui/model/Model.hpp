@@ -49,6 +49,7 @@ public:
     void requestCreateReservation(Reservation reservation);
     void requestObjects();
     void requestCurrentTime();
+    void requestDeleteReservation(Reservation reservation);
     void setCredentials(Resident user);
 protected:
     ModelListener* modelListener;

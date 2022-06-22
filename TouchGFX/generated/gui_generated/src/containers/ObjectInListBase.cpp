@@ -13,7 +13,7 @@ ObjectInListBase::ObjectInListBase() :
     setHeight(48);
     reservationButton.setBoxWithBorderPosition(0, 0, 36, 36);
     reservationButton.setBorderSize(0);
-    reservationButton.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0, 106, 255), touchgfx::Color::getColorFromRGB(0, 153, 204), touchgfx::Color::getColorFromRGB(28, 33, 38), touchgfx::Color::getColorFromRGB(51, 102, 153));
+    reservationButton.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0, 106, 255), touchgfx::Color::getColorFromRGB(13, 41, 117), touchgfx::Color::getColorFromRGB(0, 0, 0), touchgfx::Color::getColorFromRGB(0, 0, 0));
     reservationButton.setIconBitmaps(Bitmap(BITMAP_BLUE_ICONS_DONE_32_ID), Bitmap(BITMAP_BLUE_ICONS_DONE_32_ID));
     reservationButton.setIconXY(3, 3);
     reservationButton.setPosition(440, 6, 36, 36);

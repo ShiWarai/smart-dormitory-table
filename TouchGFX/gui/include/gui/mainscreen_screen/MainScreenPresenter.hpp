@@ -38,6 +38,7 @@ public:
     void requestObjects();
     void requestCreateReservation(Reservation reservation);
     void requestGetTime();
+    void requestDeleteReservation(Reservation reservation);
     void setResidentToProfile(Resident resident);
     void setObjectsToObjectsList(std::vector<Object> list);
     void setDatetimeToReservation(std::string datetime);

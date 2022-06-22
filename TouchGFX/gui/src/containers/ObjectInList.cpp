@@ -16,13 +16,13 @@ void ObjectInList::reservationHandle()
 {
     switch (state)
     {
-    case ReservationState::NONE_RESERVATION:
+    case ReservationState::AVAILABLE_RESERVATION:
         createReservationHandle();
         break;
     case ReservationState::MY_RESERVATION:
-        printf("Try delete my reservation\r\n");
+        deleteReservationHandle();
         break;
-    case ReservationState::SOMEONES_RESERVATION:
+    case ReservationState::NOTAVAILABLE_RESERVATION:
         printf("You can't do nothing!\r\n");
         break;
     }
@@ -36,18 +36,41 @@ void ObjectInList::setParent(ObjectsListView* ptr1, MainScreenPresenter* ptr2)
 
 void ObjectInList::setObject(Object object)
 {
+    this->object = object;
+
     printf("Name: %s\r\n", object.name.c_str());
-    printf("Status: %ld\r\n", object.statusId);
+    printf("Status: %ld\r\n", object.status_id);
+    printf("Can be reserved: %d\r\n", object.available);
+
+    for(int i = 0; i < object.user_reservations.size(); i++)
+        printf("User\'s reservation: %ld\r\n", object.user_reservations[i]);
 
     Unicode::fromUTF8((const uint8_t*)object.name.c_str(), objectNameBuffer, OBJECTNAME_SIZE);
     objectName.resizeToCurrentText();
     objectName.invalidate();
 
-    Unicode::itoa(object.statusId, objectStatusBuffer, OBJECTSTATUS_SIZE, 10);
+    Unicode::itoa(object.status_id, objectStatusBuffer, OBJECTSTATUS_SIZE, 10);
     objectStatus.resizeToCurrentText();
     objectStatus.invalidate();
 
-    this->object = object;
+    if (object.available)
+    {
+        state = ReservationState::AVAILABLE_RESERVATION;
+        setColorToReservationButton(touchgfx::Color::getColorFromRGB(0, 106, 255),
+                                    touchgfx::Color::getColorFromRGB(13, 41, 117));
+    }
+    else if (object.user_reservations.size() > 0)
+    {
+        state = ReservationState::MY_RESERVATION;
+        setColorToReservationButton(touchgfx::Color::getColorFromRGB(178, 34, 34),
+                                    touchgfx::Color::getColorFromRGB(139, 0, 0));
+    }
+    else
+    {
+        state = ReservationState::NOTAVAILABLE_RESERVATION;
+        setColorToReservationButton(touchgfx::Color::getColorFromRGB(255, 165, 0),
+                                    touchgfx::Color::getColorFromRGB(255, 140, 0));
+    }
 }
 
 void ObjectInList::createReservationHandle()
@@ -62,5 +85,16 @@ void ObjectInList::createReservationHandle()
 
 void ObjectInList::deleteReservationHandle()
 {
+    // Delete last reservation
+    Reservation old_reservation;
 
+    old_reservation.id = object.user_reservations[object.user_reservations.size() - 1];
+
+    presenter->requestDeleteReservation(old_reservation);
+}
+
+void ObjectInList::setColorToReservationButton(touchgfx::colortype base, touchgfx::colortype touched)
+{
+    reservationButton.setBoxWithBorderColors(base, touched, touchgfx::Color::getColorFromRGB(0, 0, 0), touchgfx::Color::getColorFromRGB(0, 0, 0));
+    reservationButton.invalidate();
 }

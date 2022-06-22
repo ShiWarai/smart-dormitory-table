@@ -50,6 +50,11 @@ void MainScreenPresenter::requestGetTime()
     model->requestCurrentTime();
 }
 
+void MainScreenPresenter::requestDeleteReservation(Reservation reservation)
+{
+    model->requestDeleteReservation(reservation);
+}
+
 void MainScreenPresenter::setResidentToProfile(Resident resident)
 {
     view.setResidentToProfile(resident);
